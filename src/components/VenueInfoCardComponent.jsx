@@ -12,7 +12,7 @@ const VenueInfoCardComponent = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-2">
             <div className="w-full shadow-lg  pt-8 px-8 pb-12 rounded-md mb-3">
                 <div className="flex justify-between items-center py-4 pr-4">
-                    <FaMapLocation size={45} />
+                    <FaMapLocation size={45} className='text-blue-900' />
                     <h1 className="font-bold text-lg">HIGH QUALITY EVENT SPACES</h1>
                     
                 </div>
@@ -26,7 +26,7 @@ const VenueInfoCardComponent = () => {
 
             <div className="w-full shadow-lg  pt-8 px-4 pb-12 rounded-md mb-3">
                 <div className="flex justify-between items-center py-4">
-                    <RxAvatar size={45} />
+                    <RxAvatar size={45} className='text-blue-900' />
                     <h1 className="font-bold text-lg">DEDICATED & PROFESSIONAL SERVICE</h1>
                     
                 </div>
@@ -38,7 +38,7 @@ const VenueInfoCardComponent = () => {
 
             <div className="w-full shadow-lg  pt-8 px-4 pb-12 rounded-md mb-3">
                 <div className="flex justify-between items-center py-4">
-                    <FaDollarSign size={45} />
+                    <FaDollarSign size={45} className='text-blue-900' />
                     <h1 className="font-bold text-lg pl-3">
                     HIGHLY AFFORDABLE & COMPETITIVE PRICES</h1>
                     
@@ -52,7 +52,7 @@ const VenueInfoCardComponent = () => {
 
             <div className="w-full shadow-lg  pt-8 px-4 pb-12 rounded-md mb-3">
                 <div className="flex justify-between items-center py-4 ">
-                    <BsFillCarFrontFill size={50} />
+                    <BsFillCarFrontFill size={50} className='text-blue-900' />
                     <h1 className="font-bold text-lg pl-3">
                     ACCESSIBLE EVENT SPACE WITH GREAT PARKING</h1>
                     
@@ -65,7 +65,7 @@ const VenueInfoCardComponent = () => {
 
             <div className="w-full shadow-lg  pt-8 px-4 pb-12 rounded-md mb-3">
                 <div className="flex justify-between items-center py-4">
-                    <FaRegThumbsUp size={50} />
+                    <FaRegThumbsUp size={50} className='text-blue-900' />
                     <h1 className="font-bold text-lg pl-3">
                     WE ARE HERE TO MAKE YOUR EVENT SUCCESSFUL</h1>
                     
@@ -78,7 +78,7 @@ const VenueInfoCardComponent = () => {
 
             <div className="w-full shadow-lg  pt-8 px-4 pb-12 rounded-md mb-3">
                 <div className="flex font-bold text-lg pl-3">
-                    <PiSealCheckFill size={60} />
+                    <PiSealCheckFill size={60} className='text-blue-900' />
                     <h1 className="ont-bold text-lg">
                         GUARANTEED HIGH SECURITY & ADDED FACILITIES</h1>
                     

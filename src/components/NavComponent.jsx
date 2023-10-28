@@ -12,7 +12,7 @@ const NavComponent = () => {
   }
   return (
     <nav className=' flex justify-between items-center px-3  mb-1.5 shadow-lg sticky top-0 z-20 bg-white'>
-        <img src={noblecastle} alt="" className='border border-gray-800  w-40'/>
+        <img src={noblecastle} alt="" className='border   w-40'/>
         <div className="hidden lg:block">
         <div className="flex justify-between items-center ">
             <Link to={"/"} className='block  font-bold text-xl'>Home</Link>

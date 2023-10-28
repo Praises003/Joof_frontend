@@ -3,7 +3,7 @@ import Faq from 'react-faq-component'
 
 const FaqComponent = () => {
     const data = {
-        title: "FAQ (How it works)",
+        title: "FAQ SECTION",
         rows: [
           {
             title: "WHAT FORMS OF PAYMENT DO YOU TAKE?",
@@ -28,10 +28,10 @@ const FaqComponent = () => {
         titleTextColor: "black",
         rowTitleColor: "black",
         // rowContentColor: 'grey',
-         arrowColor: "orange",
+         arrowColor: "blue",
     };
   return (
-    <div>FaqComponent
+    <div>
         <Faq data={data} styles={styles} />
     </div>
     
