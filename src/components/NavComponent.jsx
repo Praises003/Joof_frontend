@@ -55,7 +55,7 @@ const NavComponent = () => {
             <Link to={"/service"} className='block pb-4 font-medium text-lg'>Service</Link>
             <Link to={"/service"} className='block pb-4 font-medium text-lg'>Gallery</Link>
             <Link to={"/service"} className='block pb-4 font-medium text-lg'>Contact Us</Link>
-            <div className="bg-white p-3 border rounded-lg text-black text-center w-1/3 font-bold text-lg ">
+            <div className="bg-white p-3 border rounded-lg text-black text-center w-full font-bold text-lg ">
               <Link>Book an Event</Link>
             </div>
             <div className="bg-black p-6 mt-4 w-1/3 rounded">
