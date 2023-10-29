@@ -38,7 +38,7 @@ const ContactComponent = () => {
     
     <div>
         <div className="bg-black h-full w-full mb-10 p-9">
-            <p className="text-white w-3/4 md:w-1/4 mx-auto font-bold text-4xl  md:text-5xl mb-8 uppercase">Contact Us</p>
+            <p className="text-white w-3/4 md:w-1/4 mx-auto font-bold text-2xl  md:text-5xl mb-8 uppercase">Contact Us</p>
             <div className="flex flex-col lg:flex-row ">
                 <div className="w-full">
                     <h1 className='text-white font-bold text-2xl mb-8 uppercase'>Our Location</h1>
