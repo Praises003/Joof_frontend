@@ -19,7 +19,7 @@ const HomeScreen = () => {
   
     <AboutComponent />
     <div className="">
-      <p className='text-2xl font-bold w-2/5  lg:w-1/4 mx-auto mt-20 md:text-4xl uppercase'>What We Offer</p>
+      <p className='text-2xl font-bold pl-4 w-11/12 sm:w-full lg:w-1/4 mx-auto mt-20 md:text-4xl uppercase'>What We Offer</p>
     </div>
     <VenueInfoCardComponent />
     
