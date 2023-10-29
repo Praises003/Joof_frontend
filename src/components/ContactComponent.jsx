@@ -49,7 +49,7 @@ info@noblecastleng.com</p>
                 </div>
                 <div className=' bg-white py-10 px-10 w-full   '>
                     <form onSubmit={submitFunc} >
-                        <div className="w-3/4 mx-auto">
+                        <div className="w-11/12 mx-auto">
                         <div className='mb-8 w-full mx-auto'>
                             <h1 className='text-2xl md:text-3xl font-bold text-center sm:text-lg '>Contact Us</h1>
                             <label className="block mb-3 font-medium text-gray-900 " htmlFor=''>Name</label>
