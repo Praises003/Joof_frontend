@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
       {/* <NavComponent />  */}
 
-    <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "60vh"}} className={`md- `}>
+    <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "45vh"}} className={` `}>
           <p className='uppercase text-4xl font-bold md:text-5xl text-white mx-auto w-3/4 md:w-3/4 pt-20 md:pt-40'>JOOF Multipurpose event center</p>
         </div>
 
