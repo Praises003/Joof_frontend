@@ -13,7 +13,7 @@ const VenueInfoCardComponent = () => {
             <div className="w-full shadow-lg  pt-8 px-8 pb-12 rounded-md mb-3">
                 <div className="flex justify-between items-center py-4 ">
                     <FaMapLocation size={45} className='text-blue-900' />
-                    <h1 className="font-bold text-lg">HIGH QUALITY EVENT SPACES</h1>
+                    <h1 className="font-bold text-lg pl-4">HIGH QUALITY EVENT SPACES</h1>
                     
                 </div>
                 <p className="font-medium">
