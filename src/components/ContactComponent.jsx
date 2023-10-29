@@ -38,10 +38,10 @@ const ContactComponent = () => {
     
     <div>
         <div className="bg-black h-full w-full mb-10 p-9">
-            <p className="text-white w-3/4 md:w-1/4 mx-auto font-bold text-2xl  md:text-5xl mb-8 uppercase">Contact Us</p>
+            <p className="text-white w-3/4 md:w-1/4 mx-auto font-bold text-3xl  md:text-5xl mb-8 uppercase">Contact Us</p>
             <div className="flex flex-col lg:flex-row ">
                 <div className="w-full">
-                    <h1 className='text-white font-bold text-2xl mb-8 uppercase'>Our Location</h1>
+                    <h1 className='text-white font-bold text-xl mb-8 uppercase'>Our Location</h1>
                     <p className='text-white font-medium text-lg mb-4'><span>ADDRESS:</span> Isheri- Igando Road, opposite Iron Market, Igando, Lagos State, Nigeria</p>
                     <p className='text-white font-medium text-lg mb-4'><span>PHONE:</span> +234 (0) 8083625784</p>
                     <p className='text-white font-medium text-lg mb-16'><span>EMAIL:</span> 
