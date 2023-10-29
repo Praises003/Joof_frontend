@@ -24,7 +24,7 @@ const HomeScreen = () => {
     <VenueInfoCardComponent />
     
     <FaqComponent />
-    <ContactComponent />
+
     
     </section>
     
