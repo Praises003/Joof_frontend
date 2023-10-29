@@ -13,7 +13,7 @@ const AboutComponent = () => {
                     Extending over 9.4 acres, the location makes its easily accessible from anywhere in the city and makes it perfect for any event. It is a venue guaranteed to impress. Couple this with the centre’s established commitment to environmental and social sustainability and you have the making of a conference, convention, or exhibition that can only be described as exceptional on every level.</p>
                     <div className="flex items-center ">
                         <Link to="/about" className="bg-blue-900 text-white  p-4 mt-12 mb-12 rounded-lg block mr-4">More About Us</Link>
-                        <Link to="/venue_info" className="bg-blue-900 text-white p-4 mt-12 mb-12 rounded-lg block">See Our Venue Informations</Link>
+                        <Link to="/venue_info" className="bg-blue-900 text-white p-4 mt-12 mb-12 rounded-lg block">See Our Venue Infos</Link>
                         
 
                     </div>
