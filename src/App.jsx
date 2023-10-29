@@ -7,6 +7,8 @@ import './App.css'
 import HomeScreen from './screens/HomeScreen'
 import VenueComponent from './components/VenueComponent'
 import ScrollToTop from './components/ScrollToTop'
+import NavComponent from './components/NavComponent'
+import ContactComponent from './components/ContactComponent'
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -36,6 +38,7 @@ function App() {
   return (
     <>
         <ScrollToTop />
+        <NavComponent />
         <Routes>
           
             <Route path='/' element={<HomeScreen />}/>
@@ -43,6 +46,7 @@ function App() {
             <Route path="/venue_info" element={<VenueComponent />}/>
             
         </Routes>
+        <ContactComponent />
       
       
     

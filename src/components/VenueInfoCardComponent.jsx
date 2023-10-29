@@ -11,7 +11,7 @@ const VenueInfoCardComponent = () => {
     <div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-2">
             <div className="w-full shadow-lg  pt-8 px-8 pb-12 rounded-md mb-3">
-                <div className="flex justify-between items-center py-4 pr-4">
+                <div className="flex justify-between items-center py-4 ">
                     <FaMapLocation size={45} className='text-blue-900' />
                     <h1 className="font-bold text-lg">HIGH QUALITY EVENT SPACES</h1>
                     
@@ -27,7 +27,7 @@ const VenueInfoCardComponent = () => {
             <div className="w-full shadow-lg  pt-8 px-4 pb-12 rounded-md mb-3">
                 <div className="flex justify-between items-center py-4">
                     <RxAvatar size={45} className='text-blue-900' />
-                    <h1 className="font-bold text-lg">DEDICATED & PROFESSIONAL SERVICE</h1>
+                    <h1 className="font-bold text-lg pl-4">DEDICATED & PROFESSIONAL SERVICE</h1>
                     
                 </div>
                 <p className="font-medium">

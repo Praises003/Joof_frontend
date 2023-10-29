@@ -38,7 +38,7 @@ const NavComponent = () => {
               <TfiInstagram size={20} className='text-blue-900' />
               <FaXTwitter size={20} className='text-blue-900' />
 
-              </div>
+            </div>
 
         </div>
 
