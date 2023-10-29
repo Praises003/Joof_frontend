@@ -51,7 +51,7 @@ info@noblecastleng.com</p>
                     <form onSubmit={submitFunc} >
                         <div className="w-3/4 mx-auto">
                         <div className='mb-8 w-full mx-auto'>
-                            <h1 className='text-2xl md:text-3xl font-bold text-center '>Contact Us</h1>
+                            <h1 className='text-2xl md:text-3xl font-bold text-center sm:text-lg '>Contact Us</h1>
                             <label className="block mb-3 font-medium text-gray-900 " htmlFor=''>Name</label>
                             <input className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4' type='text' id='name' name='name' value={name} placeholder='Name' required onChange={onchangeFunc}/>
                         </div>
