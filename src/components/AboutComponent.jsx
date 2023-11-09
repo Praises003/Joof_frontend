@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const AboutComponent = () => {
   return (
     <div className='p-3 bg-gray-100'>
-        <p className='mx-auto w-1/2 text-3xl font-mediu, pt-10 font-bold uppercase mb-9'>About Us</p>
+        <p className='mx-auto w-1/2 text-3xl font-medium, pt-10 font-bold uppercase mb-9'>About Us</p>
         <div className="md:flex md:justify-between md:items-center">
             <div className="w-full">
                 <p className="md:text-lg font-medium">

@@ -26,7 +26,7 @@ const VenueComponent = () => {
           <img src={event} alt="" className='w-full bg-cover bg-no-repeat' />
         </div>
         <div className="w-full ml-0.5 h-full">
-          <h1 style={{color: "#000"}} className="md:text-4xl text-3xl  font-bold pl-2">Joof Multi Purpose Event Center</h1>
+          <h1 style={{color: "#000"}} className="md:text-4xl text-3xl  font-bold pl-2">Joof Multi Purpose Event PROF RUFUS OLADIPO ELEMO MULTIPURPOSE EVENT CENTER </h1>
           <p style={{color: "#000", fontSize: 18.2}} className=" font-medium p-2">is located on the premises of the Federal Palace Hotel, a 5 star luxury hotel that offers state of the art facility and comforts of unimaginable proportions. Strategically located at the heart of Victoria Island, the Joof Multi Purpose Event Centre is the preferred venue for gatherings of all kinds in the region with proximity to both Island and mainland audiences. With the state of the art facilities and amenities, Joof Multipurpose Event Centre guarantees a memorable and unforgettable moments when you use our centers for your wedding, birthdays, weddings, festivals, exhibitions among others. We had your event in mind when designing and building The Joof Multi Purpose Center. See below the different types of events that can be held at the Joof Event Multi Purpose Center.</p>
         </div>
       </div>
@@ -38,7 +38,7 @@ const VenueComponent = () => {
       </div>
 
       <div className="w-10/12 mx-auto">
-        <p className="text-2xl md:text-3xl font-bold mb-7 mt-10"> Events That Can Be Held At The Joof Multi Purpose Event Centre.</p>
+        <p className="text-2xl md:text-3xl font-bold mb-7 mt-10"> Events That Can Be Held At The PROF RUFUS OLADIPO ELEMO MULTIPURPOSE EVENT CENTER .</p>
       </div>
       
         
