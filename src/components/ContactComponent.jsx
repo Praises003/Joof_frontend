@@ -45,7 +45,7 @@ const ContactComponent = () => {
                     <p className='text-white font-medium text-lg mb-4'><span>ADDRESS:</span> Isheri- Igando Road, opposite Iron Market, Igando, Lagos State, Nigeria</p>
                     <p className='text-white font-medium text-lg mb-4'><span>PHONE:</span> +234 (0) 8083625784</p>
                     <p className='text-white font-medium text-lg mb-16'><span>EMAIL:</span> 
-info@noblecastleng.com</p>
+info@joof.com</p>
                 </div>
                 <div className=' bg-white py-10 px-10 w-full   '>
                     <form onSubmit={submitFunc} >
