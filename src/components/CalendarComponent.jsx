@@ -191,12 +191,12 @@ const CalendarComponent = () => {
                         
                             
                         </div>
-
+{/* 
                         <div className='mb-8'>
                             <label className="block text-md font-medium"  htmlFor="">Event Date and Time </label>
-                            <Datetime value={end} onChange={(date) => setEnd(date)} className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4 placeholder:text-black' placeholder="Date" />
+                            <Datetime value={end} onChange={(date) => setEnd(date)} className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4 placeholder:text-black' placeholder="Date" /> 
                             
-                        </div>
+          </div> */}
 
                         <div>
 
