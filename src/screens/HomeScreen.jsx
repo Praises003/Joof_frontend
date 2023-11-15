@@ -97,16 +97,16 @@ const HomeScreen = () => {
           <div className="relative bg bg-opacity-90">
             <img src={eventImg} className='w-full h-screen' alt="" />
             <div class="absolute inset-0 bg-black opacity-70">
-              <p class="absolute top-20 left-28 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">Prof Rufus Oladipo Elemo Event Center</p>
-              <p className="absolute  top-72 left-32 bottom-4/5 transform  text-white text-xl ">Our Vision is to be a hub of excellence, innovation, and cultural enrichment in the heart of Igbara -Oke</p>
+              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">Prof Rufus Oladipo Elemo Event Center</p>
+              <p className="absolute  top-52 left-32 bottom-4/5 transform  text-white text-xl ">Our Vision is to be a hub of excellence, innovation, and cultural enrichment in the heart of Igbara -Oke</p>
             </div>
           </div>      
 
           <div className="relative bg-black">
             <img src={event} className='w-full h-screen' alt="" />
             <div class="absolute inset-0 bg-black opacity-70 ">
-              <p class="absolute top-20 left-24 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">Prof Rufus Oladipo Elemo Event Center</p>
-              <p className="absolute  top-72 left-32 bottom-4/5 transform  text-white text-xl font-semibold">We aspire to create an iconic, state-of-the-art event center that offers unforgettable experiences.</p>
+              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">Prof Rufus Oladipo Elemo Event Center</p>
+              <p className="absolute  top- top-52 left-32 bottom-4/5 transform  text-white text-xl font-semibold">We aspire to create an iconic, state-of-the-art event center that offers unforgettable experiences.</p>
             </div>
           </div>
         
