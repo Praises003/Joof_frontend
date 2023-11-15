@@ -11,7 +11,7 @@ const NavComponent = () => {
     setNavList(!navList)
   }
   return (
-    <nav className=' flex justify-between items-center px-3  mb-1.5 shadow-lg sticky top-0 z-20 bg-white'>
+    <nav className=' flex justify-between items-center py-5 px-3  mb-0.5 shadow-lg sticky top-0 z-20 bg-black text-white'>
         <img src={noblecastle} alt="" className='border   w-40'/>
         <div className="hidden lg:block">
         <div className="flex justify-between items-center ">
@@ -31,14 +31,14 @@ const NavComponent = () => {
         
 
         <div className="hidden lg:block">
-            <Link to={"/calendar"} className='bg-blue-900 px-3 py-3 text-white text-lg font-bold  rounded-md'>Book An Event</Link>
+            <Link to={"/calendar"} className='bg-yellow-500 px-3 py-3 text-white text-lg font-bold  rounded-md'>Book An Event</Link>
         </div>
 
         <div className=" w-1/12 lg:block hidden">
          <div className="flex justify-between items-center p-2 ">
-              <TfiFacebook size={20} className='text-blue-900' />
-              <TfiInstagram size={20} className='text-blue-900' />
-              <FaXTwitter size={20} className='text-blue-900' />
+              <TfiFacebook size={20} className='text-yellow-500' />
+              <TfiInstagram size={20} className='text-yellow-500' />
+              <FaXTwitter size={20} className='text-yellow-500' />
 
             </div>
 
@@ -51,21 +51,21 @@ const NavComponent = () => {
             {navList ? <FaTimes size={30} /> : <FaBars size={30} />}
           </div>
         
-        <div  className={`${navList ? 'block absolute top-20 left-0 border border-blue-900 z-10 text-white w-full bg-slate-800 py-4 px-2.5' : 'hidden'}`}>
+        <div  className={`${navList ? 'block absolute top-28 left-0  z-10 text-white w-full bg-black py-4 px-2.5' : 'hidden'}`}>
             <Link to={"/"} className='block pb-4 font-medium text-lg'>Home</Link>
             <Link to={"/about"} className='block pb-4 font-medium text-lg'>About</Link>
             <Link to={"/service"} className='block pb-4 font-medium text-lg'>Service</Link>
             <Link to={"/gallery"} className='block pb-4 font-medium text-lg'>Gallery</Link>
             <Link to={"/event"} className='block pb-4 font-medium text-lg'>Event</Link>
             <Link to={"/service"} className='block pb-4 font-medium text-lg'>Contact Us</Link>
-            <div className="bg-white p-3 border rounded-lg text-black text-center w-full font-bold text-lg ">
+            <div className="bg-yellow-500 p-3  rounded-lg text-white text-center w-full font-bold text-lg ">
               <Link to={"/calendar"}>Book an Event</Link>
             </div>
             <div className="bg-black p-6 mt-4 w-1/3 rounded">
               <div className="flex justify-between w-full items-center ">
-              <TfiFacebook size={20} className='text-blue-900' />
-              <TfiInstagram size={20} className='text-blue-900' />
-              <FaXTwitter size={20} className='text-blue-900' />
+              <TfiFacebook size={20} className='text-yellow-500' />
+              <TfiInstagram size={20} className='text-yellow-500' />
+              <FaXTwitter size={20} className='text-yellow-500' />
 
               </div>
               

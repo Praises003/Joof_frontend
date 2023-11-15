@@ -1,16 +1,56 @@
 import React from 'react'
 import { useState } from 'react'
+import eventImg from "../assets/ev bg.jpg"
+import bg from "../assets/bg_i.jpg"
+
 
 const EmailComponent = () => {
-    const [title, setTitle] =  useState("")
+    const [email, setEmail] =  useState("")
+    const [name, setName] =  useState("")
     const onSubmit = (e) => {
         e.preventDefault()
-        setTitle("")
+        setEmail("")
+        setName("")
 
     }
   return (
     <div>
-        <div className="bg-black px-8 py-14 text-white mb-4 mx-1">
+     <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),url('${bg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: ""}} className={`pb-8`}>
+      
+     <p className='uppercase text-4xl font-semi-bold md:text-5xl text-white mx-auto text-center pt-20 md:pt-40 pb-8'>Subscribe to our mail</p>
+
+    
+
+     <p className='text-white text-center text-lg'>Subscribe to our email to get  firsthand information and news on different events</p>
+
+     <form onSubmit={onSubmit}>
+        <div className="flex justify-between items-start flex-col lg:flex-row py-10 lg:p-16">
+          <div className="w-full px-5">
+            <input type="text" className="p-4 border text-white bg-transparent border-solid outline-gray-300 w-full block placeholder:text-lg placeholder:text-white mb-5" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter Email Address' />
+          
+
+          </div>
+
+          <div className="w-full px-5">
+            <input type="text" className="p-4 border text-white bg-transparent border-solid outline-gray-300 w-full block placeholder:text-lg placeholder:text-white mb-5" value={name} onChange={(e) => setName(e.target.value)} placeholder='Enter Your Name' />
+          
+
+          </div>
+
+          <div className="w-full px-5">
+            <button  type='submit' className="w-full p-4  bg-blue-900 text-white  rounded " >Subcribe</button>
+          
+
+          </div>
+        </div>
+    
+      
+     </form>
+
+
+      
+    </div>
+        {/* <div className="bg-black px-8 py-14 text-white mb-4 mx-1">
             
             <div className='mb-8 w-full mx-auto'>
                                 <h1 className='text-2xl md:text-3xl font-bold text-center sm:text-lg mb-3 '>Subscribe To Our Email</h1>
@@ -23,9 +63,9 @@ const EmailComponent = () => {
                                 {/* <button onClick={onSubmit} type='submit' className='bg-blue-900 px-7 ml-3 rounded-md sm:w-full w-full basis-2/5 md:hidden'>Subcribe</button> */}
                                 
 
-                            </div>
+                         {/* </div>
             
-        </div>
+        </div> */}
     </div>
   )
 }

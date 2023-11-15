@@ -9,6 +9,7 @@ import VenueInfoComponent from './VenueInfoComponent'
 
 import data from '../utils/data'
 import VenueInfoCardComponent from './VenueInfoCardComponent'
+import VenuePolicyComponent from './VenuePolicyComponent'
 
 
 const VenueComponent = () => {
@@ -56,6 +57,8 @@ const VenueComponent = () => {
         <VenueInfoCardComponent />
 
        </div>
+
+       <VenuePolicyComponent />
       
     </div>
   )
