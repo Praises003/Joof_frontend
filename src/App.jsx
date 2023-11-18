@@ -15,6 +15,8 @@ import EventScreen from './screens/EventScreen'
 import EventComponent from './components/EventComponent'
 import GalleryComponent from './components/GalleryComponent'
 import EmailComponent from './components/EmailComponent'
+import AboutScreen from './screens/AboutScreen'
+import ContactScreen from './screens/ContactScreen'
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -56,6 +58,11 @@ function App() {
             <Route path="/event-registration" element={<EventComponent />} />
 
             <Route path="/gallery" element={<GalleryComponent />} />
+
+            <Route path="/about" element={<AboutScreen />} />
+
+            <Route path="/contact" element={<ContactScreen /> } />
+
         </Routes>
         <EmailComponent />
         <ContactComponent />

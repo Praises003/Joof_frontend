@@ -17,7 +17,7 @@ const NavComponent = () => {
         <div className="flex justify-between items-center ">
             <Link to={"/"} className='block  font-bold text-xl'>Home</Link>
             <Link to={"/about"} className='block px-8 font-bold text-xl'>About</Link>
-            <Link to={"/service"} className='block  font-bold text-xl'>Service</Link>
+            {/* <Link to={"/service"} className='block  font-bold text-xl'>Service</Link> */}
             <Link to={"/gallery"} className='block px-8 font-bold text-xl'>Gallery</Link>
             <Link to={"/event"} className='block px-8  font-bold text-xl'>Events</Link>
             
@@ -54,10 +54,10 @@ const NavComponent = () => {
         <div  className={`${navList ? 'block absolute top-28 left-0  z-10 text-white w-full bg-black py-4 px-2.5' : 'hidden'}`}>
             <Link to={"/"} className='block pb-4 font-medium text-lg'>Home</Link>
             <Link to={"/about"} className='block pb-4 font-medium text-lg'>About</Link>
-            <Link to={"/service"} className='block pb-4 font-medium text-lg'>Service</Link>
+            {/* <Link to={"/service"} className='block pb-4 font-medium text-lg'>Service</Link> */}
             <Link to={"/gallery"} className='block pb-4 font-medium text-lg'>Gallery</Link>
             <Link to={"/event"} className='block pb-4 font-medium text-lg'>Event</Link>
-            <Link to={"/service"} className='block pb-4 font-medium text-lg'>Contact Us</Link>
+            <Link to={"/contact"} className='block pb-4 font-medium text-lg'>Contact Us</Link>
             <div className="bg-yellow-500 p-3  rounded-lg text-white text-center w-full font-bold text-lg ">
               <Link to={"/calendar"}>Book an Event</Link>
             </div>
