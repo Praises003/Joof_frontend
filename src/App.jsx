@@ -18,6 +18,7 @@ import EmailComponent from './components/EmailComponent'
 import AboutScreen from './screens/AboutScreen'
 import ContactScreen from './screens/ContactScreen'
 import EventPackageScreen from './screens/EventPackageScreen'
+import CorporateScreen from './screens/CorporateScreen'
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -65,6 +66,10 @@ function App() {
             <Route path="/contact" element={<ContactScreen /> } />
 
             <Route path="/event_package" element={<EventPackageScreen />} />
+
+            
+            <Route path="/corporate" element={<CorporateScreen />} />
+
 
         </Routes>
         <EmailComponent />
