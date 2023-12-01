@@ -64,7 +64,7 @@ function App() {
 
             <Route path="/contact" element={<ContactScreen /> } />
 
-            <Route path='/packages' element={<EventPackageScreen />} />
+            <Route path="/event_package" element={<EventPackageScreen />} />
 
         </Routes>
         <EmailComponent />
