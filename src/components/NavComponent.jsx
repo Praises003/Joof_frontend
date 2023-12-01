@@ -20,7 +20,7 @@ const NavComponent = () => {
             {/* <Link to={"/service"} className='block  font-bold text-xl'>Service</Link> */}
             <Link to={"/gallery"} className='block pl-2 pr-4 font-bold text-xl'>Gallery</Link>
             <Link to={"/event"} className='block pl-2 pr-4  font-bold text-xl'>Event Packages</Link>
-            <Link to={"/event"} className='block px-8  font-bold text-xl'>Corporate</Link>
+            <Link to={"/corporate"} className='block px-8  font-bold text-xl'>Corporate</Link>
             
             <Link to={"/contact"} className='block font-bold text-xl'>Contact Us</Link>
 
@@ -58,7 +58,7 @@ const NavComponent = () => {
             {/* <Link to={"/service"} className='block pb-4 font-medium text-lg'>Service</Link> */}
             <Link to={"/gallery"} className='block pb-4 font-medium text-lg'>Gallery</Link>
             <Link to={"/event"} className='block pb-4 font-medium text-lg'>Event Packages</Link>
-            <Link to={"/event"} className='block pb-4 font-medium text-lg'>Corporate</Link>
+            <Link to={"/corporate"} className='block pb-4 font-medium text-lg'>Corporate</Link>
             <Link to={"/contact"} className='block pb-4 font-medium text-lg'>Contact Us</Link>
             <div className="bg-yellow-500 p-3  rounded-lg text-white text-center w-full font-bold text-lg ">
               <Link to={"/calendar"}>Book an Event</Link>
