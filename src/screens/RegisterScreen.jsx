@@ -25,6 +25,8 @@ const {name, email, password,} = formData
 const {user, isLoading, isError, isSuccess, message} = useSelector(state => state.user)
 
  useEffect(() => {
+  
+
    if(isError) {
      toast.error(message)
    }
@@ -58,7 +60,7 @@ const onSubmit = async(e) => {
   //console.log(url)
 
    dispatch(register(userData)) 
-  console.log("picture empty")
+  console.log("user")
   
 //console.log("subnit")
 }
@@ -91,6 +93,9 @@ const onSubmit = async(e) => {
    return (
     <>
     <div className="bg-blue-900 py-10">
+      <div className="">
+       {isError && (<p className='text-3xl'>LOADING</p>) }
+      </div>
       <div className="bg-gray-50 w-11/12 md:w-2/4  mx-auto mt-6 p-5">
         <img className=' w-40 mx-auto' src={chatLogoo} alt="" />
         <h1 style={{color: "#05E28D"}} className=' font-bold text-4xl text-center mb-6'></h1>
