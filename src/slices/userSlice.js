@@ -11,7 +11,7 @@ const initialState = {
 
 export const register = createAsyncThunk('user/register', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("http://localhost:5000/api/user", user)
+        const { data } = await axios.post("https://joof-backend.onrender.com/api/user", user)
 
         console.log(data)
 
