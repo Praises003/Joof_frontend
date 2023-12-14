@@ -10,7 +10,7 @@ import {MdOutlineCorporateFare} from  "react-icons/md"
 import {BiSolidParty} from 'react-icons/bi'
 import {AiTwotoneHeart} from "react-icons/ai"
 import {useSelector, useDispatch} from "react-redux"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import meetings from "../assets/g_meeting.jpg"
 import events from "../assets/no_event.jpg"
 import birthday from '../assets/conference.jpg'
@@ -26,6 +26,7 @@ import christopher from "../assets/christopher.jpg"
 import sergio from "../assets/sergio.jpg"
 import stefan from "../assets/stefan.jpg"
 import jonas from "../assets/jonas.jpg"
+import { useEffect } from 'react';
 
 const DashboardScreen = () => {
         const [upcoming, setUpcoming] = useState([{
@@ -84,8 +85,15 @@ const DashboardScreen = () => {
     },
     
 ])
+
     const { user } = useSelector(state => state.user)
     console.log(user)
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( user === null ) {
+            navigate("/register")
+        }
+    }, [])
   return (
     <div>
         <div className="">
@@ -115,7 +123,7 @@ const DashboardScreen = () => {
         </div>
 
         <div className="ml-4">
-            <p className="font-bold text-2xl md:text-4xl text-blue-950 text-center my-4">Welcome {user.name}, To Your Dashboard</p>
+            <p className="font-bold text-2xl md:text-4xl text-blue-950 text-center my-4">Welcome {user ? user.name : ""}, To Your Dashboard</p>
         </div>
 
         <div className="">
