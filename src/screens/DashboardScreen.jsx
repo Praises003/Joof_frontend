@@ -143,12 +143,12 @@ const DashboardScreen = () => {
                 </div>
 
             </div>
-            <div className="">
-                {/**React Icon */}
+            {/* <div className="">
+                
                 <p className="">Create your event</p>
                 <p className="">Add all your event details, create new tickets, and set up recurring events</p>
                 <Link>Create Event</Link>
-            </div>
+            </div> */}
         </div>
 
         <h1 className='text-center font-bold mx-auto text-4xl my-9 md:text-4xl'>Upcoming Events</h1>
