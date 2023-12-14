@@ -22,6 +22,7 @@ import CorporateScreen from './screens/CorporateScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
+import DashEvent from './components/DashEvent'
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -78,6 +79,8 @@ function App() {
              <Route path="/login" element={<LoginScreen /> } /> 
 
              <Route path="/dashboard" element={<DashboardScreen /> } /> 
+
+             <Route path="/dash_event" element={<DashEvent /> } />
 
 
 

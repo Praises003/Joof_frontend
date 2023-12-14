@@ -27,7 +27,7 @@ import sergio from "../assets/sergio.jpg"
 import stefan from "../assets/stefan.jpg"
 import jonas from "../assets/jonas.jpg"
 import { useEffect } from 'react';
-
+import DashEvent from '../components/DashEvent';
 const DashboardScreen = () => {
         const [upcoming, setUpcoming] = useState([{
         id: 1,
@@ -94,23 +94,26 @@ const DashboardScreen = () => {
             navigate("/register")
         }
     }, [])
+    const onNav = () => {
+        navigate("/dash_event")
+    }
   return (
     <div>
         <div className="">
             <div className="px-4 py-2 flex  justify-between items-center">
                 <div className="">
                     <FaHome size={40} className='mx-auto text-blue-900' />
-                    <p className="">Home</p>
+                    <Link className="">Home</Link>
                 </div>
 
-                <div className="">
+                <div onClick={onNav} className="">
                     <IoCalendarNumberSharp size={40} className='mx-auto text-blue-900' />
-                    <p className="">Events</p>
+                    <Link to={"/dash_event"} className="">Events</Link>
                 </div>
 
                 <div className="">
                     <IoTicket size={40} className='mx-auto text-blue-900' />
-                    <p className="">Tickets</p>
+                    <Link to={""} className="">Tickets</Link>
                 </div>
 
                 <div className="">
