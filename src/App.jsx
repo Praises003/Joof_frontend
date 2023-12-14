@@ -20,6 +20,8 @@ import ContactScreen from './screens/ContactScreen'
 import EventPackageScreen from './screens/EventPackageScreen'
 import CorporateScreen from './screens/CorporateScreen'
 import RegisterScreen from './screens/RegisterScreen'
+import LoginScreen from './screens/LoginScreen'
+import DashboardScreen from './screens/DashboardScreen'
 function App() {
   // const [count, setCount] = useState(0)
 
@@ -72,6 +74,11 @@ function App() {
             <Route path="/corporate" element={<CorporateScreen />} />
 
              <Route path="/register" element={<RegisterScreen />} /> 
+
+             <Route path="/login" element={<LoginScreen /> } /> 
+
+             <Route path="/dashboard" element={<DashboardScreen /> } /> 
+
 
 
         </Routes>
