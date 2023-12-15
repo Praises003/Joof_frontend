@@ -100,7 +100,7 @@ const DashboardScreen = () => {
   return (
     <div>
         <div className="">
-            <div className="px-4 py-2 flex  justify-between items-center">
+        {/*    <div className="px-4 py-2 flex  justify-between items-center">
                 <div className="">
                     <FaHome size={40} className='mx-auto text-blue-900' />
                     <Link className="">Home</Link>
@@ -122,7 +122,7 @@ const DashboardScreen = () => {
                 </div>
 
                 
-            </div>
+            </div> */}
         </div>
 
         <div className="ml-4">

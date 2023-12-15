@@ -1,66 +1,57 @@
-import React, {useState} from 'react'
-
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
+import React, { useState } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
-
-import { FaList } from "react-icons/fa";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaList, FaRegCalendarAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import meetings from "../assets/no_event.jpg"
+import meetings from "../assets/no_event.jpg";
 
 const DashEvent = () => {
-  const [event, setEvent] = useState(true)
-  const [cal, setCal] = useState(false)
+  const [event, setEvent] = useState(true);
+  const [cal, setCal] = useState(false);
 
   const onEventClick = () => {
-    setEvent(!event)
-    cal ? setCal(false) : ""
-  }
+     setCal(false);
+     setEvent(true)
+  };
 
   const onCalClick = () => {
-    setCal(!cal)
-    event ? setEvent(false) : ""
-  }
+    setCal(true);
+    setEvent(false);
+  };
 
   return (
     <div>
       
+      <div className="full-width">
+        
+        <p className="md:text-5xl text-3xl  font-bold mb-6 ">Events</p>
+      </div>
+
+      <div className="flex justify-between px-0.5 mb-10 w-full">
+        <div onClick={onEventClick} className={`flex bg-blue-900 text-white rounded-2xl p-2 items-center`}>
+          <FaList />
+          <p className="pl-3 md:text-lg">All Events</p>
+        </div>
+
+        <div onClick={onCalClick} className={`flex bg-blue-900 text-white rounded-2xl p-2 items-center ${cal ? 'selected' : ''}`}>
+          <FaRegCalendarAlt />
+          <p className="pl-3 md:text-lg w-full">{} Calendar</p>
+        </div>
+
+        <div className="bg-blue-900 text-white rounded-2xl py-2 px-4 items-center">
+          <Link to={"/calendar"}>Create Event</Link>
+        </div>
+      </div>
+
+       {event && (
         <div className="">
-            <p className="md:text-5xl text-2xl  font-bold mb-6">Events</p>
-
-        </div>
-
-        <div onClick={onEventClick} className="flex justify-between px-0.5 mb-10">
-            <div className="flex bg-blue-900 text-white l rounded-2xl p-2 items-center">
-                <FaList />
-                <p className="pl-3 md:text-lg">All Events</p>
-
-           </div>
-
-           <div onClick={onCalClick} className="flex bg-blue-900 text-white l rounded-2xl p-2 items-center">
-                <FaRegCalendarAlt />
-                <p className="pl-3 md:text-lg">{cal ? "Hide" : "Show"} Calendar</p>
-
-           </div>
-
-           <div className="bg-blue-900 text-white l rounded-2xl py-2 px-4 items-center">
-            <Link to={"/calendar"}>Create Event</Link>
-           </div>
-
-
-
-        </div>
-
-        {event && <div className="">
-
           <img src={meetings} alt="" className=' mb-3 w-7/12 md:w-4/12  bg-cover bg-no-repeat mx-auto' />
-
           <p className="text-center text-lg md:text-xl font-semibold">No Events to show, create an Event</p>
+        </div>
+      )} 
 
-        </div>}
-
-        <div className="justify-between" style={{ height: '' }}>
+<div className="justify-between" style={{ height: '' }}>
       <style>
         {`.fc {
           background-color: blue;
@@ -130,32 +121,22 @@ const DashEvent = () => {
           }
         `}
       </style>
-      {cal && <div className="p-4">
+      {cal ? <div className="p-4">
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
-          // eventContent={(info) => (
-          //   <div className="fc-content">
-          //     <div
-          //       className="fc-title"
-                
-                
-          //     >
-          //       <p  className='text-white whitespace-normal '>{info.event.title}</p>
-          //     </div>
-          //   </div>
-          // )}
+         
           aspectRatio={8}
-          height={600}
+          height={700}
           initialView="dayGridMonth"
           // selectable
-          //events={events}
+          
           //select={handleSelect}
           views={["dayGridMonth", "dayGridWeek", "dayGridDay"]}
         />
-      </div> }
+      </div> : ""}
       </div>
     </div>
-  )
+  );
 }
 
-export default DashEvent
+export default DashEvent;

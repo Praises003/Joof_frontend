@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from 'axios'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import "react-datetime/css/react-datetime.css";
+import { BrowserRouter, Route, Routes,  useLocation } from 'react-router-dom'
+//import "react-datetime/css/react-datetime.css";
 import './App.css'
 import HomeScreen from './screens/HomeScreen'
 import VenueComponent from './components/VenueComponent'
@@ -23,7 +23,10 @@ import RegisterScreen from './screens/RegisterScreen'
 import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
 import DashEvent from './components/DashEvent'
+import LayoutScreen from './screens/LayoutScreen'
 function App() {
+  const location = useLocation();
+  const showNav = ['/dashboard', '/dash_event'].includes(location.pathname);
   // const [count, setCount] = useState(0)
 
   // const [test, setTest] = useState([])
@@ -53,7 +56,17 @@ function App() {
     <>
         <ScrollToTop />
         <NavComponent />
+       {showNav && <LayoutScreen>
+          <Routes>
+            <Route path="/dashboard" element={<DashboardScreen /> } /> 
+          <Route path='/dash_event' element={<DashEvent />}/>
+          <Route path="/ve" element={<VenueComponent />}/>
+            
+          </Routes>
+        </LayoutScreen>}
+        
         <Routes>
+          
           
             <Route path='/' element={<HomeScreen />}/>
             <Route path='/event' element={<EventScreen />} />
@@ -78,9 +91,9 @@ function App() {
 
              <Route path="/login" element={<LoginScreen /> } /> 
 
-             <Route path="/dashboard" element={<DashboardScreen /> } /> 
+             
 
-             <Route path="/dash_event" element={<DashEvent /> } />
+             {/* <Route path="/dash_event" element={<DashEvent /> } /> */}
 
 
 
