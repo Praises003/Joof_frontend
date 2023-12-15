@@ -32,7 +32,7 @@ const {user, isLoading, isError, isSuccess, message} = useSelector(state => stat
    }
 
    if(user) {
-     navigate("/calendar")
+     navigate("/dashboard")
    }
 
  },[user, navigate, dispatch])

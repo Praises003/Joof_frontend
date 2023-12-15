@@ -26,7 +26,7 @@ const LoginScreen = () => {
     }
   
     if(user) {
-      navigate("/calendar")
+      navigate("/dashboard")
     }
   
   },[user, dispatch, navigate])
