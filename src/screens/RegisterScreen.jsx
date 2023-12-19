@@ -7,6 +7,7 @@ import axios from "axios"
 
 //import {register, reset} from "../slices/userSlice"
 import { register, reset } from '../slices/userSlice'
+import SpinnerComponent from '../components/SpinnerComponent'
 
 const RegisterScreen = () => {
 const [formData, setFormData] = useState({
@@ -97,7 +98,7 @@ const onSubmit = async(e) => {
     <>
     <div className="bg-blue-900 py-10">
       <div className="">
-       {isLoading && (<p className='text-3xl'>LOADING</p>) }
+       {isLoading && (<SpinnerComponent /> ) }
       </div>
       <div className="bg-gray-50 w-11/12 md:w-2/4  mx-auto mt-6 p-5">
         <img className=' w-40 mx-auto' src={chatLogoo} alt="" />
