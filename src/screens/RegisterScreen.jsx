@@ -24,18 +24,21 @@ const navigate = useNavigate()
 const {name, email, password,} = formData
 const {user, isLoading, isError, isSuccess, message} = useSelector(state => state.user)
 
+console.log(message)
+console.log(isError)
  useEffect(() => {
   
 
    if(isError) {
      toast.error(message)
+     console.log(message)
    }
 
    if(user) {
      navigate("/dashboard")
    }
 
- },[user, navigate, dispatch])
+ },[user, navigate, dispatch, message, isError, isSuccess])
 console.log(user)
 
 const onChangeFunc = (e) => {
@@ -94,7 +97,7 @@ const onSubmit = async(e) => {
     <>
     <div className="bg-blue-900 py-10">
       <div className="">
-       {isError && (<p className='text-3xl'>LOADING</p>) }
+       {isLoading && (<p className='text-3xl'>LOADING</p>) }
       </div>
       <div className="bg-gray-50 w-11/12 md:w-2/4  mx-auto mt-6 p-5">
         <img className=' w-40 mx-auto' src={chatLogoo} alt="" />

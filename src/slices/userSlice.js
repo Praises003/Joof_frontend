@@ -22,7 +22,9 @@ export const register = createAsyncThunk('user/register', async(user, thunkApi) 
         return data
 
     } catch(err) {
-        const errMsg = (err.response && err.response,data && err.response.data.message) || err.message || err.toString()
+       // const errMsg = (/*err.response && */ /*err.response.data  || */  err.response.data.message /*|| err.message || err.toString() */)
+       const errMsg = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+        console.log(errMsg)
         return thunkApi.rejectWithValue(errMsg)
 
     }
@@ -34,9 +36,10 @@ export const login = createAsyncThunk('user/login', async(user, thunkApi) => {
         if (data) {
             localStorage.setItem('user', JSON.stringify(data))
         }
+        console.log(data)
         return data
     } catch (err) {
-        const errMsg = (err.response && err.response,data && err.response.data.message) || err.message || err.toString()
+        const errMsg = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
         return thunkApi.rejectWithValue(errMsg)
     }
 })

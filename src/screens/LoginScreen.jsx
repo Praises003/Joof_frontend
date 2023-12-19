@@ -29,7 +29,7 @@ const LoginScreen = () => {
       navigate("/dashboard")
     }
   
-  },[user, dispatch, navigate])
+  },[user, dispatch, navigate, isError, message, isSuccess])
   
   const { email, password } = formData
   const onChangeFunc = (e) => {
