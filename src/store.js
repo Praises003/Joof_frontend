@@ -1,11 +1,13 @@
 import { configureStore, } from '@reduxjs/toolkit'
 import userReducer from './slices/userSlice'
+import eventReducer from './slices/eventSlice';
 //import chatReducer, { chats } from './slices/chatSlice'
 //import singleChatReducer, { singleChats } from './slices/singleChatSlice'
 
 const store = configureStore({
     reducer: {
         user: userReducer,
+        event: eventReducer
         //chat: chatReducer,
         //singleChat:singleChatReducer
     },

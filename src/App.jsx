@@ -26,6 +26,7 @@ import LoginScreen from './screens/LoginScreen'
 import DashboardScreen from './screens/DashboardScreen'
 import DashEvent from './components/DashEvent'
 import LayoutScreen from './screens/LayoutScreen'
+import SeatSelectionComponent from './components/SeatSelectionComponent'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event'].includes(location.pathname);
@@ -92,6 +93,8 @@ function App() {
              <Route path="/register" element={<RegisterScreen />} /> 
 
              <Route path="/login" element={<LoginScreen /> } /> 
+
+             <Route path="/seat" element={<SeatSelectionComponent/> } />
 
              
 

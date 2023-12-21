@@ -1,11 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import {useSelector, useDispatch} from "react-redux"
+import {toast} from "react-toastify"
+import {Link, useNavigate} from "react-router-dom"
+import chatLogoo from "../assets/logo.jpg"
+import axios from "axios"
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction";
 import Datetime from 'react-datetime';
 import EventCon from './EventCon';
 import EventComponent from './EventComponent';
-import event from "../assets/event4.jpg"
+import eventImg from "../assets/event4.jpg"
+
+import { createEvent } from '../slices/eventSlice'
+
 
 
 const CalendarComponent = () => {
@@ -13,24 +21,46 @@ const CalendarComponent = () => {
   
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [start, setStart] = useState("")
+  const [date, setDate] = useState("")
   const [end, setEnd] = useState("")
-  const [type, setType] = useState("fruit")
+  const [type, setType] = useState("")
   const [events, setEvents] = useState([]); 
 
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const {event, isLoading, isError, isSuccess, message} = useSelector(state => state.event)
+  
+
+  useEffect(() => {
+  
+
+    
+    if(isError) {
+      toast.error(message)
+      console.log(message)
+    }
+ 
+  },[event, navigate, dispatch, message, isError, isSuccess])
  console.log(events)
  
 
  const handleType = (e) => {
   setType(e.target.value)
 }
+
+const stateData = {title, description, type, date}
   
   const submitFunc = (e) => {
       e.preventDefault()
+      if (!title || !description || !type || !date) { 
+         toast.error("Fill Up All Fields")
+      } 
+
+      dispatch(createEvent(stateData))
       setEvents([
         ...events,
         {
-          start: start.toISOString(),
+          date: date.toISOString(),
           //end: end.toDate(),
           title          
         }
@@ -39,10 +69,11 @@ const CalendarComponent = () => {
       console.log("submitted");
       setTitle(""); // Clear input fields
     setDescription("");
-    setStart("");
-    setEnd("");
+    setDate("");
+    setType("")
   }
 
+  console.log(event)
   const onchangeFunc = () => {
       console.log("Ok")
   }
@@ -64,6 +95,7 @@ const CalendarComponent = () => {
   }
   return (
     <div className="justify-between" style={{ height: '' }}>
+      {isLoading && (<h1>Loading</h1>)}
       <style>
         {`.fc {
           background-color: blue;
@@ -165,7 +197,7 @@ const CalendarComponent = () => {
 
         <div className="flex flex-col lg:flex-row justify-between items-center p-4">
             <div className="basis-3/5 p-4">
-                <img src={event} alt="" className='w-full bg-cover bg-no-repeat' />
+                <img src={eventImg} alt="" className='w-full bg-cover bg-no-repeat' />
             </div>
             <div className="basis-2/5 border shadow-lg rounded-sm w-full p-3">
                 <form onSubmit={submitFunc} >
@@ -186,8 +218,8 @@ const CalendarComponent = () => {
                     </div>
 
                         <div className='mb-8'>
-                            <label className="block text-md font-medium"  htmlFor="">Event Date and Time </label>
-                            <Datetime value={start} onChange={(date) => setStart(date)} className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4 placeholder:text-black' />
+                            <label className="block text-md font-medium"  htmlFor=""> Set Event Date and Time </label>
+                            <Datetime value={date} onChange={(date) => setDate(date)} className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4 placeholder:text-black' />
                         
                             
                         </div>
@@ -202,9 +234,10 @@ const CalendarComponent = () => {
 
                             <label>
 
-                            <p>Select An Event Category</p>
+                            <p>Enter your Event Category i.e Wedding, Birthdays, Seminar</p>
 
-                            <select value={type} onChange={handleType}>
+
+                            {/* <select value={type} onChange={handleType}>
 
                                 <option value="wedding">Wedding</option>
 
@@ -228,9 +261,11 @@ const CalendarComponent = () => {
                                 <option value="birthday">Birthday</option>
 
 
-                            </select>
+                            </select> */}
 
                             </label>
+
+                            <input className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4' type='text' id='category' name='category' value={type} placeholder='category' required onChange={handleType}/>
 
                             
 
