@@ -11,7 +11,7 @@ const initialState = {
 
 export const createEvent = createAsyncThunk('event/createEvent', async(event, thunkApi) => {
     try {
-        const { data } = await axios.post("/api/event", event, {withCredentials: true})
+        const { data } = await axios.post("localhost:5000/api/event", event, {withCredentials: true})
 
         console.log(data)
 
