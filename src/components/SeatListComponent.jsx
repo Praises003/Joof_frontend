@@ -1,16 +1,16 @@
 import React from 'react'
 
-const SeatListComponent = ({ seat }) => {
+const SeatListComponent = ({  }) => {
   return (
     <div>
         <div className="flex">
           <div className="">
-            <p className="">Section</p>
+            <p className="">Name of Guest</p>
             <p className="">B</p>
           </div>
 
           <div className="">
-            <p className="">ROW</p>
+            <p className="">SEAT NUMBER</p>
             <p className="">3</p>
           </div>
 
