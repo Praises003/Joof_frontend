@@ -34,7 +34,7 @@ const ProfileComponent = (props) => {
     const getGuest = async () => {
         try {
             setLoading(true)
-            const { data } =  await axios.get("http://localhost:5000/api/guest", {withCredentials: true})
+            const { data } =  await axios.get("https://joof-backend.onrender.com/api/guest", {withCredentials: true})
             console.log(data)
             setSingleGuest([...singleGuest, data])
             setLoading(false)

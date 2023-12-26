@@ -11,7 +11,7 @@ const initialState = {
 
 export const register = createAsyncThunk('user/register', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("http://localhost:5000/api/user", user, {withCredentials: true,})
+        const { data } = await axios.post("https://joof-backend.onrender.com/api/user", user, {withCredentials: true,})
 
         console.log(data)
 
@@ -32,7 +32,7 @@ export const register = createAsyncThunk('user/register', async(user, thunkApi) 
 
 export const login = createAsyncThunk('user/login', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("/api/user/login", user, {withCredentials: true})
+        const { data } = await axios.post("https://joof-backend.onrender.com/api/user/login", user, {withCredentials: true})
         if (data) {
             localStorage.setItem('user', JSON.stringify(data))
         }
