@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {useSelector, useDispatch} from "react-redux"
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from "@fullcalendar/interaction";
 import { FaList, FaRegCalendarAlt } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import meetings from "../assets/no_event.jpg";
 
 const DashEvent = () => {
   const [event, setEvent] = useState(true);
   const [cal, setCal] = useState(false);
+  const { guest } = useSelector(state => state.guest)
+  console.log(guest)
 
+  const { user } = useSelector(state => state.user)
+    console.log(user)
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( user === null ) {
+            navigate("/register")
+        }
+    }, [])
+    const onNav = () => {
+        navigate("/dash_event")
+    }
+
+  
   const onEventClick = () => {
      setCal(false);
      setEvent(true)

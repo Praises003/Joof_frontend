@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
+import ProfileComponent from './ProfileComponent';
 
 
 const ContactComponent = () => {
@@ -88,6 +89,8 @@ info@joof.com</p>
             </div>
                 
             </div>
+
+            {/* <ProfileComponent formData={formData} /> */}
 
         </div>
     </div>

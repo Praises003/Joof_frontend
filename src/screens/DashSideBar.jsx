@@ -11,6 +11,7 @@ import {FaTimes, FaBars} from 'react-icons/fa'
 
 import {FaRegHourglassHalf} from "react-icons/fa6"
 import {MdOutlineCorporateFare} from  "react-icons/md"
+import { MdEventSeat } from "react-icons/md";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,14 +20,17 @@ const DashSideBar = ({ show }) => {
     const [tick, setTick] = useState(false)
     const [profile, setProfile] = useState(false)
     const [sign, setSign] = useState(false)
-
+    const [selectSeat, setSelectedSeat] = useState(false)
+   
     const navigate = useNavigate()
 
+    
     const onDash = () => {
         setDash(true)
         tick ? setTick(false) : ""
         profile ? setProfile(false) : ""
         sign ? setSign(false) : ""
+        selectSeat ? setSelectedSeat(false) : ""
         navigate("/dashboard")
     }
 
@@ -35,7 +39,17 @@ const DashSideBar = ({ show }) => {
         dash ? setDash(false) : ""
         profile ? setProfile(false) : ""
         sign ? setSign(false) : ""
+        selectSeat ? setSelectedSeat(false) : ""
         navigate("/dash_event")
+    }
+
+    const onSeat = () => {
+        setSelectedSeat(true)
+        dash ? setDash(false) : ""
+        tick ? setTick(false) : ""
+        sign ? setSign(false) : ""
+        profile ? setProfile(false) : ""
+        navigate("/seat")
     }
 
     const onProfile = () => {
@@ -43,6 +57,8 @@ const DashSideBar = ({ show }) => {
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
+        selectSeat ? setSelectedSeat(false) : ""
+        navigate("/profile")
     }
 
     const onSign = () => {
@@ -50,6 +66,7 @@ const DashSideBar = ({ show }) => {
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         profile ? setProfile(false) : ""
+        selectSeat ? setSelectedSeat(false) : ""
     }
   return (
     <div>
@@ -63,7 +80,12 @@ const DashSideBar = ({ show }) => {
 
                 <div onClick={onTick} className={`${tick ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center  mb-5`}>
                     <IoTicket  size={30} className={`${tick ? "text-white" : "text-blue-900"}`} />
-                    <p className="ml-4 text-xl">Ticket</p>
+                    <p className="ml-4 text-xl">Events</p>
+                </div>
+
+                <div onClick={onSeat} className={`${selectSeat ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center  mb-5`}>
+                    <MdEventSeat  size={30} className={`${tick ? "text-white" : "text-blue-900"}`} />
+                    <p className="ml-4 text-xl">Seat Booking</p>
                 </div>
 
                 <div onClick={onProfile} className={`${profile ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
@@ -90,7 +112,12 @@ const DashSideBar = ({ show }) => {
 
                 <div onClick={onTick} className={`${tick ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center  mb-5`}>
                     <IoTicket  size={30} className={`${tick ? "text-white" : "text-blue-900"}`} />
-                    <p className="ml-4 text-xl">Ticket</p>
+                    <p className="ml-4 text-xl">Events</p>
+                </div>
+
+                <div onClick={onSeat} className={`${selectSeat ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center  mb-5`}>
+                    <MdEventSeat  size={30} className={`${selectSeat ? "text-white" : "text-blue-900"}`} />
+                    <p className="ml-4 text-xl">Seat Booking</p>
                 </div>
 
                 <div onClick={onProfile} className={`${profile ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>

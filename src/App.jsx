@@ -3,10 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from 'axios'
 import { BrowserRouter, Route, Routes,  useLocation } from 'react-router-dom'
-import "react-datetime/css/react-datetime.css";
+//import "react-datetime/css/react-datetime.css";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
+
+import {useSelector, useDispatch} from "react-redux"
 import HomeScreen from './screens/HomeScreen'
 import VenueComponent from './components/VenueComponent'
 import ScrollToTop from './components/ScrollToTop'
@@ -27,9 +29,11 @@ import DashboardScreen from './screens/DashboardScreen'
 import DashEvent from './components/DashEvent'
 import LayoutScreen from './screens/LayoutScreen'
 import SeatSelectionComponent from './components/SeatSelectionComponent'
+import SeatListComponent from './components/SeatListComponent'
+import ProfileComponent from './components/ProfileComponent'
 function App() {
   const location = useLocation();
-  const showNav = ['/dashboard', '/dash_event'].includes(location.pathname);
+  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile'].includes(location.pathname);
   // const [count, setCount] = useState(0)
 
   // const [test, setTest] = useState([])
@@ -55,6 +59,10 @@ function App() {
        
 //   }, [test])
   // const {getAll} = test
+  const [genUser, setGenUser] = useState([])
+  console.log(genUser)
+
+  
   return (
     <>
         <ScrollToTop />
@@ -64,6 +72,11 @@ function App() {
             <Route path="/dashboard" element={<DashboardScreen /> } /> 
           <Route path='/dash_event' element={<DashEvent />}/>
           <Route path="/ve" element={<VenueComponent />}/>
+          {/* <Route path="/seat_list" element={<SeatListComponent genUser={genUser} />} />  */}
+          <Route path="/seat" element={<SeatSelectionComponent genUser={genUser} setGenUser={setGenUser}  /> } />
+          <Route path="/profile" element={<ProfileComponent genUser={genUser}  /> } />
+
+
             
           </Routes>
         </LayoutScreen>}
@@ -94,8 +107,7 @@ function App() {
 
              <Route path="/login" element={<LoginScreen /> } /> 
 
-             <Route path="/seat" element={<SeatSelectionComponent/> } />
-
+             
              
 
              {/* <Route path="/dash_event" element={<DashEvent /> } /> */}
@@ -103,6 +115,7 @@ function App() {
 
 
         </Routes>
+        {genUser.map(gen => <SeatListComponent />)}
         <ToastContainer />
         <EmailComponent />
         <ContactComponent />

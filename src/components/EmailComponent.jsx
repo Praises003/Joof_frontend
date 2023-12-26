@@ -1,5 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
+import {useSelector, useDispatch} from "react-redux"
+import { addGuest } from '../slices/guestSlice';
+
 import eventImg from "../assets/ev bg.jpg"
 import bg from "../assets/bg_i.jpg"
 
@@ -7,8 +10,12 @@ import bg from "../assets/bg_i.jpg"
 const EmailComponent = () => {
     const [email, setEmail] =  useState("")
     const [name, setName] =  useState("")
+    const { guest } = useSelector(state => state.guest)
+    const dispatch = useDispatch()
+
     const onSubmit = (e) => {
         e.preventDefault()
+        dispatch(addGuest({name, email}))
         setEmail("")
         setName("")
 

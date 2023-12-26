@@ -1,10 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import SeatListComponent from './SeatListComponent'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useSelector, useDispatch} from "react-redux"
+import { addAsyncGuest, addGuest } from '../slices/guestSlice';
+import ProfileComponent from './ProfileComponent';
 
-const SeatSelectionComponent = () => {
+const SeatSelectionComponent = ({ genUser, setGenUser }) => {
     const [name, setName] = useState("")
     const [seatNum, setSeatNumber] = useState("")
     const [submittedSeats, setSubmittedSeats] = useState([])
@@ -701,9 +705,23 @@ const [btDSeats, setBTDSeats] = useState([
 
 
 const [selectedSeats, setSelectedSeats] = useState([])
+const[selectedSeatObj, setSelectedSeatObj] = useState({})
 const[selectedSeatNum , setSelectedSeatNum] = useState([])
 const [drop, setDrop] = useState("Left Section")
+//import { addGuest } from '../slices/guestSlice';
 const [userList, setUserList] = useState([]);
+const [show, setShow] = useState(false)
+const { guest } = useSelector(state => state.guest)
+const { user } = useSelector(state => state.user)
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( user === null ) {
+            navigate("/register")
+        }
+    }, [user])
+    
+
 
 // const guestInfo = [name, seatNum]
 // console.log(guestInfo)
@@ -745,81 +763,124 @@ const handleSeatClick = (seatId, seatNumb) => {
     console.log(seatId); // Seat being clicked
 };
 
+//addGuest
+
+const dispatch = useDispatch()
+
+
 console.log(selectedSeats)
 console.log(selectedSeatNum)
+// const onSubmitFunc = (e) => {
+//     e.preventDefault()
+//     let subSeat;
+//     if(selectedSeatNum.includes(seatNum)) {
+//         // const subSeat = [...submittedSeats, {name, seatNum}]
+//         // setSubmittedSeats(subSeat)
+//         // console.log("correct")
+//         // console.log(submittedSeats)
+//         const seatAlreadyBooked = submittedSeats.some((item) => item.seatNum === seatNum);
+//         if (seatAlreadyBooked) {
+//             toast.error("Seat already booked");
+//             return;
+//         }
+//         setSubmittedSeats(prevSeats => {
+//             //  subSeat = [...prevSeats, { name, seatNum }];
+//             // console.log("correct");
+//             // console.log(subSeat);
+//             //setGenUser((prevUsers) => [...prevUsers, { name, seatNum }]);
+//             //  setUserList((prevUsers) => [...prevUsers, { name, seatNum }]); // Add user to the list
+//             //  setUserList(subSeat)
+//             //  setGenUser(subSeat)
+//             //  console.log(subSeat)
+//              //dispatch(addAsyncGuest(subSeat))
+             
+             
+//             // return subSeat;
+//         })
+
+//         setSelectedSeatObj(prevSeats => {
+//             let subSeatObj = {...prevSeats, name, seatNum };
+//            console.log(subSeatObj);
+//            //setGenUser((prevUsers) => [...prevUsers, { name, seatNum }]);
+//             //setUserList((prevUsers) => [...prevUsers, { name, seatNum }]); // Add user to the list
+//             //setUserList(subSeat)
+//             //setGenUser(subSeat)
+//             //console.log(subSeat)
+//             dispatch(addAsyncGuest(subSeatObj))
+            
+            
+//            return subSeatObj;
+//        })
+
+
+
+//         //dispatch(addGuest(userList))
+        
+
+//         toast.success("Submission successful");
+
+//         // Clear fields
+//         setName("");
+//         setSeatNumber("");
+//         setSelectedSeats([]);
+
+//         } else {
+//         toast.error("invalid submission")
+//         console.log("wrong")
+//     }
+
+
+
+// }
 const onSubmitFunc = (e) => {
-    e.preventDefault()
-    if(selectedSeatNum.includes(seatNum)) {
-        // const subSeat = [...submittedSeats, {name, seatNum}]
-        // setSubmittedSeats(subSeat)
-        // console.log("correct")
-        // console.log(submittedSeats)
+    e.preventDefault();
+
+    if (selectedSeatNum.includes(seatNum)) {
         const seatAlreadyBooked = submittedSeats.some((item) => item.seatNum === seatNum);
+
         if (seatAlreadyBooked) {
             toast.error("Seat already booked");
-            return;
-        }
-        setSubmittedSeats(prevSeats => {
-            const subSeat = [...prevSeats, { name, seatNum }];
-            console.log("correct");
-            console.log(subSeat);
-            setUserList((prevUsers) => [...prevUsers, { name, seatNum }]); // Add user to the list
-            return subSeat;
-        })
-
-        toast.success("Submission successful");
-
-        // Clear fields
-        setName("");
-        setSeatNumber("");
-        setSelectedSeats([]);
-
         } else {
-        toast.error("invalid submission")
-        console.log("wrong")
+            const newSeat = { name, seatNum };
+            setSubmittedSeats((prevSeats) => [...prevSeats, newSeat]);
+
+            // Assuming you want to dispatch this to Redux
+            dispatch(addAsyncGuest(newSeat));
+
+            toast.success("Submission successful");
+
+            // Clear fields
+            setName("");
+            setSeatNumber("");
+            setSelectedSeats([]);
+        }
+    } else {
+        toast.error("Invalid submission");
     }
+};
 
-    // if(submittedSeats.includes(name || seatNum)) {
-    //     console.log("e dey there now")
-    // } else {
-    //     console.log("oya naw")
-    // }
+// let meU = [1,2,3]
+// console.log(userList)
+// console.log(guest)
 
-    // if (submittedSeats.some(item => item.name === name || item.seatNum === seatNum)) {
-    //     console.log("e dey there now");
-    //   } else {
-    //     console.log("oya naw");
-    //   }
-//         console.log(submittedSeats)
-//     submittedSeats.map(s => {
-//         if(s.name === name && s.seatNum === seatNum) {
-//             console.log("a")
+// useEffect(() => {
+//      console.log(submittedSeats);
+
+//     // // Now you can perform actions based on the updated state
+//     submittedSeats.forEach(s => {
+//         if (s.name === name && s.seatNum === seatNum) {
+//             console.log("a");
 //         } else {
-//             console.log("br")
+//             console.log("br");
 //         }
-// })
-
-
-
-}
-console.log(userList)
-
-useEffect(() => {
-     console.log(submittedSeats);
-
-    // // Now you can perform actions based on the updated state
-    submittedSeats.forEach(s => {
-        if (s.name === name && s.seatNum === seatNum) {
-            console.log("a");
-        } else {
-            console.log("br");
-        }
-    });
-}, [submittedSeats]);
+//     });
+// }, [submittedSeats]);
   return (
     <div>
 
         <div className="p-4">
+       
+        
             <div className="w-full h-64 bg-blue-900">
                 <p className="text-center text-white text-2xl md:text-5xl ">Select Your Seat</p>
             </div>
@@ -965,7 +1026,7 @@ useEffect(() => {
                 
 <form onSubmit={onSubmitFunc} className="max-w-sm mx-auto">
   <div className="mb-5">
-    <label htmlFor="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Guest's Name</label>
+    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Guest's Name</label>
     <input type="text" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="input guest's name" value={name} onChange={(e) => {setName(e.target.value)}} required />
   </div>
   <div className="mb-5">
@@ -996,8 +1057,9 @@ useEffect(() => {
   <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 </form>
             </div>
-            {/* <SeatListComponent userList={userList} /> */}
+            
         </div>
+
 
     </div>
   )
