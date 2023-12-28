@@ -11,7 +11,7 @@ const initialState = {
 
  export const addAsyncGuest = createAsyncThunk('guest/addGuest', async(guest, thunkApi) => {
      try {
-         const { data } = await axios.post("https://joof-backend.onrender.com/api/guest", guest, {withCredentials: true})
+         const { data } = await axios.post("https://joof-backend.vercel.app/api/guest", guest, {withCredentials: true})
 
          console.log(data)
 
