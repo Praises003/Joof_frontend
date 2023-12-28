@@ -31,9 +31,10 @@ import LayoutScreen from './screens/LayoutScreen'
 import SeatSelectionComponent from './components/SeatSelectionComponent'
 import SeatListComponent from './components/SeatListComponent'
 import ProfileComponent from './components/ProfileComponent'
+import CartScreen from './screens/CartScreen'
 function App() {
   const location = useLocation();
-  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile'].includes(location.pathname);
+  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package"].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   // const [count, setCount] = useState(0)
 
@@ -78,6 +79,12 @@ function App() {
           <Route path="/seat" element={<SeatSelectionComponent genUser={genUser} setGenUser={setGenUser}  /> } />
           <Route path="/profile" element={<ProfileComponent genUser={genUser}  /> } />
 
+          <Route path="/event_package" element={<EventPackageScreen />} />
+
+          <Route path="/cart" element={<CartScreen />} />
+
+
+
 
             
           </Routes>
@@ -100,8 +107,7 @@ function App() {
 
             <Route path="/contact" element={<ContactScreen /> } />
 
-            <Route path="/event_package" element={<EventPackageScreen />} />
-
+            
             
             <Route path="/corporate" element={<CorporateScreen />} />
 

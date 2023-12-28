@@ -41,11 +41,11 @@ const EventPackageScreen = () => {
                 <p className='text-center font-black text-4xl pb-4'>$29<span className='inline font-semibold text-base'>/mo</span></p>
                 <p className="text-center">$129 year(15% discount)</p>
 
-                <div onClick={() => {dispatch(addToCart({rental, decoration, catering}))}} className="">
+                <div className="">
                     <Link  className='bg-yellow-500 text-white  p-4 mt-12 mb-1 rounded-lg block text-center'>Book Now</Link>
                 </div>
 
-                <div onClick={() => {dispatch(addToCart({rental, decoration, catering}))}} className="">
+                <div onClick={() => {dispatch(addToCart({rental}))}} className="">
                     <Link  className='bg-yellow-500 text-white  p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart Now</Link>
                 </div>
                 
@@ -66,7 +66,7 @@ const EventPackageScreen = () => {
                     <Link className='bg-blue-900 text-white  p-4 mt-12 mb-1 rounded-lg block text-center'>Book Now</Link>
                 </div>
 
-                <div className="">
+                <div onClick={() => {dispatch(addToCart({catering}))}} className="">
                     <Link className='bg-blue-900 text-white  p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart </Link>
                 </div>
 
@@ -88,7 +88,7 @@ const EventPackageScreen = () => {
                     <Link className='bg-black text-white  p-4 mt-12 mb-1 rounded-lg block text-center'>Book Now</Link>
                 </div>
 
-                <div className="">
+                <div onClick={() => {dispatch(addToCart({decoration}))}} className="">
                     <Link className='bg-black text-white  p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart</Link>
                 </div>
 

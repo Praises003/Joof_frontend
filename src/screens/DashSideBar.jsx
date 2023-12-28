@@ -13,8 +13,11 @@ import {FaRegHourglassHalf} from "react-icons/fa6"
 import {MdOutlineCorporateFare} from  "react-icons/md"
 import { MdEventSeat } from "react-icons/md";
 import {TbPackages} from "react-icons/tb"
+import { FaShoppingCart } from "react-icons/fa";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useSelector, useDispatch} from "react-redux"
+
 
 const DashSideBar = ({ show }) => {
     const [dash, setDash] = useState(true)
@@ -23,6 +26,11 @@ const DashSideBar = ({ show }) => {
     const [sign, setSign] = useState(false)
     const [selectSeat, setSelectedSeat] = useState(false)
     const [packages, setPackages] = useState(false)
+    const [cartState, setCartState] = useState(false)
+    const {eventPackage} = useSelector(state => state.eventPackage)
+
+
+    console.log(eventPackage)
    
    
     const navigate = useNavigate()
@@ -34,6 +42,8 @@ const DashSideBar = ({ show }) => {
         profile ? setProfile(false) : ""
         sign ? setSign(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
+        packages ? setPackages(false) : ""
+        cartState ? setCartState(false) : ""
         navigate("/dashboard")
     }
 
@@ -44,6 +54,9 @@ const DashSideBar = ({ show }) => {
         sign ? setSign(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
         navigate("/dash_event")
+        packages ? setPackages(false) : ""
+        cartState ? setCartState(false) : ""
+        
     }
 
     const onSeat = () => {
@@ -52,6 +65,8 @@ const DashSideBar = ({ show }) => {
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
         profile ? setProfile(false) : ""
+        packages ? setPackages(false) : ""
+        cartState ? setCartState(false) : ""
         navigate("/seat")
     }
 
@@ -61,6 +76,8 @@ const DashSideBar = ({ show }) => {
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
+        packages ? setPackages(false) : ""
+        cartState ? setCartState(false) : ""
         navigate("/profile")
     }
 
@@ -71,7 +88,21 @@ const DashSideBar = ({ show }) => {
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
+        cartState ? setCartState(false) : ""
+
         navigate("/event_package")
+    }
+
+    const onCart = () => {
+        setCartState(true)
+        packages ? setPackages(false) : ""
+        profile ? setProfile(false) : ""
+        dash ? setDash(false) : ""
+        tick ? setTick(false) : ""
+        sign ? setSign(false) : ""
+        selectSeat ? setSelectedSeat(false) : ""
+
+        navigate("/cart")
     }
 
     const onSign = () => {
@@ -79,13 +110,14 @@ const DashSideBar = ({ show }) => {
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         profile ? setProfile(false) : ""
+        cartState ? setCartState(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
     }
   return (
     <div>
         <div className="">
 
-            <div className="hidden lg:block rounded border p-4 bg-white border-x-2 border-y-2">
+            <div className="hidden lg:block rounded border p-4 bg-white border-x-2 border-y-2 ">
                 <div onClick={onDash} className={`${dash ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
                     <FaHome color='' size={30} className={`${dash ? "text-white" : "text-blue-900"}`} />
                     <p className="ml-4 text-xl">Dashboard</p>
@@ -107,9 +139,19 @@ const DashSideBar = ({ show }) => {
                 </div>
 
                 <div onClick={onPackage} className={`${packages ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
-                    <TbPackages  size={30} className={`${profile ? "text-white" : "text-blue-900"}`} />
+                    <TbPackages  size={30} className={`${packages ? "text-white" : "text-blue-900"}`} />
                     <p className="ml-4 text-xl">Event Packages</p>
                 </div>
+
+                <div onClick={onCart} className={`${cartState ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5 relative`}>
+                        <div className="absolute left-4 -top-2 bg-red-700 h-6  text-center w-6 rounded-full">
+                        <p className="text-lg text-white">{eventPackage.length}</p>
+                    </div>
+                    
+                    <FaShoppingCart  size={30} className={`${cartState ? "text-white" : "text-blue-900"}`} />
+                    <p className="ml-4 text-xl">Cart</p>
+                </div>
+
 
 
                 <div onClick={onSign} className={`${sign ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
@@ -122,7 +164,7 @@ const DashSideBar = ({ show }) => {
 
             {/**Small Screens */}
 
-            <div className="relative">
+            <div className="relative z-10">
             {show && <div className="absolute lg:hidden rounded border p-4 bg-white border-x-2 border-y-2">
                 <div onClick={onDash} className={`${dash ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
                     <FaHome color='' size={30} className={`${dash ? "text-white" : "text-blue-900"}`} />
@@ -144,10 +186,19 @@ const DashSideBar = ({ show }) => {
                     <p className="ml-4 text-xl">Profile</p>
                 </div>
 
-                <div onClick={onPackage} className={`${profile ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
+                <div onClick={onPackage} className={`${packages ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
                     <TbPackages  size={30} className={`${packages ? "text-white" : "text-blue-900"}`} />
                     <p className="ml-4 text-xl">Event Packages</p>
                 </div>
+
+                <div onClick={onCart} className={`${cartState ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5 relative`}>
+                    <div className="absolute left-4 -top-2 bg-red-700 h-6  text-center w-6 rounded-full">
+                        <p className="text-lg text-white">{eventPackage.length}</p>
+                    </div>
+                    <FaShoppingCart  size={30} className={`${cartState ? "text-white" : "text-blue-900"}`} />
+                    <p className="ml-4 text-xl">Cart</p>
+                </div>
+
 
                 <div onClick={onSign} className={`${sign ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
                     <FaSignOutAlt  size={30} className={`${sign ? "text-white" : "text-blue-900"}`} />
