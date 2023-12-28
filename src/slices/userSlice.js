@@ -11,7 +11,10 @@ const initialState = {
 
 export const register = createAsyncThunk('user/register', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("https://joof-backend.onrender.com/api/user", user, {withCredentials: true})
+        //https://joof-backend.onrender.com/api/user
+        //http://localhost:5000/api/user
+        //https://joof-backend.vercel.app/api/user
+        const { data } = await axios.post("https://joof-backend.vercel.app/api/user", user, {withCredentials: true})
 
         console.log(data)
 
