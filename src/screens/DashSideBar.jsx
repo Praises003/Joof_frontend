@@ -12,6 +12,7 @@ import {FaTimes, FaBars} from 'react-icons/fa'
 import {FaRegHourglassHalf} from "react-icons/fa6"
 import {MdOutlineCorporateFare} from  "react-icons/md"
 import { MdEventSeat } from "react-icons/md";
+import {TbPackages} from "react-icons/tb"
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,6 +22,8 @@ const DashSideBar = ({ show }) => {
     const [profile, setProfile] = useState(false)
     const [sign, setSign] = useState(false)
     const [selectSeat, setSelectedSeat] = useState(false)
+    const [packages, setPackages] = useState(false)
+   
    
     const navigate = useNavigate()
 
@@ -61,6 +64,16 @@ const DashSideBar = ({ show }) => {
         navigate("/profile")
     }
 
+    const onPackage = () => {
+        setPackages(true)
+        profile ? setProfile(false) : ""
+        dash ? setDash(false) : ""
+        tick ? setTick(false) : ""
+        sign ? setSign(false) : ""
+        selectSeat ? setSelectedSeat(false) : ""
+        navigate("/event_package")
+    }
+
     const onSign = () => {
         setSign(true)
         dash ? setDash(false) : ""
@@ -93,6 +106,12 @@ const DashSideBar = ({ show }) => {
                     <p className="ml-4 text-xl">Profile</p>
                 </div>
 
+                <div onClick={onPackage} className={`${packages ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
+                    <TbPackages  size={30} className={`${profile ? "text-white" : "text-blue-900"}`} />
+                    <p className="ml-4 text-xl">Event Packages</p>
+                </div>
+
+
                 <div onClick={onSign} className={`${sign ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
                     <FaSignOutAlt  size={30} className={`${sign ? "text-white" : "text-blue-900"}`} />
                     <p className="ml-4 text-xl">Sign Out</p>
@@ -123,6 +142,11 @@ const DashSideBar = ({ show }) => {
                 <div onClick={onProfile} className={`${profile ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
                     <RxAvatar  size={30} className={`${profile ? "text-white" : "text-blue-900"}`} />
                     <p className="ml-4 text-xl">Profile</p>
+                </div>
+
+                <div onClick={onPackage} className={`${profile ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
+                    <TbPackages  size={30} className={`${packages ? "text-white" : "text-blue-900"}`} />
+                    <p className="ml-4 text-xl">Event Packages</p>
                 </div>
 
                 <div onClick={onSign} className={`${sign ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>

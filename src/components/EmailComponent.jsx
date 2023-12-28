@@ -10,16 +10,16 @@ import bg from "../assets/bg_i.jpg"
 const EmailComponent = () => {
     const [email, setEmail] =  useState("")
     const [name, setName] =  useState("")
-    const { guest } = useSelector(state => state.guest)
+    const { eventPackage } = useSelector(state => state.eventPackage)
     const dispatch = useDispatch()
 
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(addGuest({name, email}))
         setEmail("")
         setName("")
 
     }
+    
   return (
     <div>
      <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),url('${bg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: ""}} className={`pb-8`}>

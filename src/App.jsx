@@ -34,6 +34,7 @@ import ProfileComponent from './components/ProfileComponent'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile'].includes(location.pathname);
+  const { eventPackage } = useSelector(state => state.eventPackage)
   // const [count, setCount] = useState(0)
 
   // const [test, setTest] = useState([])
@@ -61,6 +62,7 @@ function App() {
   // const {getAll} = test
   const [genUser, setGenUser] = useState([])
   console.log(genUser)
+  console.log(eventPackage)
 
   
   return (

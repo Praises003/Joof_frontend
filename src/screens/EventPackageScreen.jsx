@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import eventImg from '../assets/ev9.jpg'
+import {useSelector, useDispatch} from "react-redux"
+import { addToCart } from '../slices/eventPackageSlice'
 import { Link } from 'react-router-dom'
 import { FaClock } from "react-icons/fa";
 import { FaRegHandshake } from "react-icons/fa6";
@@ -7,6 +9,16 @@ import { IoFastFood } from "react-icons/io5";
 import { GiBalloons } from "react-icons/gi";
 
 const EventPackageScreen = () => {
+    const [rental, setRental] = useState("Rental Services")
+    const [catering, setCatering] = useState("Catering Services")
+    const [decoration, setDecoration] = useState("Decoration Services")
+    const [price, setPrice] = useState("29")
+    const {eventPackage} = useSelector(state => state.eventPackage)
+
+    const dispatch = useDispatch()
+    console.log(eventPackage)
+
+
   return (
     <div>
         <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "80vh"}} className={` mb-5 relative`}>
@@ -24,15 +36,19 @@ const EventPackageScreen = () => {
                 <div className="pb-12"></div>
                 <FaRegHandshake size={40} className='mx-auto text-yellow-500'/>
                 
-                <p className="text-center text-xl md:text-3xl font-semibold pb-6">Rental Services</p>
+                <p className="text-center text-xl md:text-3xl font-semibold pb-6">{rental}</p>
                 <p className="text-center text-base md:font-lg pb-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, quos perferendis reprehenderit unde ab impedit, omnis fugit, voluptatem commodi quaerat atque saepe! Magni temporibus, reprehenderit eos possimus aliquam beatae omnis.</p>
                 <p className='text-center font-black text-4xl pb-4'>$29<span className='inline font-semibold text-base'>/mo</span></p>
                 <p className="text-center">$129 year(15% discount)</p>
 
-                <div className="">
-                    <Link className='bg-yellow-500 text-white  p-4 mt-12 mb-12 rounded-lg block text-center'>Book Now</Link>
+                <div onClick={() => {dispatch(addToCart({rental, decoration, catering}))}} className="">
+                    <Link  className='bg-yellow-500 text-white  p-4 mt-12 mb-1 rounded-lg block text-center'>Book Now</Link>
                 </div>
 
+                <div onClick={() => {dispatch(addToCart({rental, decoration, catering}))}} className="">
+                    <Link  className='bg-yellow-500 text-white  p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart Now</Link>
+                </div>
+                
                 
             </div>
 
@@ -41,14 +57,19 @@ const EventPackageScreen = () => {
                 <div className="pb-12"></div>
                 <IoFastFood size={40} className='mx-auto text-blue-900'/>
                 
-                <p className="text-center text-xl md:text-3xl font-semibold pb-6">Catering Services</p>
-                <p className="text-center font-lg text-center text-base md:font-lg pb-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, quos perferendis reprehenderit unde ab impedit, omnis fugit, voluptatem commodi quaerat atque saepe! Magni temporibus, reprehenderit eos possimus aliquam beatae omnis.</p>
+                <p className="text-center text-xl md:text-3xl font-semibold pb-6">{catering}</p>
+                <p className="text-center font-lg t text-base md:font-lg pb-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, quos perferendis reprehenderit unde ab impedit, omnis fugit, voluptatem commodi quaerat atque saepe! Magni temporibus, reprehenderit eos possimus aliquam beatae omnis.</p>
                 <p className='text-center font-black text-4xl pb-4'>$29<span className='inline font-semibold text-base'>/mo</span></p>
                 <p className="text-center">$129 year(15% discount)</p>
 
                 <div className="">
-                    <Link className='bg-blue-900 text-white  p-4 mt-12 mb-12 rounded-lg block text-center'>Book Now</Link>
+                    <Link className='bg-blue-900 text-white  p-4 mt-12 mb-1 rounded-lg block text-center'>Book Now</Link>
                 </div>
+
+                <div className="">
+                    <Link className='bg-blue-900 text-white  p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart </Link>
+                </div>
+
 
                 
             </div>
@@ -58,14 +79,19 @@ const EventPackageScreen = () => {
                 <div className="pb-12"></div>
                 <GiBalloons size={40} className='mx-auto'/>
                 
-                <p className="text-center text-xl md:text-3xl font-semibold pb-6">Decoration Services</p>
+                <p className="text-center text-xl md:text-3xl font-semibold pb-6">{decoration}</p>
                 <p className="text-center font-lg pb-10">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, quos perferendis reprehenderit unde ab impedit, omnis fugit, voluptatem commodi quaerat atque saepe! Magni temporibus, reprehenderit eos possimus aliquam beatae omnis.</p>
                 <p className='text-center font-black text-4xl pb-4'>$29<span className='inline font-semibold text-base'>/mo</span></p>
                 <p className="text-center">$129 year(15% discount)</p>
 
                 <div className="">
-                    <Link className='bg-black text-white  p-4 mt-12 mb-12 rounded-lg block text-center'>Book Now</Link>
+                    <Link className='bg-black text-white  p-4 mt-12 mb-1 rounded-lg block text-center'>Book Now</Link>
                 </div>
+
+                <div className="">
+                    <Link className='bg-black text-white  p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart</Link>
+                </div>
+
 
                 
             </div>
