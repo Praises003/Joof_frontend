@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from 'axios'
 import { BrowserRouter, Route, Routes,  useLocation } from 'react-router-dom'
-import "react-datetime/css/react-datetime.css";
+//import "react-datetime/css/react-datetime.css";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
@@ -32,10 +32,13 @@ import SeatSelectionComponent from './components/SeatSelectionComponent'
 import SeatListComponent from './components/SeatListComponent'
 import ProfileComponent from './components/ProfileComponent'
 import CartScreen from './screens/CartScreen'
+import PaymentSuccessScreen from './screens/PaymentSuccessScreen'
+import PaymentFailedScreen from './screens/PaymentFailedScreen'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package"].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
+  //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
 
   // const [test, setTest] = useState([])
@@ -62,8 +65,8 @@ function App() {
 //   }, [test])
   // const {getAll} = test
   const [genUser, setGenUser] = useState([])
-  console.log(genUser)
-  console.log(eventPackage)
+  //console.log(genUser)
+  //console.log(eventPackage)
 
   
   return (
@@ -115,6 +118,12 @@ function App() {
 
              <Route path="/login" element={<LoginScreen /> } /> 
 
+             <Route path="/success" element={<PaymentSuccessScreen /> } /> 
+
+             <Route path="/fail" element={<PaymentFailedScreen /> } /> 
+
+
+
              
              
 
@@ -123,7 +132,7 @@ function App() {
 
 
         </Routes>
-        {genUser.map(gen => <SeatListComponent />)}
+       
         <ToastContainer />
         <EmailComponent />
         <ContactComponent />
