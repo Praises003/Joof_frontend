@@ -73,7 +73,7 @@ console.log(stripe)
       products: eventPackage
     }
     //https://joof-backend.vercel.app
-    const { data } =  await axios.post("http://localhost:5000/create-checkout-session", {
+    const { data } =  await axios.post("https://joof-backend.vercel.app/create-checkout-session", {
       products: eventPackage
     },)
     console.log(data)
