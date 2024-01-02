@@ -34,9 +34,10 @@ import ProfileComponent from './components/ProfileComponent'
 import CartScreen from './screens/CartScreen'
 import PaymentSuccessScreen from './screens/PaymentSuccessScreen'
 import PaymentFailedScreen from './screens/PaymentFailedScreen'
+import ReminderComponent from './components/ReminderComponent'
 function App() {
   const location = useLocation();
-  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package"].includes(location.pathname);
+  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder"].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
@@ -85,6 +86,9 @@ function App() {
           <Route path="/event_package" element={<EventPackageScreen />} />
 
           <Route path="/cart" element={<CartScreen />} />
+
+          <Route path="/reminder" element={<ReminderComponent /> } />
+
 
 
 
