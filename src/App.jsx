@@ -35,6 +35,7 @@ import CartScreen from './screens/CartScreen'
 import PaymentSuccessScreen from './screens/PaymentSuccessScreen'
 import PaymentFailedScreen from './screens/PaymentFailedScreen'
 import ReminderComponent from './components/ReminderComponent'
+import AdminScreen from './screens/AdminScreen'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder"].includes(location.pathname);
@@ -89,6 +90,9 @@ function App() {
 
           <Route path="/reminder" element={<ReminderComponent /> } />
 
+          
+          
+
 
 
 
@@ -125,6 +129,8 @@ function App() {
              <Route path="/success" element={<PaymentSuccessScreen /> } /> 
 
              <Route path="/fail" element={<PaymentFailedScreen /> } /> 
+
+             <Route path="/admin" element={<AdminScreen /> } />
 
 
 
