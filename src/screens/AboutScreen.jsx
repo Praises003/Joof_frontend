@@ -27,11 +27,11 @@ const AboutScreen = () => {
   return (
     <div>
         <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "100vh"}} className={` mb-5 relative`}>
-             <p className='uppercase text-4xl font-semibold md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'> <span className='text-yellow-400'>About</span> Prof Rufus Oladipo Elemo Event Center</p>
+             <p className='uppercase text-4xl font-semibold md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'> <span className='text-yellow-400'>About</span> Profuselemo Multi-Purpose Event Center</p>
         </div>
 
         <div className=" p-4">
-            <p className='text-center text-3xl md:text-4xl font-semibold mb-10'>Welcome to Prof Rufus Oladipo Elemo Event Center</p>
+            <p className='text-center text-3xl md:text-4xl font-semibold mb-10'>Welcome to Profuselemo Multi-Purpose Event Center</p>
             <div className="flex flex-col md:flex-row justify-between ">
                 <div className="w-full">
                     <img src={eventImage} alt="" className='w-full bg-no-repeat bg-cover'/>
@@ -171,15 +171,15 @@ const AboutScreen = () => {
         
       <SwiperSlide className=''><div className=" w-10/12  h-96 bg-white shadow mx-auto py-2 px-4">
          <img src={christopher} className='w-28 h-28 rounded-full mx-auto mb-7' alt="" />
-         <p className='font-semibold text-lg'> PROF RUFUS OLADIPO ELEMO EVENT CENTER, I love the fact that it was spacious engough for my bridal train to do the bridal dance with me, despite our numerous and glamorous guests. it was totally exciting  </p>
+         <p className='font-semibold text-lg'>Profuselemo Multi-Purpose Event Center, I love the fact that it was spacious engough for my bridal train to do the bridal dance with me, despite our numerous and glamorous guests. it was totally exciting  </p>
         </div></SwiperSlide>
       <SwiperSlide><div className="w-10/12  h-96  mx-auto bg-white shadow py-2 px-4">
         <img src={sergio} className='w-28 h-28 rounded-full mx-auto mb-7' alt="" />
-          <p className='font-semibold text-lg'> How well can express our gratitude to  PROF RUFUS OLADIPO ELEMO EVENT CENTER This event center is world class and their services are top notch. </p>
+          <p className='font-semibold text-lg'> How well can express our gratitude to  Profuselemo Multi-Purpose Event Center This event center is world class and their services are top notch. </p>
         </div></SwiperSlide>
       <SwiperSlide><div className="w-10/12 h-96  bg-white shadow mx-auto py-2 px-4">
         <img src={stefan} className='w-28 h-28 rounded-full mx-auto mb-7 py-2 px-4' alt="" />
-        <p className='font-semibold text-lg'> No other event center beats  PROF RUFUS OLADIPO ELEMO EVENT CENTER  </p>
+        <p className='font-semibold text-lg'> No other event center beats  Profuselemo Multi-Purpose Event Center  </p>
         </div></SwiperSlide>
       
     </Swiper>

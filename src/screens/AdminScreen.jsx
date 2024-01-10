@@ -15,7 +15,7 @@ const AdminScreen = () => {
   return (
     <div>
       <div className="flex">
-        <div style={{background: "#FE8D01"}} className={`basis-0 lg:basis-1/5  w-full  h-full lg:block`}>
+        <div style={{background: "#FE8D01",}} className={`basis-0 lg:basis-2/6  w-full   lg:block`}>
           <AdminNavComponent show={show} setShow={setShow} />        
         </div>
 
