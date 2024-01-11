@@ -68,7 +68,7 @@ const AdminNavComponent = ({ show, setShow}) => {
 
         {/** Small Screens */}
         <div  className="">
-        {show && <div style={{background: "#FE8D01", width: "280px", height: "900px" }} className={`block  absolute lg:hidden`}>
+        {show && <div style={{background: "#FE8D01", }} className={`block w-96   absolute lg:hidden`}>
             <div className="flex justify-end items-end" onClick={adminMenu}>
             <FaTimes size={25} className='text-red-700 mt-3 mr-3' />
             </div>
