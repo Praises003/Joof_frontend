@@ -39,6 +39,7 @@ const eventPackageSlice = createSlice({
         addToCart : (state, action) => {
             console.log(action)
             state.eventPackage = [...state.eventPackage, {...action.payload}]
+            console.log(action.payload)
         }
         
     }, 

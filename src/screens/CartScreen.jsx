@@ -129,7 +129,7 @@ console.log(stripe)
                     <div className=''>
                     
                     
-                        <div className={`${event.name === "Rental Services"  ?  "rounded border p-4 bg-white border-x-2 border-y-2 mb-3" : "hidden"}`}>
+                        <div className={`${event.name === "Entry Package"  ?  "rounded border p-4 bg-white border-x-2 border-y-2 mb-3" : "hidden"}`}>
                         <p>{event.name && "Name : "} {event.name}</p>
                         <p className='mb-1'> Price:  {event.price}</p>
                      
@@ -143,7 +143,7 @@ console.log(stripe)
             
                 <div className=''>
                    
-                        <div className={`${event.name === "Catering Services" ? "rounded border p-4 bg-white border-x-2 border-y-2 mb-3" : "hidden"}`}>
+                        <div className={`${event.name === "Advanced Package" ? "rounded border p-4 bg-white border-x-2 border-y-2 mb-3" : "hidden"}`}>
                         <p>Name: {event.name}</p>
                         <p className='mb-1'>Price: {event.price}</p>
                         <div className="mb-5 md:mx-auto">
@@ -155,7 +155,7 @@ console.log(stripe)
             
                 <div className=''>
                    
-                        <div className={`${event.name ===  "Decoration Services" ? "rounded border p-4 bg-white border-x-2 border-y-2 mb-3" : "hidden"}`}>
+                        <div className={`${event.name ===  "Premium Package" ? "rounded border p-4 bg-white border-x-2 border-y-2 mb-3" : "hidden"}`}>
                         <p>Name: {event.name}</p>
                         <p className='mb-1'>Price: {event.price}</p>
                         <div className="mb-5 md:mx-auto">

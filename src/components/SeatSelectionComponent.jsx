@@ -15,86 +15,86 @@ const SeatSelectionComponent = ({ genUser, setGenUser }) => {
     const [bseats, setBSeats] = useState([
         {
             id: 11,
-            no: "B1"
+            no: 11
         },
         {
             id: 12,
-            no: "B2"
+            no: 12
         },
         {
             id: 13,
-            no: "B3"
+            no: 13
         },
         {
             id: 14,
-            no: "B4"
+            no: 14
         },
         {
             id: 15,
-            no: "B5"
+            no: 15
         },
         {
             id: 16,
-            no: "B6"
+            no: 16
         },
         {
             id: 17,
-            no: "B7"
+            no: 17
         },
         {
             id: 18,
-            no: "B8"
+            no: 18
         },
         {
             id: 19,
-            no: "B9"
+            no: 19
         },
         {
             id: 20,
-            no: "B10"
+            no: 20
         },
     ])
 
     const [cseats, setCSeats ] = useState([
         {
             id: 21,
-            no: "C1"
+            no: 21
         },
         {
             id: 22,
-            no: "C2"
+            no: 22
         },
         {
             id: 23,
-            no: "C3"
+            no: 23
         },
         {
             id: 24,
-            no: "C4"
+            no: 24
         },
         {
             id: 25,
-            no: "C5"
+            no: 25
         },
         {
             id: 26,
-            no: "C6"
+            no: 26
         },
         {
             id: 27,
-            no: "C7"
+            no: 27
         },
         {
             id: 28,
-            no: 'C8'
+            no: 28
         },
         {
             id: 29,
-            no: "C9"
+            no: 29
         },
         {
             id: 30,
-            no: "C10"
+            no: 30
         },
 
     ])
@@ -102,84 +102,84 @@ const SeatSelectionComponent = ({ genUser, setGenUser }) => {
     const [dseats, setDseats] = useState([
         {
             id: 31,
-            no: "D1"
+            no: 31
         },
         {
             id: 32,
-            no: "D2"
+            no: 32
         },
         {
             id: 33,
-            no: "D3"
+            no: 33
         },
         {
             id: 34,
-            no: "D4"
+            no: 34
         },
         {
             id: 35,
-            no: "D5"
+            no: 35
         },
         {
             id: 36,
-            no: "D6"
+            no: 36
         },
         {
             id: 37,
-            no: "D7"
+            no: 37
         },
         {
             id: 38,
-            no: "D8"
+            no: 38
         },
         {
             id: 39,
-            no: "D9"
+            no: 39
         },
         {
             id: 40,
-            no: "D10"
+            no: 40
         },
     ])
     const [seats, setSeats] = useState([{
         id: 1,
-        no: "A1"
+        no: 1
     },
     {
         id: 2,
-        no: "A2"
+        no: 2
     },
     {
         id: 3,
-        no: "A3"
+        no: 3
     },
     {
         id: 4,
-        no: "A4"
+        no: 4
     },
     {
         id: 5,
-        no: "A5"
+        no: 5
     },
     {
         id: 6,
-        no: "A6"
+        no: 6
     },
     {
         id: 7,
-        no: "A7"
+        no: 7
     },
     {
         id: 8,
-        no: "A8"
+        no: 8
     },
     {
         id: 9,
-        no: "A9"
+        no: 9
     },
     {
         id: 10,
-        no: "A10"
+        no: 10
     }, 
         
     
@@ -187,128 +187,128 @@ const SeatSelectionComponent = ({ genUser, setGenUser }) => {
 
 const [cenSeats, setCenSeats] = useState([{
     id: 41,
-    no: "A1"
+    no: 41
 },
 {
     id: 42,
-    no: "A2"
+    no: 42
 },
 {
     id: 43,
-    no: "A3"
+    no: 43
 },
 {
     id: 44,
-    no: "A4"
+    no: 44
 },
 {
     id: 45,
-    no: "A5"
+    no: 45
 },
 {
     id: 46,
-    no: "A6"
+    no: 46
 },
 {
     id: 47,
-    no: "A7"
+    no: 47
 },
 {
     id: 48,
-    no: "A8"
+    no: 48
 },
 {
     id: 49,
-    no: "A9"
+    no: 49
 },
 {
     id: 50,
-    no: "A10"
+    no: 50
 },
 ])
 
 const [bCenSeats, setBCenSeats] = useState([{
     id: 51,
-    no: "B1"
+    no: 51
 },
 {
     id: 52,
-    no: "B2"
+    no: 52
 },
 {
     id: 53,
-    no: "B3"
+    no: 53
 },
 {
     id: 54,
-    no: "B4"
+    no: 54
 },
 {
     id: 55,
-    no: "B5"
+    no: 55
 },
 {
     id: 56,
-    no: "B6"
+    no: 56
 },
 {
     id: 57,
-    no: "B7"
+    no: 57
 },
 {
     id: 58,
-    no: "B8"
+    no: 58
 },
 {
     id: 59,
-    no: "B9"
+    no: 59
 },
 {
     id: 60,
-    no: "B10"
+    no: 60
 },
 ])
 
 const [cCenSeats, setCCenSeats ] = useState([
     {
         id: 61,
-        no: "C1"
+        no: 61
     },
     {
         id: 62,
-        no: "C2"
+        no: 62
     },
     {
         id: 63,
-        no: "C3"
+        no: 63
     },
     {
         id: 64,
-        no: "C4"
+        no: 64
     },
     {
         id: 65,
-        no: "C5"
+        no: 65
     },
     {
         id: 66,
-        no: "C6"
+        no: 66
     },
     {
         id: 67,
-        no: "C7"
+        no: 67
     },
     {
         id: 68,
-        no: 'C8'
+        no: 68
     },
     {
         id: 69,
-        no: "C9"
+        no: 69
     },
     {
         id: 70,
-        no: "C10"
+        no: 70
     },
 
 ])
@@ -316,170 +316,170 @@ const [cCenSeats, setCCenSeats ] = useState([
 const [dCenSeats, setDCenSeats] = useState([
     {
         id: 71,
-        no: "D1"
+        no: 71
     },
     {
         id: 72,
-        no: "D2"
+        no: 72
     },
     {
         id: 73,
-        no: "D3"
+        no: 73
     },
     {
         id: 74,
-        no: "D4"
+        no: 74
     },
     {
         id: 75,
-        no: "D5"
+        no: 75
     },
     {
         id: 76,
-        no: "D6"
+        no: 76
     },
     {
         id: 77,
-        no: "D7"
+        no: 77
     },
     {
         id: 78,
-        no: "D8"
+        no: 78
     },
     {
         id: 79,
-        no: "D9"
+        no: 79
     },
     {
         id: 80,
-        no: "D10"
+        no: 80
     },
 ])
 
 const [rSeats, setRSeats] = useState([{
     id: 81,
-    no: "A1"
+    no: 81
 },
 {
     id: 82,
-    no: "A2"
+    no: 82
 },
 {
     id: 83,
-    no: "A3"
+    no: 83
 },
 {
     id: 84,
-    no: "A4"
+    no: 84
 },
 {
     id: 85,
-    no: "A5"
+    no: 85
 },
 {
     id: 86,
-    no: "A6"
+    no: 86
 },
 {
     id: 87,
-    no: "A7"
+    no: 87
 },
 {
     id: 88,
-    no: "A8"
+    no: 88
 },
 {
     id: 89,
-    no: "A9"
+    no: 89
 },
 {
     id: 90,
-    no: "A10"
+    no: 90
 },
 ])
 
 const [bRSeats, setRCenSeats] = useState([{
     id: 91,
-    no: "B1"
+    no: 91
 },
 {
     id: 92,
-    no: "B2"
+    no: 92
 },
 {
     id: 93,
-    no: "B3"
+    no: 93
 },
 {
     id: 94,
-    no: "B4"
+    no: 94
 },
 {
     id: 95,
-    no: "B5"
+    no: 95
 },
 {
     id: 96,
-    no: "B6"
+    no: 96
 },
 {
     id: 97,
-    no: "B7"
+    no: 97
 },
 {
     id: 98,
-    no: "B8"
+    no: 98
 },
 {
     id: 99,
-    no: "B9"
+    no: 99
 },
 {
     id: 100,
-    no: "B10"
+    no: 100
 },
 ])
 
 const [cRSeats, setCRSeats ] = useState([
     {
         id: 101,
-        no: "C1"
+        no: 101
     },
     {
         id: 102,
-        no: "C2"
+        no: 102
     },
     {
         id: 103,
-        no: "C3"
+        no: 103
     },
     {
         id: 104,
-        no: "C4"
+        no: 104
     },
     {
         id: 105,
-        no: "C5"
+        no: 105
     },
     {
         id: 106,
-        no: "C6"
+        no: 106
     },
     {
         id: 107,
-        no: "C7"
+        no: 107
     },
     {
         id: 108,
-        no: 'C8'
+        no: 108
     },
     {
         id: 109,
-        no: "C9"
+        no: 109
     },
     {
         id: 110,
-        no: "C10"
+        no: 110
     },
 
 ])
@@ -487,170 +487,170 @@ const [cRSeats, setCRSeats ] = useState([
 const [rDSeats, setRDSeats] = useState([
     {
         id: 111,
-        no: "D1"
+        no: 111
     },
     {
         id: 112,
-        no: "D2"
+        no: 112
     },
     {
         id: 113,
-        no: "D3"
+        no: 113
     },
     {
         id: 114,
-        no: "D4"
+        no: 114
     },
     {
         id: 115,
-        no: "D5"
+        no: 115
     },
     {
         id: 116,
-        no: "D6"
+        no: 116
     },
     {
         id: 117,
-        no: "D7"
+        no: 117
     },
     {
         id: 118,
-        no: "D8"
+        no: 118
     },
     {
         id: 119,
-        no: "D9"
+        no: 119
     },
     {
         id: 120,
-        no: "D10"
+        no: 120
     },
 ])
 
 const [btSeats, setBTSeats] = useState([{
     id: 121,
-    no: "A1"
+    no: 121
 },
 {
     id: 122,
-    no: "A2"
+    no: 122
 },
 {
     id: 123,
-    no: "A3"
+    no: 123
 },
 {
     id: 124,
-    no: "A4"
+    no: 124
 },
 {
     id: 125,
-    no: "A5"
+    no: 125
 },
 {
     id: 126,
-    no: "A6"
+    no: 126
 },
 {
     id: 127,
-    no: "A7"
+    no: 127
 },
 {
     id: 128,
-    no: "A8"
+    no: 128
 },
 {
     id: 129,
-    no: "A9"
+    no: 129
 },
 {
     id: 130,
-    no: "A10"
+    no: 130
 },
 ])
 
 const [bBTSeats, setBBTSeats] = useState([{
     id: 131,
-    no: "B1"
+    no: 131
 },
 {
     id: 132,
-    no: "B2"
+    no: 132
 },
 {
     id: 133,
-    no: "B3"
+    no: 133
 },
 {
     id: 134,
-    no: "B4"
+    no: 134
 },
 {
     id: 135,
-    no: "B5"
+    no: 135
 },
 {
     id: 136,
-    no: "B6"
+    no: 136
 },
 {
     id: 137,
-    no: "B7"
+    no: 137
 },
 {
     id: 138,
-    no: "B8"
+    no: 138
 },
 {
     id: 139,
-    no: "B9"
+    no: 139
 },
 {
     id: 140,
-    no: "B10"
+    no: 140
 },
 ])
 
 const [btCSeats, setBTCSeats ] = useState([
     {
         id: 141,
-        no: "C1"
+        no: 141
     },
     {
         id: 142,
-        no: "C2"
+        no: 142
     },
     {
         id: 143,
-        no: "C3"
+        no: 143
     },
     {
         id: 144,
-        no: "C4"
+        no: 144
     },
     {
         id: 145,
-        no: "C5"
+        no: 145
     },
     {
         id: 146,
-        no: "C6"
+        no: 146
     },
     {
         id: 147,
-        no: "C7"
+        no: 147
     },
     {
         id: 148,
-        no: 'C8'
+        no: 148
     },
     {
         id: 149,
-        no: "C9"
+        no: 149
     },
     {
         id: 150,
-        no: "C10"
+        no: 150
     },
 
 ])
@@ -658,43 +658,43 @@ const [btCSeats, setBTCSeats ] = useState([
 const [btDSeats, setBTDSeats] = useState([
     {
         id: 151,
-        no: "D1"
+        no: 151
     },
     {
         id: 152,
-        no: "D2"
+        no: 152
     },
     {
         id: 153,
-        no: "D3"
+        no: 153
     },
     {
         id: 154,
-        no: "D4"
+        no: 154
     },
     {
         id: 155,
-        no: "D5"
+        no: 155
     },
     {
         id: 156,
-        no: "D6"
+        no: 156
     },
     {
         id: 157,
-        no: "D7"
+        no: 157
     },
     {
         id: 158,
-        no: "D8"
+        no: 158
     },
     {
         id: 159,
-        no: "D9"
+        no: 159
     },
     {
         id: 160,
-        no: "D10"
+        no: 160
     },
 ])
 
@@ -894,7 +894,7 @@ const onSubmitFunc = (e) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 bg-blue-900 mt-4 p-1  rounded-2xl">
                 <div className="">
-                    <p className="text-2xl text-center mt-5 mb-5 uppercase text-white font-semibold ">Left Section</p>
+                    <p className="text-2xl text-center mt-5 mb-5 uppercase text-white font-semibold ">Table One</p>
                     <div className="flex ">
                         
                     {seats.map(seat =><p key={seat.id} className={`bg-blue-200 m-1 rounded-lg w-7 ${
@@ -917,7 +917,7 @@ const onSubmitFunc = (e) => {
                 </div>
 
                 <div className=" ">
-                <p className="text-2xl text-center  uppercase text-white font-semibold my-5">Center Section</p>
+                <p className="text-2xl text-center  uppercase text-white font-semibold my-5">Table Two</p>
                     <div className="flex ">
                         
                     {cenSeats.map(seat =><p key={seat.id} className={`bg-blue-200 m-1 rounded-lg w-7 h-7 text-center ${
@@ -942,7 +942,7 @@ const onSubmitFunc = (e) => {
                 </div>
 
                 <div className=" ">
-                <p className="text-2xl text-center  uppercase text-white font-semibold my-5">Right Section</p>
+                <p className="text-2xl text-center  uppercase text-white font-semibold my-5">Table Three</p>
                     <div className="flex ">
                        
                     {rSeats.map(seat =><p key={seat.id} className={`bg-blue-200 m-1 rounded-lg w-7 h-7 text-center ${selectedSeats.includes(seat.id) ? 'bg-green-950 text-white' : ''}`} onClick={() => handleSeatClick(seat.id, seat.no)}>{seat.no}</p>)}
@@ -964,7 +964,7 @@ const onSubmitFunc = (e) => {
                 </div>
 
                 <div className=" ">
-                <p className="text-2xl text-center  uppercase text-white font-semibold my-5">Bottom Section</p>
+                <p className="text-2xl text-center  uppercase text-white font-semibold my-5">Table Four</p>
                     <div className="flex ">
                         
                     {btSeats.map(seat =><p key={seat.id} className={`bg-blue-200 m-1 rounded-lg w-7 h-7 text-center ${selectedSeats.includes(seat.id) ? 'bg-green-950 text-white' : ''}`} onClick={() => handleSeatClick(seat.id, seat.no)}>{seat.no}</p>)}
