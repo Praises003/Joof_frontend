@@ -39,9 +39,13 @@ import AdminScreen from './screens/AdminScreen'
 import UserListComponent from './components/UserListComponent'
 import GuestListComponent from './components/GuestListComponent'
 import EventListComponent from './components/EventListComponent'
+import AdminLayout from './screens/AdminLayout'
+import AdminSectionComponent from './components/AdminSectionComponent'
+import ManagementScreen from './screens/ManagementScreen'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder"].includes(location.pathname);
+  const showAdminNav = ['/admin', '/guests', '/users' ].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
@@ -78,6 +82,19 @@ function App() {
     <>
         <ScrollToTop />
         <NavComponent />
+        
+        {showAdminNav && <AdminScreen>
+          <Routes>
+            <Route path="/admin" element={<AdminSectionComponent /> } />
+            <Route path="/guests" element={<GuestListComponent /> } />
+            <Route path="/users" element={<UserListComponent /> } />
+
+
+            
+            
+          
+          </Routes>
+        </AdminScreen>}
        {showNav && <LayoutScreen>
           <Routes>
             <Route path="/dashboard" element={<DashboardScreen /> } /> 
@@ -94,6 +111,7 @@ function App() {
           <Route path="/reminder" element={<ReminderComponent /> } />
 
           
+                    
           
 
 
@@ -133,13 +151,17 @@ function App() {
 
              <Route path="/fail" element={<PaymentFailedScreen /> } /> 
 
-             <Route path="/admin" element={<AdminScreen /> } />
+             {/* <Route path="/admin" element={<AdminScreen /> } /> */}
 
-             <Route path="/users" element={<UserListComponent /> } />
+             
 
-             <Route path="/guests" element={<GuestListComponent /> } />
+             {/* <Route path="/guests" element={<GuestListComponent /> } /> */}
 
              <Route path="/events" element={<EventListComponent /> } />
+
+             <Route path="/management" element={<ManagementScreen /> } />
+
+
 
 
 

@@ -2,10 +2,10 @@ import React from 'react'
 
 const GuestListComponent = () => {
   return (
-    <div>
-      <div style={{background: "#202020"}} className="p-4">
+    <div >
+      <div style={{background: "#202020"}} className="p-4 ">
         <div className="">
-          <div className="flex justify-between  bg-black text-white rounded-xl mb-3">
+          <div className="flex justify-between  bg-black text-white rounded-xl mb-3 mt-7 lg:mt-0">
             <p className="py-2 px-4 ">Client</p>
             <p className='py-2 px-4 '>Guest</p>
             <p className="py-2 px-4 ">Seat Number</p>

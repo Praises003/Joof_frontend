@@ -832,6 +832,9 @@ console.log(selectedSeatNum)
 
 
 // }
+
+console.log(selectedSeatNum)
+console.log(submittedSeats)
 const onSubmitFunc = (e) => {
     e.preventDefault();
 

@@ -272,10 +272,10 @@ const AdminSectionComponent = ({show, setShow}) => {
 
               {/** Small Screens */}
               <div style={{background: "#202020"}} className="lg:hidden block w-full">
-                <div className="pl-5 pt-4">
+                {/* <div className="pl-5 pt-4">
                 <FaBars onClick={menuClick} size={28} className='text-white ' />
                   
-                </div>
+                </div> */}
         <div className="p-4">
           <p className="text-white text-2xl md:text-4xl font-bold mb-2 text-center">Admin Dashboard</p>
           <div className="h-0.5 w-full bg-slate-500 "></div>
