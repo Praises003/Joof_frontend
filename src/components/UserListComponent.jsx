@@ -11,7 +11,7 @@ const UserListComponent = () => {
             <p className="text-center">ID No</p>
             <p className="text-center">Name</p>
             <p className="">Email/Phone</p>
-            <p className=""></p>
+            {/* <p className=""></p> */}
 
           </div>
 
