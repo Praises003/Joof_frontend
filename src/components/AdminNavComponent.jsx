@@ -85,7 +85,7 @@ const AdminNavComponent = ({ shows, setShows}) => {
                 <p className="text-lg text-white font-semibold">Dashboard</p>
             </div>
 
-            <div onClick={() => navigate("/usrs")} className="flex px-5 items-center mb-2">
+            <div onClick={() => navigate("/users")} className="flex px-5 items-center mb-2">
                 <FaUserFriends className='text-white pr-3.5' size={40} />
                 <p className="text-lg text-white font-semibold">Users</p>
             </div>
