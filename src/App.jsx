@@ -45,7 +45,7 @@ import ManagementScreen from './screens/ManagementScreen'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder"].includes(location.pathname);
-  const showAdminNav = ['/admin', '/guests', '/users' ].includes(location.pathname);
+  const showAdminNav = ['/admin', '/guests', '/users', '/events' ].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
@@ -88,6 +88,7 @@ function App() {
             <Route path="/admin" element={<AdminSectionComponent /> } />
             <Route path="/guests" element={<GuestListComponent /> } />
             <Route path="/users" element={<UserListComponent /> } />
+            <Route path="/events" element={<EventListComponent /> } />
 
 
             
@@ -157,7 +158,7 @@ function App() {
 
              {/* <Route path="/guests" element={<GuestListComponent /> } /> */}
 
-             <Route path="/events" element={<EventListComponent /> } />
+             
 
              <Route path="/management" element={<ManagementScreen /> } />
 

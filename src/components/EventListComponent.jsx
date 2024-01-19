@@ -10,8 +10,8 @@ const EventListComponent = () => {
   return (
     <div>
       <div style={{background: "#202020"}} className="p-5">
-        <div className=""></div>
-          <div className="flex justify-center">
+        <div className="mb-4 lg:mb-0"></div>
+          <div className="flex justify-center mb-4 lg:mb-0">
             <h1 className='text-white text-2xl'>Event Bookings</h1>
             <IoCalendarNumberSharp color='white' size={30} />
           </div>

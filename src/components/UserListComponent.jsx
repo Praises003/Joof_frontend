@@ -4,7 +4,7 @@ const UserListComponent = () => {
   return (
     <div>
         <div style={{background: "#202020"}}  className='p-4'>
-            <div className="bg-white p-4">
+            <div className="bg-white p-4 mt-8 lg:mt-0">
 
             
           <div className="flex justify-between mb-1.5 bg-black text-white font-bold rounded-md p-2.5 text-lg">
