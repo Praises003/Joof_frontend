@@ -61,8 +61,8 @@ const AdminNavComponent = ({ shows, setShows}) => {
                 <p className="text-lg text-white font-semibold">Venue</p>
             </div> */}
 
-             <div className="flex px-5 items-center mb-2">
-                <IoTicketSharp className='text-white pr-3.5' size={40} />
+             <div onClick={() => navigate("/ticket")} className="flex px-5 items-center mb-2">
+                <IoTicketSharp  className='text-white pr-3.5' size={40} />
                 <p className="text-lg text-white font-semibold">Print Ticket</p>
             </div>
 
@@ -111,8 +111,8 @@ const AdminNavComponent = ({ shows, setShows}) => {
                 <p className="text-lg text-white font-semibold">Venue</p>
             </div> */}
 
-             <div className="flex px-5 items-center mb-2">
-                <IoTicketSharp className='text-white pr-3.5' size={40} />
+             <div onClick={() => navigate("/ticket")} className="flex px-5 items-center mb-2">
+                <IoTicketSharp  className='text-white pr-3.5' size={40} />
                 <p className="text-lg text-white font-semibold">Print Ticket</p>
             </div>
 
