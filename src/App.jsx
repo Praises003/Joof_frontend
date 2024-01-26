@@ -43,6 +43,7 @@ import AdminLayout from './screens/AdminLayout'
 import AdminSectionComponent from './components/AdminSectionComponent'
 import ManagementScreen from './screens/ManagementScreen'
 import TicketScreen from './screens/TicketScreen'
+import AuditScreen from './screens/AuditScreen'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder"].includes(location.pathname);
@@ -164,6 +165,9 @@ function App() {
              
 
              <Route path="/management" element={<ManagementScreen /> } />
+
+             <Route path="/audit" element={<AuditScreen /> } />
+
 
 
 

@@ -24,9 +24,9 @@ const ManagementScreen = () => {
   return (
     <div>
         <div className="p-4">
-            <p className="text-center text-2xl font-semibold">The Board of Directors</p>
-            <div className="">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-2">
+            <p className="text-center text-2xl font-semibold uppercase">The Board of Trustees</p>
+            <div className="mb-16">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-2 ">
                     <div className="">
                         <img src={bod1} alt="" srcset="" />
                         <p className="">Craig Johnson
@@ -115,22 +115,33 @@ const ManagementScreen = () => {
 
 
                         
+                    
+                        
                     </div>
-                    <div className="">
-                        <img src={sergio} alt="" srcset="" />
-                        <p className="">Blake Howard</p>
-                        <p className="">Member</p>
-                        <div className="flex justify-between items-center">
-                            <p className="">social links:</p>
-                            <FaFacebookSquare size={30} />
-                            <FaLinkedin size={30} />
-                            <FaInstagramSquare size={30} />
+                    
+                </div>
+
+            </div>
+            <div className="">
+                <p className="text-center text-2xl font-semibold">MANAGEMENT COUNCIL</p>
+            
+                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-2">
+                        <div className="">
+                            <img src={sergio} alt="" srcset="" />
+                            <p className="">Blake Howard</p>
+                            <p className="">Member</p>
+                            <div className="flex justify-between items-center">
+                                <p className="">social links:</p>
+                                <FaFacebookSquare size={30} />
+                                <FaLinkedin size={30} />
+                                <FaInstagramSquare size={30} />
+                            </div>
                         </div>
 
 
 
                         
-                    </div>
+                    
                     <div className="">
                         <img src={christopher} alt="" srcset="" />
                         <p className="">Blake Howard</p>
@@ -175,7 +186,8 @@ const ManagementScreen = () => {
 
 
                         
-                    </div><div className="">
+                    </div>
+                    <div className="">
                         <img src={bod8} alt="" srcset="" />
 
                         <p className="">Blake Howard</p>
@@ -190,7 +202,8 @@ const ManagementScreen = () => {
 
 
                         
-                    </div><div className="">
+                    </div>
+                    <div className="">
                         <img src={bod9} alt="" srcset="" />
                         <p className="">Blake Howard</p>
                         <p className="">Member</p>
@@ -200,14 +213,9 @@ const ManagementScreen = () => {
                             <FaLinkedin size={30} />
                             <FaInstagramSquare size={30} />
                         </div>
-
-
-
-                        
                     </div>
-                    
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
