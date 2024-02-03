@@ -44,10 +44,11 @@ import AdminSectionComponent from './components/AdminSectionComponent'
 import ManagementScreen from './screens/ManagementScreen'
 import TicketScreen from './screens/TicketScreen'
 import AuditScreen from './screens/AuditScreen'
+import MediaScreen from './screens/MediaScreen'
 function App() {
   const location = useLocation();
-  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder"].includes(location.pathname);
-  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket' ].includes(location.pathname);
+  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder", "/media"].includes(location.pathname);
+  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket',  ].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
@@ -114,6 +115,9 @@ function App() {
           <Route path="/cart" element={<CartScreen />} />
 
           <Route path="/reminder" element={<ReminderComponent /> } />
+
+          <Route path="/media" element={<MediaScreen /> } />
+
 
           
                     
