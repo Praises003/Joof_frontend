@@ -45,6 +45,7 @@ import ManagementScreen from './screens/ManagementScreen'
 import TicketScreen from './screens/TicketScreen'
 import AuditScreen from './screens/AuditScreen'
 import MediaScreen from './screens/MediaScreen'
+import YoutubeScreen from './screens/YoutubeScreen'
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder", "/media"].includes(location.pathname);
@@ -159,6 +160,7 @@ function App() {
              <Route path="/success" element={<PaymentSuccessScreen /> } /> 
 
              <Route path="/fail" element={<PaymentFailedScreen /> } /> 
+             <Route path="/youtube" element={<YoutubeScreen /> } /> 
 
              {/* <Route path="/admin" element={<AdminScreen /> } /> */}
 
