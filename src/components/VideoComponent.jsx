@@ -8,6 +8,7 @@ const VideoPlayer = ({ videoId }) => {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
+      origin: ['https://joof.onrender.com', "http://localhost:3000"],
     },
   };
 

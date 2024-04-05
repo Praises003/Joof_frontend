@@ -1,44 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import VideoPlayer from '../components/VideoComponent';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-const YoutubeScreen = () => {
-  const [liveStreamId, setLiveStreamId] = useState('https://www.youtube.com/watch?v=nvvLD5TNAwQ');
+const YoutubeScreen = ({ channelId }) => {
+  const [player, setPlayer] = useState(null);
+  const [liveStreamId, setLiveStreamId] = useState(null);
 
   useEffect(() => {
-    const fetchLiveStreamId = async () => {
-      try {
-        const response = await axios.get(
-          'https://www.googleapis.com/youtube/v3/search', {
-            params: {
-              part: 'snippet',
-              eventType: 'live',
-              type: 'video',
-              q: 'YOUR_SEARCH_KEYWORD_HERE', // Provide a keyword to search for the live stream
-              key: 'AIzaSyB1UEKwOdN-jdPbT1vFBVaw49PhtoLxB8k', // Replace with your YouTube Data API key
-            }
-          }
-        );
-
-        if (response.data.items.length > 0) {
-          setLiveStreamId(response.data.items[0].id.videoId);
-        } else {
-          console.error('No live streams found');
+    const onYouTubeIframeAPIReady = () => {
+      const search = async () => {
+        const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCyEJX-kSj0kOOCS7Qlq2G7g&type=live&key=AIzaSyB1UEKwOdN-jdPbT1vFBVaw49PhtoLxB8k`);
+        const data = await response.json();
+        if (data.items && data.items.length > 0) {
+          setLiveStreamId(data.items[0].id.videoId);
         }
-      } catch (error) {
-        console.error('Error fetching live stream:', error);
-      }
+      };
+
+      search();
+
+      const newPlayer = new window.YT.Player('player', {
+        width: '640', // Adjust width and height as needed
+        height: '390',
+        videoId: liveStreamId, // Initially set to null
+        playerVars: { autoplay: 1, controls: 1 }, // Customize player options here
+        events: {
+          onReady: (event) => {
+            event.target.playVideo(); // Autoplay the live stream
+          },
+        },
+      });
+      setPlayer(newPlayer);
     };
 
-    fetchLiveStreamId();
-  }, []);
+    // Load the YouTube Iframe API script asynchronously
+    const script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+
+    return () => {
+      // Cleanup function to avoid memory leaks
+      window.onYouTubeIframeAPIReady = null;
+    };
+  }, [channelId]);
 
   return (
-    <div>
-      <h1>My YouTube Live Stream App</h1>
-      {liveStreamId && <VideoPlayer videoId={liveStreamId} />}
-    </div>
+    <div id="player"></div>
   );
 };
 
-export default YoutubeScreen
+export default YoutubeScreen;
