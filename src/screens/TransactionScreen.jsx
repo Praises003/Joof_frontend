@@ -37,7 +37,7 @@ const TransactionScreen = () => {
                   <div className="">
                   <p className="text-white font-semibold">NAME</p>
                   <div className="">
-                    {transactions.map(data => <div className=""> 
+                    {transactions.map(data => <div key={data.id} className=""> 
                       
                       <p className='text-white'>{data.billing_details.name}</p> </div>)}
                     </div>
@@ -45,7 +45,7 @@ const TransactionScreen = () => {
                   </div>
                     <div className="">
                     <p className="text-white font-semibold">AMOUNT</p>
-                    {transactions.map(data => <div className="">
+                    {transactions.map(data => <div key={data.id} className="">
                       <p className="text-white">${data.amount}</p>
                     </div>)}
 
@@ -54,7 +54,7 @@ const TransactionScreen = () => {
                     <div className="">
                       <p className="text-white font-semibold">STATUS</p> 
                       <div className="">
-                        {transactions.map(data => <div>
+                        {transactions.map(data => <div key={data.id}>
                           <p className="text-white">{data.status}</p>
                         </div>)}
                       
