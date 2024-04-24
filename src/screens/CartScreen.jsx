@@ -21,7 +21,10 @@ const CartScreen = () => {
     const {user} = useSelector(state => state.user)
 
     const {eventPackage} = useSelector(state => state.eventPackage)
-    console.log(eventPackage)
+    const {moreEvent} = useSelector(state => state.moreEvent)
+    const {guest} = useSelector(state => state.guest)
+    console.log(moreEvent)
+    console.log(guest)
 
     let total = eventPackage.reduce((sum, even ) => sum + even.price, 0 )
     console.log(total)

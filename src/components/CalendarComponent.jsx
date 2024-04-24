@@ -25,6 +25,9 @@ const CalendarComponent = () => {
   const [end, setEnd] = useState("")
   const [type, setType] = useState("")
   const [events, setEvents] = useState([]); 
+  const [ticketType, setTicketType] = useState('free');
+  const [price, setPrice] = useState('0');
+
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -47,6 +50,21 @@ const CalendarComponent = () => {
  const handleType = (e) => {
   setType(e.target.value)
 }
+
+const handleTypeChange = (type) => {
+  setTicketType(type);
+  if (type === 'free') {
+    setPrice('0');
+  }
+};
+
+const handlePriceChange = (e) => {
+  if (ticketType === 'free') {
+    e.preventDefault();
+  } else {
+    setPrice(e.target.value);
+  }
+};
 
 const stateData = {title, description, type, date}
   
@@ -270,6 +288,40 @@ const stateData = {title, description, type, date}
                             
 
 </div>
+
+<div className="container mx-auto mt-10">
+      <div className="flex justify-center">
+        <button
+          className={`mr-4 py-2 px-4 rounded ${
+            ticketType === 'free' ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-600'
+          }`}
+          onClick={() => handleTypeChange('free')}
+        >
+          Free
+        </button>
+        <button
+          className={`py-2 px-4 rounded ${
+            ticketType === 'paid' ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-600'
+          }`}
+          onClick={() => handleTypeChange('paid')}
+        >
+          Paid
+        </button>
+      </div>
+      <div className="mt-6">
+        <label className="block text-sm font-medium text-gray-700">Price</label>
+        <input
+          type="text"
+          className={`mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${
+            ticketType === 'free' ? 'bg-gray-200' : ''
+          }`}
+          placeholder="Enter price"
+          value={price}
+          onChange={handlePriceChange}
+          disabled={ticketType === 'free'}
+        />
+      </div>
+    </div>
 
 {/* 
                         <div className="">

@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from 'axios'
 import { BrowserRouter, Route, Routes,  useLocation } from 'react-router-dom'
-import "react-datetime/css/react-datetime.css";
+//import "react-datetime/css/react-datetime.css";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
@@ -46,10 +46,14 @@ import TicketScreen from './screens/TicketScreen'
 import AuditScreen from './screens/AuditScreen'
 import MediaScreen from './screens/MediaScreen'
 import YoutubeScreen from './screens/YoutubeScreen'
+import EventCardComponent from './components/EventCardComponent'
+import EventMoreComponent from './components/EventMoreComponent'
+import TransactionScreen from './screens/TransactionScreen'
+
 function App() {
   const location = useLocation();
-  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder", "/media"].includes(location.pathname);
-  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket',  ].includes(location.pathname);
+  const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder", "/media", "/create_ticket"].includes(location.pathname);
+  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket', "/transaction"  ].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
@@ -94,6 +98,7 @@ function App() {
             <Route path="/users" element={<UserListComponent /> } />
             <Route path="/events" element={<EventListComponent /> } />
             <Route path="/ticket" element={<TicketScreen /> } />
+            <Route path="/transaction" element={<TransactionScreen /> } />
 
 
 
@@ -118,6 +123,11 @@ function App() {
           <Route path="/reminder" element={<ReminderComponent /> } />
 
           <Route path="/media" element={<MediaScreen /> } />
+
+          <Route path="/create_ticket" element={<EventCardComponent /> } />
+
+
+        
 
 
           
@@ -161,6 +171,9 @@ function App() {
 
              <Route path="/fail" element={<PaymentFailedScreen /> } /> 
              <Route path="/youtube" element={<YoutubeScreen /> } /> 
+
+             <Route path="/eventmore" element={<EventMoreComponent /> } /> 
+
 
              {/* <Route path="/admin" element={<AdminScreen /> } /> */}
 
