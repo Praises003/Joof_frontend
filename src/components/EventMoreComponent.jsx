@@ -57,33 +57,40 @@ const EventMoreComponent = ({ event}) => {
             <img src={eventImg} alt="" srcset="" className="w-full h-1/4"  />
         </div>
 
+      <div className="flex justify-center">
         <div style={{background: ""}} className="flex w-3/4 md:w-1/4 justify-between items-center m-3 rounded-lg bg-blue-500 p-1 mb-9">
             <RiMegaphoneFill className="bg-blue-500 " size={23} />
             <p className="">Get your tickets now </p>
         </div>
+      </div>
 
         <div className="text-blue-900 text-2xl mb-10">
             <p className="text-center">CERTIFIED - HealthCare Champion Training Course</p>
         </div>
 
         <div className="">
-            <p className="text-2xl font-semibold p-1.5">Date and Time</p>
-            <div className="flex justify-between items-center p-1.5">
-                <div className="">
-                    <FaRegCalendarAlt />
+          
+            <p className="text-2xl font-semibold p-1.5 text-center">Date and Time</p>
+            <div className="flex justify-center">
+            <div className="flex  items-center p-1.5 ">
+                <div className="pr-4">
+                    <FaRegCalendarAlt size={24} />
                 </div>
             
                 <div className="">
-                    <p className="">November 10, 2023 10:00AM</p>
+                    <p className="text-lg">November 10, 2023 10:00AM</p>
 
                 </div>
 
                 
             </div>
+            </div>
+            
+            <div className="flex justify-center">
             <div className="">
-                    <button onClick={makePayment} className="bg-blue-900 w-full rounded-xl p-4 md:w-1/4 lg:w-1/4">Buy Ticket</button>
-                    
-                </div>
+              <button onClick={makePayment} className="bg-blue-900 w-full rounded-xl p-4">Buy Ticket</button>
+            </div>
+</div>
                 
         </div>
     </div>

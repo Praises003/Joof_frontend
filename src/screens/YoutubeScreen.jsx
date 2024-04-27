@@ -25,12 +25,16 @@ const YoutubeScreen = () => {
   }, [channelId]);
 
   return (
-    <div>
-      {videoId ? (
-        <YoutubeEmbed videoId={videoId} />
-      ) : (
-        <p>Loading live stream...</p>
-      )}
+  <div className="w-full lg:w-2/3 xl:w-1/2 mx-auto px-4">
+
+  
+      <div className='w-full'>
+        {videoId ? (
+          <YoutubeEmbed videoId={videoId} />
+        ) : (
+          <p>Loading live stream...</p>
+        )}
+      </div>
     </div>
   );
 };

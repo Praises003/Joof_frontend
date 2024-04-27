@@ -39,7 +39,7 @@ const CalendarComponent = () => {
 
     
     if(isError) {
-      toast.error(message)
+      toast.error(message)        
       console.log(message)
     }
  
@@ -312,7 +312,7 @@ const stateData = {title, description, type, date}
         <label className="block text-sm font-medium text-gray-700">Price</label>
         <input
           type="text"
-          className={`mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${
+          className={`mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 bg-gray-400 p-2 rounded-md ${
             ticketType === 'free' ? 'bg-gray-200' : ''
           }`}
           placeholder="Enter price"
