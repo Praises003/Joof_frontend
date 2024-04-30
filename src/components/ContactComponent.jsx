@@ -44,7 +44,7 @@ const ContactComponent = () => {
                 <div className="w-full">
                     <h1 className='text-white font-bold text-xl mb-8 uppercase'>Our Location</h1>
                     <p className='text-white font-medium text-lg mb-4'><span>ADDRESS:</span> Isheri- Igando Road, opposite Iron Market, Igando, Lagos State, Nigeria</p>
-                    <p className='text-white font-medium text-lg mb-4'><span>PHONE:</span> +234 (0) 8083625784</p>
+                    <p className='text-white font-medium text-lg mb-4'><span>PHONE:</span> +2349036069035</p>
                     <p className='text-white font-medium text-lg mb-16'><span>EMAIL:</span> 
 info@joof.com</p>
                 </div>
