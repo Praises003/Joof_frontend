@@ -12,9 +12,6 @@ import ContactComponent from '../components/ContactComponent'
 import VenueInfoCardComponent from '../components/VenueInfoCardComponent'
 import WelcomeComponent from '../components/WelcomeComponent'
 import { FaPencilAlt } from "react-icons/fa";
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules'
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
@@ -24,6 +21,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -149,7 +151,47 @@ const HomeScreen = () => {
   // };
   return (
     <section className="">
-      <div className="w-full overflow-hidden">
+      <div className="">
+      <Swiper
+      modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
+      
+      spaceBetween={50}
+      slidesPerView={1}
+      
+      autoplay
+      navigation
+      pagination={{ clickable: true }}
+      
+     
+      //scrollbar={{ draggable: true }}
+      onSwiper={(swiper) => console.log(swiper)}
+      onSlideChange={() => console.log('slide change')}
+    >
+         <SwiperSlide>
+    <div className="relative bg bg-opacity-90 mb-3">
+      <img src={eventImg} className="w-full h-screen " alt="" />
+      <div class="absolute inset-0 bg-black opacity-70">
+              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
+              <p className="absolute  top-52 left-32 bottom-4/5 transform  text-white text-xl ">{visionText}</p>
+            </div>
+      
+    </div>
+  </SwiperSlide>
+
+  <SwiperSlide>
+    <div className="relative bg bg-opacity-90">
+      <img src={event} className="w-full h-screen" alt="" />
+ 
+            <div class="absolute inset-0 bg-black opacity-70 ">
+              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
+              <p className="absolute  top- top-52 left-32 bottom-4/5 transform  text-white text-xl font-semibold">{missionText}</p>
+            </div>
+      
+    </div>
+  </SwiperSlide>
+    </Swiper>
+      </div>
+      {/* <div className="w-full overflow-hidden">
         <Slider {...settings}>
           
 
@@ -171,7 +213,7 @@ const HomeScreen = () => {
         
 
         </Slider>
-      </div>
+      </div> */}
     
     
       
