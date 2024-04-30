@@ -19,7 +19,7 @@ const ContactScreen = () => {
                     <p className='text-lg pl-1.5'>Our Location</p>
                     
                 </div>
-                <p className="text-lg mb-5">Our Address</p>
+                <p className="text-lg mb-5">Our Address: </p>
                 
 
             </div>
@@ -27,7 +27,7 @@ const ContactScreen = () => {
                 <p className="">Call Us</p>
                 <div className="flex items-center">
                     <BsFillTelephoneFill size={25} />
-                    <p className='text-lg pl-1.5 mb-5'>(+234) 014531295</p>
+                    <p className='text-lg pl-1.5 mb-5'>(+234) 9036069035</p>
                 </div>
 
             </div>

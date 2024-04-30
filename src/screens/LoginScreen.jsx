@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {toast} from "react-toastify"
 import {Link} from "react-router-dom"
-import chatLogoo from "../assets/logo.jpg"
+import chatLogoo from "../assets/logo4.jpg"
 import { login } from '../slices/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 

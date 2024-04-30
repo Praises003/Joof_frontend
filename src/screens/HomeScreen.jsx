@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import eventImg from "../assets/event3.jpg"
 import event from "../assets/event2.jpeg"
 import seminar from "../assets/seminar.jpg"
@@ -11,6 +11,7 @@ import VenueComponent from '../components/VenueComponent'
 import ContactComponent from '../components/ContactComponent'
 import VenueInfoCardComponent from '../components/VenueInfoCardComponent'
 import WelcomeComponent from '../components/WelcomeComponent'
+import { FaPencilAlt } from "react-icons/fa";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -24,9 +25,67 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 
 const HomeScreen = () => {
+  const [visionText, setVisionText] = useState(localStorage.getItem('visionText') || "Our Vision is to be a hub of excellence, innovation, and cultural enrichment in the heart of Igbara -Oke");  
+  const [missionText, setMissionText] = useState(localStorage.getItem('missionText') || "We aspire to create an iconic, state-of-the-art event center that offers unforgettable experiences.")
+  const [bannerText, setBannerText] = useState(localStorage.getItem('bannerText') ||"Profuselemo Multi-Purpose Event Center")
+  const [showForm, setShowForm] = useState(false);
+
+  // Save updated visionText to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('visionText', visionText);
+  }, [visionText]);
+
+  useEffect(() => {
+    localStorage.setItem('missionText', missionText);
+  }, [missionText]);
+
+  useEffect(() => {
+    localStorage.setItem('bannerText', bannerText);
+  }, [bannerText]);
+
+
+
+
+  const handleVTextChange = (e) => {
+    setVisionText(e.target.value);
+  };
+  const handleMTextChange = (e) => {
+    setMissionText(e.target.value);
+  };
+
+  const handleBTextChange = (e) => {
+    setBannerText(e.target.value);
+  };
+
+  const handleUpdateTextOne = async() => {
+    // Handle updating the text here, e.g., make an API request
+    const {data} = await axios.put('http://localhost:5000/api/text', { text: visionText });
+    console.log(data)
+    setVisionText(data.text)
+    setShowForm(false); // Hide the form after updating text
+  };
+
+  const handleUpdateTextTwo = async() => {
+    // Handle updating the text here, e.g., make an API request
+    const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: missionText });
+    console.log(data)
+    setMissionText(data.text)
+    setShowForm(false); // Hide the form after updating text
+  };
+
+  const handleUpdateTextThree = async() => {
+    // Handle updating the text here, e.g., make an API request
+    const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: bannerText });
+    console.log(data)
+    setBannerText(data.text)
+    setShowForm(false); // Hide the form after updating text
+  };
+
+  
 
   const settings = {
     dots: true,
@@ -97,16 +156,16 @@ const HomeScreen = () => {
           <div className="relative bg bg-opacity-90">
             <img src={eventImg} className='w-full h-screen' alt="" />
             <div class="absolute inset-0 bg-black opacity-70">
-              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">Profuselemo Multi-Purpose Event Center</p>
-              <p className="absolute  top-52 left-32 bottom-4/5 transform  text-white text-xl ">Our Vision is to be a hub of excellence, innovation, and cultural enrichment in the heart of Igbara -Oke</p>
+              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
+              <p className="absolute  top-52 left-32 bottom-4/5 transform  text-white text-xl ">{visionText}</p>
             </div>
           </div>      
 
           <div className="relative bg-black">
             <img src={event} className='w-full h-screen' alt="" />
             <div class="absolute inset-0 bg-black opacity-70 ">
-              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">Profuselemo Multi-Purpose Event Center</p>
-              <p className="absolute  top- top-52 left-32 bottom-4/5 transform  text-white text-xl font-semibold">We aspire to create an iconic, state-of-the-art event center that offers unforgettable experiences.</p>
+              <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
+              <p className="absolute  top- top-52 left-32 bottom-4/5 transform  text-white text-xl font-semibold">{missionText}</p>
             </div>
           </div>
         
@@ -123,6 +182,89 @@ const HomeScreen = () => {
           <p className='uppercase text-4xl font-semibold md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'>Prof Rufus Oladipo Elemo Event Center</p>
     </div> */}
 
+{showForm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
+          <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
+            <h2 className="text-lg font-semibold mb-4">Update Text</h2>
+            <textarea
+              value={visionText}
+              onChange={handleVTextChange}
+              className="w-full h-36 mb-4 p-2 border border-gray-300 rounded" // Increased height to 36
+            />
+            <div className="flex justify-end">
+              <button
+                onClick={handleUpdateTextOne}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => setShowForm(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+              
+              
+            </div>
+            <br></br>
+            <h2 className="text-lg font-semibold mb-4">Update Text</h2>
+            <textarea
+              value={missionText}
+              onChange={handleMTextChange}
+              className="w-full h-36 mb-4 p-2 border border-gray-300 rounded" // Increased height to 36
+            />
+            <div className="flex justify-end">
+              <button
+                onClick={handleUpdateTextTwo}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => setShowForm(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+              
+              
+            </div>
+            <br></br>
+            <h2 className="text-lg font-semibold mb-4">Update Text</h2>
+            <textarea
+              value={bannerText}
+              onChange={handleBTextChange}
+              className="w-full h-36 mb-4 p-2 border border-gray-300 rounded" // Increased height to 36
+            />
+            <div className="flex justify-end">
+              <button
+                onClick={handleUpdateTextThree}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => setShowForm(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+              
+              
+            </div>
+          </div>
+        </div>
+      )}
+
+    <div className="flex items-center justify-center">
+      <button onClick={() => setShowForm(true)}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
+      ><div className="flex items center justify-center">
+          <FaPencilAlt size={18}/><p className='text-center'>Edit Banner</p>
+        </div></button>
+
+    </div>
   
     <WelcomeComponent />
     

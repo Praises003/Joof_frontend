@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import noblecastle from '../assets/logo3.png'
+import noblecastle from '../assets/logo4.jpg'
 import {FaTimes, FaBars} from 'react-icons/fa'
 
 import {TfiFacebook, TfiInstagram} from 'react-icons/tfi'

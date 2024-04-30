@@ -113,8 +113,8 @@ function App() {
           <Route path='/dash_event' element={<DashEvent />}/>
           <Route path="/ve" element={<VenueComponent />}/>
           {/* <Route path="/seat_list" element={<SeatListComponent genUser={genUser} />} />  */}
-          <Route path="/seat" element={<SeatSelectionComponent genUser={genUser} setGenUser={setGenUser}  /> } />
-          <Route path="/profile" element={<ProfileComponent genUser={genUser}  /> } />
+          <Route path="/seat" element={<SeatSelectionComponent setGenUser  /> } />
+          <Route path="/profile" element={<ProfileComponent /> } />
 
           <Route path="/event_package" element={<EventPackageScreen />} />
 
@@ -200,6 +200,8 @@ function App() {
 
 
         </Routes>
+
+        
        
         <ToastContainer />
         <EmailComponent />

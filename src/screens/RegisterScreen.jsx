@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {useSelector, useDispatch} from "react-redux"
 import {toast} from "react-toastify"
 import {Link, useNavigate} from "react-router-dom"
-import chatLogoo from "../assets/logo.jpg"
+import chatLogoo from "../assets/logo4.jpg"
 import axios from "axios"
 
 //import {register, reset} from "../slices/userSlice"
