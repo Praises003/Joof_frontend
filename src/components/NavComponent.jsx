@@ -5,25 +5,37 @@ import {FaTimes, FaBars} from 'react-icons/fa'
 
 import {TfiFacebook, TfiInstagram} from 'react-icons/tfi'
 import {FaXTwitter} from 'react-icons/fa6'
+import { IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 
 const NavComponent = () => {
   const [navList, setNavList] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
   const navToggle = () => {
     setNavList(!navList)
   }
+  console.log(isOpen)
   return (
     <nav className=' flex justify-between items-center py-5 px-3  mb-0.5 shadow-lg sticky top-0 z-20 bg-black text-white'>
         <img src={noblecastle} alt="" className='border h-20 md:w-1/5  w-1/3'/>
         <div className="hidden lg:block">
         <div className="flex justify-between items-center ">
-            <Link to={"/"} className='block  font-bold text-xl'>Home</Link>
-            <Link to={"/about"} className='block px-8 font-bold text-xl'>About</Link>
+            <Link to={"/"} className='block  font-bold text-lg'>Home</Link>
+            <Link to={"/about"} className='block px-8 font-bold text-lg'>About</Link>
             {/* <Link to={"/service"} className='block  font-bold text-xl'>Service</Link> */}
-            <Link to={"/gallery"} className='block pl-2 pr-4 font-bold text-xl'>Gallery</Link>
-            <Link to={"/event"} className='block pl-2 pr-4  font-bold text-xl'>Event Packages</Link>
-            <Link to={"/corporate"} className='block px-8  font-bold text-xl'>Corporate</Link>
+            <Link to={"/gallery"} className='block pl-2 pr-4 font-bold text-lg'>Gallery</Link>
+            <Link to={"/event"} className='block pl-2 pr-4  font-bold text-lg'>Event Packages</Link>
+            <div className="flex justify-start items-center">
+              
+              <Link to={"/corporate"}  className='block px-8  font-bold text-lg'>Corporate</Link>
+              {isOpen ? <IoIosArrowUp onClick={toggleDropdown} className='-ml-6 mr-6 w-3/4 h-5' /> : <IoIosArrowDown onClick={toggleDropdown} className='-ml-6 mr-6 w-3/4 h-5' />}
+            </div>
             
-            <Link to={"/contact"} className='block font-bold text-xl'>Contact Us</Link>
+            <Link to={"/contact"} className='block font-bold text-lg'>Contact Us</Link>
 
           
           
@@ -59,7 +71,23 @@ const NavComponent = () => {
             {/* <Link to={"/service"} className='block pb-4 font-medium text-lg'>Service</Link> */}
             <Link to={"/gallery"} className='block pb-4 font-medium text-lg'>Gallery</Link>
             <Link to={"/event"} className='block pb-4 font-medium text-lg'>Event Packages</Link>
-            <Link to={"/corporate"} className='block pb-4 font-medium text-lg'>Corporate</Link>
+           <div className='flex justify-between items-center'>
+             <Link to={"/corporate"} className='block pb-4 font-medium text-lg'>Corporate</Link>
+
+             {isOpen ? <IoIosArrowUp onClick={toggleDropdown} className='w-3/4 h-5' /> : <IoIosArrowDown onClick={toggleDropdown} className='w-3/4 h-5' />}
+
+           
+           </div>
+           {isOpen &&  <div className=" rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none lg:hidden">
+          <div className="py-1" >
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Mission</Link>
+            <Link  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Founder</Link>
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Board of Trustees </Link>
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Management Council </Link>
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Annual Reports </Link>
+          </div>
+        </div>
+}
             <Link to={"/contact"} className='block pb-4 font-medium text-lg'>Contact Us</Link>
             <div className="bg-yellow-500 p-3  rounded-lg text-white text-center w-full font-bold text-lg ">
               <Link to={"/calendar"}>Book an Event</Link>
@@ -77,6 +105,16 @@ const NavComponent = () => {
 
         </div>
 
+       {isOpen &&  <div className="origin-top-right absolute right-80 mt-60 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden lg:block">
+          <div className="py-1" >
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Mission</Link>
+            <Link  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Founder</Link>
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Board of Trustees </Link>
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Management Council </Link>
+            <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Annual Reports </Link>
+          </div>
+        </div>
+}
        
 
     </nav>

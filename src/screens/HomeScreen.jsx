@@ -28,6 +28,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { TbRuler2Off } from 'react-icons/tb'
 
 
 const HomeScreen = () => {
@@ -35,6 +36,7 @@ const HomeScreen = () => {
   const [missionText, setMissionText] = useState(localStorage.getItem('missionText') || "We aspire to create an iconic, state-of-the-art event center that offers unforgettable experiences.")
   const [bannerText, setBannerText] = useState(localStorage.getItem('bannerText') ||"Profuselemo Multi-Purpose Event Center")
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   // Save updated visionText to localStorage whenever it changes
   useEffect(() => {
@@ -65,26 +67,51 @@ const HomeScreen = () => {
 
   const handleUpdateTextOne = async() => {
     // Handle updating the text here, e.g., make an API request
-    const {data} = await axios.put('http://localhost:5000/api/text', { text: visionText });
-    console.log(data)
-    setVisionText(data.text)
-    setShowForm(false); // Hide the form after updating text
-  };
+    try {
+      setLoading(true)
+      const {data} = await axios.put('http://localhost:5000/api/text', { text: visionText });
+      console.log(data)
+      setVisionText(data.text)
+      setLoading(false)
+      setShowForm(false); // Hide the form after updating text
+
+      
+    } catch (error) {
+      console.log(error)
+    }
+      };
 
   const handleUpdateTextTwo = async() => {
     // Handle updating the text here, e.g., make an API request
-    const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: missionText });
-    console.log(data)
-    setMissionText(data.text)
-    setShowForm(false); // Hide the form after updating text
+    try {
+      setLoading(true)
+      const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: missionText });
+      console.log(data)
+      setMissionText(data.text)
+      setLoading(false)
+      setShowForm(false); // Hide the form after updating text
+
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const handleUpdateTextThree = async() => {
     // Handle updating the text here, e.g., make an API request
-    const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: bannerText });
-    console.log(data)
-    setBannerText(data.text)
-    setShowForm(false); // Hide the form after updating text
+    try {
+      setLoading(true)
+      const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: bannerText });
+      console.log(data)
+      setBannerText(data.text)
+      setLoading(FaBedPulse)
+      setShowForm(false); // Hide the form after updating text
+
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
   };
 
   
@@ -302,7 +329,7 @@ const HomeScreen = () => {
     <div className="flex items-center justify-center">
       <button onClick={() => setShowForm(true)}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
-      ><div className="flex items center justify-center">
+      ><div className="flex items-center justify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Banner</p>
         </div></button>
 
