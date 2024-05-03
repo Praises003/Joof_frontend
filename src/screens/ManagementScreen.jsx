@@ -24,8 +24,8 @@ const ManagementScreen = () => {
   return (
     <div>
         <div className="p-4">
-            <p className="text-center text-2xl font-semibold uppercase">The Board of Trustees</p>
-            <div className="mb-16">
+            {/* <p className="text-center text-2xl font-semibold uppercase">The Board of Trustees</p> */}
+            {/* <div className="mb-16">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-2 ">
                     <div className="">
                         <img src={bod1} alt="" srcset="" />
@@ -121,7 +121,7 @@ const ManagementScreen = () => {
                     
                 </div>
 
-            </div>
+            </div> */}
             <div className="">
                 <p className="text-center text-2xl font-semibold">MANAGEMENT COUNCIL</p>
             

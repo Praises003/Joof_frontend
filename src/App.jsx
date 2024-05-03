@@ -42,6 +42,7 @@ import EventListComponent from './components/EventListComponent'
 import AdminLayout from './screens/AdminLayout'
 import AdminSectionComponent from './components/AdminSectionComponent'
 import ManagementScreen from './screens/ManagementScreen'
+import BoardOfTrusteesScreen from './screens/BoardOfTrusteesScreen'
 import TicketScreen from './screens/TicketScreen'
 import AuditScreen from './screens/AuditScreen'
 import MediaScreen from './screens/MediaScreen'
@@ -186,6 +187,8 @@ function App() {
              <Route path="/management" element={<ManagementScreen /> } />
 
              <Route path="/audit" element={<AuditScreen /> } />
+
+             <Route path="/board" element={<BoardOfTrusteesScreen /> } />
 
 
 
