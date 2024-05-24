@@ -32,6 +32,7 @@ const CalendarComponent = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {event, isLoading, isError, isSuccess, message} = useSelector(state => state.event)
+  const {user} = useSelector(state => state.user)
   
 
   useEffect(() => {
@@ -73,6 +74,10 @@ const stateData = {title, description, type, date}
       if (!title || !description || !type || !date) { 
          toast.error("Fill Up All Fields")
       } 
+
+      if(!user) {
+        navigate('/login')
+      }
 
       dispatch(createEvent(stateData))
       setEvents([
@@ -218,7 +223,7 @@ const stateData = {title, description, type, date}
                 <img src={eventImg} alt="" className='w-full bg-cover bg-no-repeat' />
             </div>
             <div className="basis-2/5 border shadow-lg rounded-sm w-full p-3">
-                <form onSubmit={submitFunc} >
+                <form  onSubmit={submitFunc} >
                             <div className="p-2">
                             <div className='mb-8 w-full mx-auto'>
                                 <h1 className='text-2xl md:text-3xl font-bold text-center sm:text-lg mb-3 '>Book Your Event Now</h1>
@@ -312,7 +317,7 @@ const stateData = {title, description, type, date}
         <label className="block text-sm font-medium text-gray-700">Price</label>
         <input
           type="text"
-          className={`mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 bg-gray-400 p-2 rounded-md ${
+          className={`mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 bg-gray-300 p-2 rounded-md ${
             ticketType === 'free' ? 'bg-gray-200' : ''
           }`}
           placeholder="Enter price"

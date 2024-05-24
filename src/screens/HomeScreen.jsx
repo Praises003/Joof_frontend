@@ -24,6 +24,8 @@ import 'swiper/css/autoplay';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+//import ImageComponent from '../components/ImageComponent'
+import ImageUpComponent from '../components/imageUpComponent'
 
 
 import { Link } from 'react-router-dom'
@@ -38,6 +40,9 @@ const HomeScreen = () => {
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false)
 
+  const [image, setImage] = useState(localStorage.getItem('image') ? JSON.parse(localStorage.getItem('image')) :  "")
+  const [selectedImage, setSelectedImage] = useState(null)
+
   // Save updated visionText to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('visionText', visionText);
@@ -50,6 +55,14 @@ const HomeScreen = () => {
   useEffect(() => {
     localStorage.setItem('bannerText', bannerText);
   }, [bannerText]);
+  // Retrieving image data from localStorage
+  // useEffect(() => {
+  //   const storedImg = localStorage.getItem('image');
+  //   if (storedImg) {
+  //     const parsedImg = JSON.parse(storedImg);
+  //     setImage(parsedImg);
+  //   }
+  // }, []);
 
 
 
@@ -64,6 +77,20 @@ const HomeScreen = () => {
   const handleBTextChange = (e) => {
     setBannerText(e.target.value);
   };
+
+  const handleSelectedImage = (img) => {
+    setImage(img)
+    // localStorage.setItem("image", JSON.stringify(img))
+  }
+
+  // Retrieving image data from localStorage
+  // useEffect(() => {
+  //   const storedImg = localStorage.getItem('image');
+  //   if (storedImg) {
+  //     const parsedImg = JSON.parse(storedImg);
+  //     setImage(parsedImg);
+  //   }
+  // }, []);
 
   const handleUpdateTextOne = async() => {
     // Handle updating the text here, e.g., make an API request
@@ -113,6 +140,7 @@ const HomeScreen = () => {
       
     }
   };
+  
 
   
 
@@ -179,6 +207,9 @@ const HomeScreen = () => {
   return (
     <section className="">
       <div className="">
+        <ImageUpComponent onImage={handleSelectedImage} images={image} />
+        {console.log(image)}
+      
       <Swiper
       modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
       

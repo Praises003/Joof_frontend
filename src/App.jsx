@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import axios from 'axios'
 import { BrowserRouter, Route, Routes,  useLocation } from 'react-router-dom'
-import "react-datetime/css/react-datetime.css";
+//import "react-datetime/css/react-datetime.css";
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
@@ -50,6 +50,8 @@ import YoutubeScreen from './screens/YoutubeScreen'
 import EventCardComponent from './components/EventCardComponent'
 import EventMoreComponent from './components/EventMoreComponent'
 import TransactionScreen from './screens/TransactionScreen'
+import FounderScreen from './screens/FounderScreen'
+import TestScreen from './screens/TestScreen'
 
 function App() {
   const location = useLocation();
@@ -175,6 +177,9 @@ function App() {
 
              <Route path="/eventmore" element={<EventMoreComponent /> } /> 
 
+             <Route path="/test" element={<TestScreen /> } /> 
+
+
 
              {/* <Route path="/admin" element={<AdminScreen /> } /> */}
 
@@ -189,6 +194,9 @@ function App() {
              <Route path="/audit" element={<AuditScreen /> } />
 
              <Route path="/board" element={<BoardOfTrusteesScreen /> } />
+
+             <Route path="/founder" element={<FounderScreen /> } />
+
 
 
 

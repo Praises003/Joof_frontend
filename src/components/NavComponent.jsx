@@ -81,7 +81,7 @@ const NavComponent = () => {
            {isOpen &&  <div className=" rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none lg:hidden">
           <div className="py-1" >
             <Link to={"/corporate"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Mission</Link>
-            <Link to={""}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Founder</Link>
+            <Link to={"/founder"}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Founder</Link>
             <Link to={"/board"}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Board of Trustees </Link>
             <Link to={"/management"}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Management Council </Link>
             <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Annual Reports </Link>
@@ -108,7 +108,7 @@ const NavComponent = () => {
        {isOpen &&  <div className="origin-top-right absolute right-80 mt-60 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden lg:block">
           <div className="py-1" >
             <Link to={"/corporate"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Mission</Link>
-            <Link   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Founder</Link>
+            <Link to={"/founder"}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Founder</Link>
             <Link to={"/board"}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Board of Trustees </Link>
             <Link to={"/management"}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Management Council </Link>
             <Link className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" >Annual Reports </Link>
