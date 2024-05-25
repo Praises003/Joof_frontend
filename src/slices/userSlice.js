@@ -16,6 +16,9 @@ export const register = createAsyncThunk('user/register', async(user, thunkApi) 
         //https://joof-backend.vercel.app/api/user
         const { data } = await axios.post("https://joof-backend.vercel.app/api/user", user, {withCredentials: true})
 
+        // const { data } = await axios.post("http://localhost:5000/api/user", user, {withCredentials: true})
+
+
         console.log(data)
 
         if (data) {

@@ -48,6 +48,8 @@ const WelcomeComponent = () => {
     const [image, setImage] = useState("")
     const [sel, setSel] = useState(localStorage.getItem('welImg') ? JSON.parse(localStorage.getItem('welImg')) :  "")
     const [img, setImg] = useState(localStorage.getItem('secImg') ? JSON.parse(localStorage.getItem('secImg')) :  "")
+    const [files, setFiles] = useState([])
+    const [imgs, setImgs] = useState(localStorage.getItem('multiImg') ? JSON.parse(localStorage.getItem('multiImg')) :  [])
 
     // Save updated visionText to localStorage whenever it changes
     useEffect(() => {
@@ -382,7 +384,44 @@ const WelcomeComponent = () => {
               
                
                        };
-        
+                       const handleMulImg = async (e) => {
+      e.preventDefault()
+      
+
+      if (!files) { // Check if image is available before using it
+        console.error('No image selected');
+        return;
+      }
+
+
+      const formData = new FormData();
+
+      [...files].forEach((file) => {
+        /* Here we give the form name 'image'. this same name in the
+           upload.array('image') middleware
+        */
+        formData.append('photos', file);
+    })
+      //   files.forEach((file) => {
+      //    formData.append('photos', file);
+      // });
+
+
+    try {
+      const {data} = await axios.post("http://localhost:5000/api/upload/multi", formData)
+    //setUploadPic(data)
+    const imageURLs = data.filePaths.multipleImages.map(img => img.url);
+    console.log(data.filePaths.multipleImages.map(img => img.url))
+     if (data) {
+       localStorage.setItem("multiImg", JSON.stringify(imageURLs))
+    }
+    setImgs(imageURLs)
+    setFiles("")
+    
+    } catch (error) {
+      console.error(error)
+    }
+    }
                         
 
 
