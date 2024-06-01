@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import birthday from '../assets/conference.jpg'
 import fundraising from '../assets/fundraising.jpg'
@@ -74,6 +74,10 @@ const GalleryComponent = () => {
     ]
     console.log(view)
     console.log(imgs)
+    useEffect(() => {
+      //removeImg()
+      console.log("imgs")
+    },[imgs])
     const handleMulImg = async (e) => {
         e.preventDefault()
         
@@ -100,17 +104,25 @@ const GalleryComponent = () => {
       try {
         const {data} = await axios.post("http://localhost:5000/api/upload/multi", formData)
       //setUploadPic(data)
-      const imageURLs = data.filePaths.multipleImages.map(img => img.url);
-      console.log(data.filePaths.multipleImages.map(img => img.url))
+      const imageURLs = data.filePaths.multipleImages.map(img => ({original: img.url, thumbnail: img.url}));
+      console.log(data.filePaths.multipleImages.map(img => ({original: img.url, thumbnail: img.url})))
        if (data) {
          localStorage.setItem("multiImg", JSON.stringify(imageURLs))
       }
       setImgs(imageURLs)
       setFiles("")
+      console.log(imgs)
       
       } catch (error) {
         console.error(error)
       }
+      }
+
+      const removeImg = () => {
+        localStorage.removeItem("multiImg")
+        setImgs([])
+        //window.location.reload();
+        console.log("click")
       }
   return (
     <div className='mb-4'>
@@ -127,8 +139,8 @@ const GalleryComponent = () => {
         <div className="">
             <img
           key={index}
-          src={image}
-          alt={image}
+          src={image.original}
+          alt={image.original}
           onClick={() => {setView(!view)}}
           
         />
@@ -146,7 +158,7 @@ const GalleryComponent = () => {
             <FaTimes size={20} color='red'/>
             <p>End Gallery Display</p>
         </button>
-       <div className='lg:bg-gray-900 lg:p-6'> <ImageGallery items={images}  /> </div>
+       <div className='lg:bg-gray-900 lg:p-6'> <ImageGallery items={imgs}  /> </div>
 
       </div>)}
       <div className="flex items-center justify-center mt-2.5">
@@ -156,7 +168,15 @@ const GalleryComponent = () => {
                     <FaPencilAlt size={18}/><p className='text-center'>Edit Event Center Section</p>
                     </div></button>
 
+                    <button onClick={() => removeImg()}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block"
+                ><div className="flex items-center justify-center">
+                 <p className='text-center'>Delete All Pictures</p>
+                    </div></button>
+
             </div>
+
+            
 
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
@@ -187,6 +207,7 @@ const GalleryComponent = () => {
             </form>
             </div>
     </div> )}
+
     </div>
   )
 }
