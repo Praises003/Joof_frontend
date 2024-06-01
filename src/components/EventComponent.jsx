@@ -12,9 +12,7 @@ const EventComponent = () => {
     const [end, setEnd] = useState(new Date())
     const [type, setType] = useState("fruit")
     const [events, setEvents] = useState([]);
-    const [ticketType, setTicketType] = useState('free');
-    const [price, setPrice] = useState('0');
- 
+    
 
 
 const test = [{title, start, end}]
@@ -36,20 +34,7 @@ const handleType = (e) => {
         console.log("Ok")
     }
 
-    const handleTypeChange = (type) => {
-        setTicketType(type);
-        if (type === 'free') {
-          setPrice('0');
-        }
-      };
     
-      const handlePriceChange = (e) => {
-        if (ticketType === 'free') {
-          e.preventDefault();
-        } else {
-          setPrice(e.target.value);
-        }
-      };
 
     console.log(events)
    
@@ -126,39 +111,6 @@ const handleType = (e) => {
                             <label htmlFor="message" className="block mb-2 font-medium text-gray-900 dark:text-white">Your message</label>
                             <textarea id="text" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="How can we help you?" name='text' value={text} onChange={onchangeFunc}></textarea>
                         </div> */}
-                         <div className="container mx-auto mt-10">
-      <div className="flex justify-center">
-        <button
-          className={`mr-4 py-2 px-4 rounded ${
-            ticketType === 'free' ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-600'
-          }`}
-          onClick={() => handleTypeChange('free')}
-        >
-          Free
-        </button>
-        <button
-          className={`py-2 px-4 rounded ${
-            ticketType === 'paid' ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-600'
-          }`}
-          onClick={() => handleTypeChange('paid')}
-        >
-          Paid
-        </button>
-      </div>
-      <div className="mt-6">
-        <label className="block text-sm font-medium text-gray-700">Price</label>
-        <input
-          type="text"
-          className={`mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ${
-            ticketType === 'free' ? 'bg-gray-200' : ''
-          }`}
-          placeholder="Enter price"
-          value={price}
-          onChange={handlePriceChange}
-          disabled={ticketType === 'free'}
-        />
-      </div>
-    </div>
 
                         
                         <div>

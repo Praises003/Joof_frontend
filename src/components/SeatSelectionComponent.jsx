@@ -733,35 +733,74 @@ const { user } = useSelector(state => state.user)
 //     console.log(seat)
 //   };
 
+const handleSeatClick = (seatId, seatNumb) => {
+    setSelectedSeats((prevSelectedSeats) => {
+        const isSelected = prevSelectedSeats.some(seat => seat.id === seatId);
+        const updatedSeats = isSelected
+            ? prevSelectedSeats.filter((seat) => seat.id !== seatId)
+            : [...prevSelectedSeats, { id: seatId, no: seatNumb }];
+
+        return updatedSeats;
+    });
+};
+
+const onSubmitFunc = (e) => {
+    e.preventDefault();
+
+    if (selectedSeats.some(seat => seat.no === parseInt(seatNum, 10))) {
+        const seatAlreadyBooked = submittedSeats.some((item) => item.seatNum === seatNum);
+
+        if (seatAlreadyBooked) {
+            toast.error("Seat already booked");
+        } else {
+            const newSeat = { name, seatNum: parseInt(seatNum, 10) };
+            setSubmittedSeats((prevSeats) => [...prevSeats, newSeat]);
+
+            // Assuming you want to dispatch this to Redux
+            dispatch(addAsyncGuest(newSeat));
+
+            toast.success("Submission successful");
+
+            // Clear fields
+            setName("");
+            setSeatNumber("");
+            setSelectedSeats([]);
+        }
+    } else {
+        toast.error("Invalid submission");
+    }
+};
+
+
 const handleChange = (event) => {
     setDrop(event.target.value)
   }
 console.log(drop)
 
-const handleSeatClick = (seatId, seatNumb) => {
-    setSelectedSeats((prevSelectedSeats) => {
-        const isSelected = prevSelectedSeats.includes(seatId);
-        const updatedSeats = isSelected
-            ? prevSelectedSeats.filter((s) => s !== seatId)
-            : [...prevSelectedSeats, seatId];
+// const handleSeatClick = (seatId, seatNumb) => {
+//     setSelectedSeats((prevSelectedSeats) => {
+//         const isSelected = prevSelectedSeats.includes(seatId);
+//         const updatedSeats = isSelected
+//             ? prevSelectedSeats.filter((s) => s !== seatId)
+//             : [...prevSelectedSeats, seatId];
 
-        console.log(updatedSeats); // Real-time state
+//         console.log(updatedSeats); // Real-time state
 
-        return updatedSeats;
-    });
+//         return updatedSeats;
+//     });
 
-    setSelectedSeatNum((prevSelectedSeats) => {
-        const isSelected = prevSelectedSeats.includes(seatNum);
-        const updatedSeats = isSelected
-            ? prevSelectedSeats.filter((s) => s !== seatNumb)
-            : [...prevSelectedSeats, seatNumb];
+//     setSelectedSeatNum((prevSelectedSeats) => {
+//         const isSelected = prevSelectedSeats.includes(seatNum);
+//         const updatedSeats = isSelected
+//             ? prevSelectedSeats.filter((s) => s !== seatNumb)
+//             : [...prevSelectedSeats, seatNumb];
 
-        console.log(updatedSeats); // Real-time state
+//         console.log(updatedSeats); // Real-time state
 
-        return updatedSeats;
-    });
-    console.log(seatId); // Seat being clicked
-};
+//         return updatedSeats;
+//     });
+//     console.log(seatId); // Seat being clicked
+// };
 
 //addGuest
 
@@ -835,32 +874,32 @@ console.log(selectedSeatNum)
 
 console.log(selectedSeatNum)
 console.log(submittedSeats)
-const onSubmitFunc = (e) => {
-    e.preventDefault();
+// const onSubmitFunc = (e) => {
+//     e.preventDefault();
 
-    if (selectedSeatNum.includes(seatNum)) {
-        const seatAlreadyBooked = submittedSeats.some((item) => item.seatNum === seatNum);
+//     if (selectedSeatNum.includes(seatNum)) {
+//         const seatAlreadyBooked = submittedSeats.some((item) => item.seatNum === seatNum);
 
-        if (seatAlreadyBooked) {
-            toast.error("Seat already booked");
-        } else {
-            const newSeat = { name, seatNum };
-            setSubmittedSeats((prevSeats) => [...prevSeats, newSeat]);
+//         if (seatAlreadyBooked) {
+//             toast.error("Seat already booked");
+//         } else {
+//             const newSeat = { name, seatNum };
+//             setSubmittedSeats((prevSeats) => [...prevSeats, newSeat]);
 
-            // Assuming you want to dispatch this to Redux
-            dispatch(addAsyncGuest(newSeat));
+//             // Assuming you want to dispatch this to Redux
+//             dispatch(addAsyncGuest(newSeat));
 
-            toast.success("Submission successful");
+//             toast.success("Submission successful");
 
-            // Clear fields
-            setName("");
-            setSeatNumber("");
-            setSelectedSeats([]);
-        }
-    } else {
-        toast.error("Invalid submission");
-    }
-};
+//             // Clear fields
+//             setName("");
+//             setSeatNumber("");
+//             setSelectedSeats([]);
+//         }
+//     } else {
+//         toast.error("Invalid submission");
+//     }
+// };
 
 // let meU = [1,2,3]
 // console.log(userList)

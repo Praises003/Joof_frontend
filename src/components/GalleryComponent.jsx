@@ -123,12 +123,12 @@ const GalleryComponent = () => {
         {/* <GridGalleryComponent images={images} /> */}
         {/* <ImageGallery items={images} /> */}
         {!view ? (<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((image, index) => (
+        {imgs.map((image, index) => (
         <div className="">
             <img
-          key={images.id}
-          src={image.original}
-          alt={image.alt}
+          key={index}
+          src={image}
+          alt={image}
           onClick={() => {setView(!view)}}
           
         />
@@ -137,6 +137,9 @@ const GalleryComponent = () => {
         </div>
         
       ))}
+
+
+      
       </div>) : (<div>
         {/** close slide show button */}
         <button onClick={() => setView(!view)} className='bg-gray-200 flex items-center m-3 sticky top-20 z-30'>
