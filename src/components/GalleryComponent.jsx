@@ -23,7 +23,9 @@ const GalleryComponent = () => {
     const [view, setView] = useState(false)
     const [showForm, setShowForm] = useState(false);
     const [files, setFiles] = useState([])
-    const [imgs, setImgs] = useState(localStorage.getItem('multiImg') ? JSON.parse(localStorage.getItem('multiImg')) :  [])
+    const [imgs, setImgs] = useState([])
+    const [image, setImage] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const images = [
         {
@@ -77,7 +79,8 @@ const GalleryComponent = () => {
     useEffect(() => {
       //removeImg()
       console.log("imgs")
-    },[imgs])
+      fetchUpdatedImages()
+    },[])
     const handleMulImg = async (e) => {
         e.preventDefault()
         
@@ -103,20 +106,37 @@ const GalleryComponent = () => {
   
       try {
         const {data} = await axios.post("http://localhost:5000/api/upload/multi", formData)
+        await fetchUpdatedImages();
       //setUploadPic(data)
-      const imageURLs = data.filePaths.multipleImages.map(img => ({original: img.url, thumbnail: img.url}));
-      console.log(data.filePaths.multipleImages.map(img => ({original: img.url, thumbnail: img.url})))
-       if (data) {
-         localStorage.setItem("multiImg", JSON.stringify(imageURLs))
-      }
-      setImgs(imageURLs)
-      setFiles("")
-      console.log(imgs)
+      // const imageURLs = data.filePaths.multipleImages.map(img => ({original: img.url, thumbnail: img.url}));
+      // console.log(data.filePaths.multipleImages.map(img => ({original: img.url, thumbnail: img.url})))
+      //  if (data) {
+      //    localStorage.setItem("multiImg", JSON.stringify(imageURLs))
+      // }
+      // setImgs(imageURLs)
+       setFiles("")
+      // console.log(imgs)
       
       } catch (error) {
         console.error(error)
       }
       }
+
+      const fetchUpdatedImages = async () => {
+        try {
+          setLoading(true);
+          const { data } = await axios.get("http://localhost:5000/api/upload/multi");
+          console.log(data)
+           const imageURLs = data.map(img => ({ original: img.url, thumbnail: img.url }));
+           setImgs(imageURLs); // Update state with fetched images
+          // localStorage.setItem("multiImg", JSON.stringify(imageURLs));
+          console.log(imgs)
+          setLoading(false);
+        } catch (error) {
+          console.error(error);
+          setLoading(false);
+        }
+      };
 
       const removeImg = () => {
         localStorage.removeItem("multiImg")
@@ -124,6 +144,22 @@ const GalleryComponent = () => {
         //window.location.reload();
         console.log("click")
       }
+    
+      // const getImages = async() => {
+      //   try {
+      //     setLoading(true)
+      //     const {data} = await axios.get(`http://localhost:5000/api/upload/`)
+      //     console.log(loading)
+      //     console.log(data)
+      //     setLoading(false)
+
+
+          
+      //   } catch (error) {
+      //     console.error(error)
+          
+      //   }
+      // }
   return (
     <div className='mb-4'>
         <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "45vh"}} className={` mb-6`}>
