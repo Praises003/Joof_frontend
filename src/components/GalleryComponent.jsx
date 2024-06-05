@@ -105,7 +105,7 @@ const GalleryComponent = () => {
   
   
       try {
-        const {data} = await axios.post("http://localhost:5000/api/upload/multi", formData)
+        const {data} = await axios.post("https://joof-backend.vercel.app/upload/multi", formData)
         await fetchUpdatedImages();
       //setUploadPic(data)
       // const imageURLs = data.filePaths.multipleImages.map(img => ({original: img.url, thumbnail: img.url}));
@@ -125,7 +125,7 @@ const GalleryComponent = () => {
       const fetchUpdatedImages = async () => {
         try {
           setLoading(true);
-          const { data } = await axios.get("http://localhost:5000/api/upload/multi");
+          const { data } = await axios.get("https://joof-backend.vercel.app/api/upload/multi");
           console.log(data)
            const imageURLs = data.map(img => ({ original: img.url, thumbnail: img.url }));
            setImgs(imageURLs); // Update state with fetched images
