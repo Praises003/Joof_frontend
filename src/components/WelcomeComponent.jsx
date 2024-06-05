@@ -46,8 +46,8 @@ const WelcomeComponent = () => {
     const [security, setSecurity] = useState(localStorage.getItem('security') || "Security Personnel")
 
     const [image, setImage] = useState("")
-    const [sel, setSel] = useState(localStorage.getItem('welImg') ? JSON.parse(localStorage.getItem('welImg')) :  "")
-    const [img, setImg] = useState(localStorage.getItem('secImg') ? JSON.parse(localStorage.getItem('secImg')) :  "")
+    const [sel, setSel] = useState("")
+    const [img, setImg] = useState("")
     const [files, setFiles] = useState([])
     const [imgs, setImgs] = useState(localStorage.getItem('multiImg') ? JSON.parse(localStorage.getItem('multiImg')) :  [])
 
@@ -111,6 +111,15 @@ const WelcomeComponent = () => {
       useEffect(() => {
         localStorage.setItem('textSix', textSix);
       }, [textSix]);
+
+      useEffect(() => {
+        getImage()
+      },[sel])
+
+      useEffect(() => {
+        getSecImage()
+      },[img])
+
 
 
 
@@ -339,13 +348,14 @@ const WelcomeComponent = () => {
        
         
         try {
-          const {data} = await axios.post("http://localhost:5000/api/upload", formData)
+          const {data} = await axios.post("https://joof-backend.vercel.app/api/upload", formData)
         //setUploadPic(data)
         console.log(data)
-        if (data) {
-            localStorage.setItem('welImg', JSON.stringify(data?.savedImage?.singleImage?.url))
-        }
-        setSel(data?.savedImage?.singleImage?.url)
+        await getImage()
+        //  if (data) {
+        //     localStorage.setItem('welImg', JSON.stringify(data?.savedImage?.singleImage?.url))
+        // }
+        //setSel(data?.savedImage?.singleImage?.url)
         setImage("")
         
         } catch (error) {
@@ -353,7 +363,7 @@ const WelcomeComponent = () => {
         }
       
        
-               };
+    };
 
                const handleSecImageUpload = async() => {
                 if (!image) { // Check if image is available before using it
@@ -369,13 +379,14 @@ const WelcomeComponent = () => {
                
                 
                 try {
-                  const {data} = await axios.post("http://localhost:5000/api/upload", formData)
+                  const {data} = await axios.post("https://joof-backend.vercel.app/api/upload/imageI", formData)
                 //setUploadPic(data)
                 console.log(data)
-                if (data) {
-                    localStorage.setItem('secImg', JSON.stringify(data?.savedImage?.singleImage?.url))
-                }
-                setImg(data?.savedImage?.singleImage?.url)
+                await getSecImage()
+                // if (data) {
+                //     localStorage.setItem('secImg', JSON.stringify(data?.savedImage?.singleImage?.url))
+                // }
+                // setImg(data?.savedImage?.singleImage?.url)
                 setImage("")
                 
                 } catch (error) {
@@ -384,7 +395,38 @@ const WelcomeComponent = () => {
               
                
                        };
-                       const handleMulImg = async (e) => {
+          
+          
+            const getImage = async() => {
+              try {
+                setLoading(true);
+                const { data } = await axios.get("https://joof-backend.vercel.app/api/upload");
+                console.log(data)
+                setSel(data?.singleImage?.url)
+                 
+                setLoading(false);
+              } catch (error) {
+                console.error(error);
+                setLoading(false);
+              }
+
+            }
+
+            const getSecImage = async() => {
+              try {
+                setLoading(true);
+                const { data } = await axios.get("http://localhost:5000/api/upload/imageI");
+                console.log(data)
+                setImg(data?.singleImage?.url)
+                 
+                setLoading(false);
+              } catch (error) {
+                console.error(error);
+                setLoading(false);
+              }
+
+            }
+                        const handleMulImg = async (e) => {
       e.preventDefault()
       
 
@@ -408,7 +450,7 @@ const WelcomeComponent = () => {
 
 
     try {
-      const {data} = await axios.post("http://localhost:5000/api/upload/multi", formData)
+      const {data} = await axios.post("https://joof-backend.vercel.app/api/upload/multi", formData)
     //setUploadPic(data)
     const imageURLs = data.filePaths.multipleImages.map(img => img.url);
     console.log(data.filePaths.multipleImages.map(img => img.url))

@@ -40,7 +40,7 @@ const HomeScreen = () => {
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false)
 
-  const [image, setImage] = useState(localStorage.getItem('image') ? JSON.parse(localStorage.getItem('image')) :  "")
+  const [image, setImage] = useState("")
   const [selectedImage, setSelectedImage] = useState(null)
 
   // Save updated visionText to localStorage whenever it changes
