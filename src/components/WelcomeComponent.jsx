@@ -348,7 +348,7 @@ const WelcomeComponent = () => {
        
         
         try {
-          const {data} = await axios.post("https://joof-backend.vercel.app/api/upload", formData)
+          const {data} = await axios.post("https://joof-backend.onrender.com/api/upload", formData)
         //setUploadPic(data)
         console.log(data)
         await getImage()
@@ -379,7 +379,7 @@ const WelcomeComponent = () => {
                
                 
                 try {
-                  const {data} = await axios.post("https://joof-backend.vercel.app/api/upload/imageI", formData)
+                  const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageI", formData)
                 //setUploadPic(data)
                 console.log(data)
                 await getSecImage()
@@ -400,7 +400,7 @@ const WelcomeComponent = () => {
             const getImage = async() => {
               try {
                 setLoading(true);
-                const { data } = await axios.get("https://joof-backend.vercel.app/api/upload");
+                const { data } = await axios.get("https://joof-backend.onrender.com/api/upload");
                 console.log(data)
                 setSel(data?.singleImage?.url)
                  
@@ -415,7 +415,7 @@ const WelcomeComponent = () => {
             const getSecImage = async() => {
               try {
                 setLoading(true);
-                const { data } = await axios.get("http://localhost:5000/api/upload/imageI");
+                const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/imageI");
                 console.log(data)
                 setImg(data?.singleImage?.url)
                  
@@ -450,7 +450,7 @@ const WelcomeComponent = () => {
 
 
     try {
-      const {data} = await axios.post("https://joof-backend.vercel.app/api/upload/multi", formData)
+      const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/multi", formData)
     //setUploadPic(data)
     const imageURLs = data.filePaths.multipleImages.map(img => img.url);
     console.log(data.filePaths.multipleImages.map(img => img.url))
