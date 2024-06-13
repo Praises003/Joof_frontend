@@ -9,6 +9,7 @@ import eventImg from "../assets/ev bg.jpg"
 import wedding from "../assets/wedding_pic.jpg"
 import seminar from "../assets/seminar.jpg"
 import exhibition from "../assets/Exhibition.jpg"
+import { FaTrashCan } from "react-icons/fa6";
 
 import "react-image-gallery/styles/css/image-gallery.css";
 
@@ -78,8 +79,18 @@ const GalleryComponent = () => {
     console.log(imgs)
     useEffect(() => {
       //removeImg()
-      console.log("imgs")
-      fetchUpdatedImages()
+      const fetchData = async () => {
+        try {
+            console.log("Fetching images...");
+            await fetchUpdatedImages();
+            console.log("Images fetched successfully.");
+        } catch (error) {
+            console.error("Error fetching images:", error);
+            // Handle error as needed
+        }
+    };
+
+    fetchData(); // Call the async function inside useEffect
     },[])
     const handleMulImg = async (e) => {
         e.preventDefault()
@@ -129,6 +140,9 @@ const GalleryComponent = () => {
           console.log(data)
            const imageURLs = data.map(img => ({ original: img.url, thumbnail: img.url }));
            setImgs(imageURLs); // Update state with fetched images
+          //  if(data === null || data === undefined || data === "" || !data) {
+          //   setImgs([])
+          //  }
           // localStorage.setItem("multiImg", JSON.stringify(imageURLs));
           console.log(imgs)
           setLoading(false);
@@ -138,12 +152,36 @@ const GalleryComponent = () => {
         }
       };
 
-      const removeImg = () => {
-        localStorage.removeItem("multiImg")
-        setImgs([])
-        //window.location.reload();
-        console.log("click")
-      }
+      const removeImg = async (url) => {
+        try {
+          // Send DELETE request to server
+          const response = await axios.delete("http://localhost:5000/api/upload/multi", {
+              data: { url: url }  // Payload to send with DELETE request
+          });
+          console.log("Image deleted:", response.data);
+          
+          // Update state and fetch updated images
+          await fetchUpdatedImages(); // Assuming this function updates the `imgs` state
+  
+          // Log or perform additional actions
+          console.log("URL after deletion:", url);
+          console.log("Updated images:", imgs); // Assuming `imgs` is updated by `fetchUpdatedImages`
+  
+      } catch (error) {
+            if (error.response) {
+                console.error('Error response:', error.response.data);
+                console.error('Error status:', error.response.status);
+                console.error('Error headers:', error.response.headers);
+                setImgs(prevImgs => prevImgs.filter(img => img.original !== url && img.thumbnail !== url));
+                await fetchUpdatedImages();
+                console.log(imgs)
+            } else if (error.request) {
+                console.error('No response received:', error.request);
+            } else {
+                console.error('Error setting up request:', error.message);
+            }
+        }
+    };
     
       // const getImages = async() => {
       //   try {
@@ -172,9 +210,10 @@ const GalleryComponent = () => {
         {/* <ImageGallery items={images} /> */}
         {!view ? (<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {imgs.map((image, index) => (
-        <div className="">
-            <img
-          key={index}
+        <div key={index} className="relative">
+          <div  className="">
+             <img
+          
           src={image.original}
           alt={image.original}
           onClick={() => {setView(!view)}}
@@ -182,7 +221,13 @@ const GalleryComponent = () => {
         />
 
 
+          </div>
+           
+          <button onClick={() => removeImg(image.original)}><FaTrashCan size={25} className='absolute text-red-700 top-2 right-3' /></button>
+
+
         </div>
+        
         
       ))}
 
