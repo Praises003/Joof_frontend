@@ -78,7 +78,7 @@ const GalleryComponent = () => {
     console.log(view)
     console.log(imgs)
     useEffect(() => {
-      //removeImg()
+      
       const fetchData = async () => {
         try {
             console.log("Fetching images...");
@@ -152,8 +152,15 @@ const GalleryComponent = () => {
         }
       };
 
+      const remImg = (id) => {
+        const conImg = imgs.filter(img => img !== id)
+        setImgs(conImg)
+      }
+
       const removeImg = async (url) => {
+       
         try {
+          
           // Send DELETE request to server
           const response = await axios.delete("http://localhost:5000/api/upload/multi", {
               data: { url: url }  // Payload to send with DELETE request
@@ -223,7 +230,7 @@ const GalleryComponent = () => {
 
           </div>
            
-          <button onClick={() => removeImg(image.original)}><FaTrashCan size={25} className='absolute text-red-700 top-2 right-3' /></button>
+          <button onClick={() => {removeImg(image.original); }}><FaTrashCan size={25} className='absolute text-red-700 top-2 right-3' /></button>
 
 
         </div>
