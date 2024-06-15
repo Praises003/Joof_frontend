@@ -135,7 +135,7 @@ const AboutScreen = () => {
         formData.append("file", selectedImage);
 
         try {
-          const { data } = await axios.post("https://joof-backend.vercel.app/api/upload/imageII", formData)
+          const { data } = await axios.post("https://joof-backend.onrender.com/api/upload/imageII", formData)
           console.log(data)
           await getImage()
           setSelectedImage("")
@@ -147,7 +147,7 @@ const AboutScreen = () => {
       const getImage = async() => {
         try {
           setLoading(true)
-          const { data } = await axios.get("https://joof-backend.vercel.app/api/upload/imageII")
+          const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/imageII")
           console.log(data)
           setImage(data.singleImage.url)
           console.log(image);
