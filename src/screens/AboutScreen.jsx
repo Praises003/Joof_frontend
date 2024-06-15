@@ -21,6 +21,7 @@ import { FaToilet } from "react-icons/fa6";
 import {BsFillCarFrontFill} from 'react-icons/bs'
 import {FaRegThumbsUp} from 'react-icons/fa'
 import {PiSealCheckFill} from 'react-icons/pi'
+import axios from 'axios';
 
 
 
@@ -45,7 +46,19 @@ const AboutScreen = () => {
     useState(false);
     const [showSecForm, setShowSecForm] = useState(false);
     const [showThdForm, setThdShowForm] = useState(false);
+    const [image, setImage] = useState("")
+    const [selectedImage, setSelectedImage] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [showImg, setShowImg] = useState(false)
 
+    useEffect(() => {
+      const fetchImg = async () => {
+        console.log("fetching images")
+        await getImage()
+        console.log("success")
+      }
+      //fetchImg()
+    },[])
     const handleATextChange = (e) => {
         setAbout(e.target.value);
     };
@@ -106,16 +119,102 @@ const AboutScreen = () => {
         setTextSix(e.target.value);
       };
 
+     
+      const handleImageChange = (e) => {
+        setSelectedImage(e.target.files[0])
+      }
 
+      const handleImgUpload = async () => {
+        if(!selectedImage) {
+          console.error('No image selected');
+          return;
+        }
 
+        const formData = new FormData();
+
+        formData.append("file", selectedImage);
+
+        try {
+          const { data } = await axios.post("http://localhost:5000/api/upload/imageII", formData)
+          console.log(data)
+          await getImage()
+          setSelectedImage("")
+        } catch (error) {
+          console.error(error)
+        }
+      }
+
+      const getImage = async() => {
+        try {
+          setLoading(true)
+          const { data } = await axios.get("http://localhost:5000/api/upload/imageII")
+          console.log(data)
+          setImage(data.singleImage.url)
+          console.log(image);
+          setLoading(false)
+        } catch (error) {
+          
+        }
+      }
 
 
 
   return (
     <div>
-        <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "100vh"}} className={` mb-5 relative`}>
+        {/* <div style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),url('${image}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "100vh"}} className={` mb-5 relative`}>
              <p className='uppercase text-4xl font-semibold md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'>{about}</p>
-        </div>
+        </div> */}
+
+
+        <div style={{
+    position: "relative",
+    height: "100vh",
+    overflow: "hidden", // Ensures the image doesn't overflow the div
+  }} className="mb-5 relative">
+  {/* Linear gradient overlay */}
+  <div style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4))",
+    }}
+  ></div>
+  
+  {/* Image */}
+  <img
+    src={image} // Set the image URL here
+    alt="Background Image"
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      objectFit: "cover", // Ensures the image covers the container
+      zIndex: -1, // Push image behind the overlay and content
+    }}
+  />
+
+  {/* Content */}
+  <div style={{
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      textAlign: "center",
+      zIndex: 1, // Ensure content is above the image and gradient
+    }}
+  >
+    <p className='uppercase text-4xl font-semibold md:text-5xl text-white'>{about}</p>
+  </div>
+</div>
+
+
+
+
+        
 
         <div className="flex items-center justify-center">
       <button onClick={() => setShowForm(true)}
@@ -124,7 +223,38 @@ const AboutScreen = () => {
           <FaPencilAlt size={18}/><p className='text-center'>Edit Banner</p>
         </div></button>
 
+        <button onClick={() => setShowImg(true)}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
+      ><div className="flex items-center justify-center">
+          <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
+        </div></button>
+
     </div>
+
+    {showImg && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
+          <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
+            <h2 className="text-lg font-semibold mb-4">Update Text</h2>
+            <input type="file" onChange={handleImageChange} 
+              className="w-full h-36 mb-4 p-2 border  rounded"
+            />
+            <div className="flex justify-end">
+              <button
+                onClick={handleImgUpload}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update Image
+              </button>
+              <button
+                onClick={() => setShowImg(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+            </div>  
+              
+            </div>
+    </div> )}
 
         <div className=" p-4">
             <p className='text-center text-3xl md:text-4xl font-semibold mb-10'>{welcome}</p>
