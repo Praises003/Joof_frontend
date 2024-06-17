@@ -129,7 +129,8 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchTextData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/text');
+      
+        const { data } = await axios.get('http://localhost:5000/api/text', {withCredentials: true});
         setVisionText(data.visionText);
         setMissionText(data.missionText);
         setBannerText(data.bannerText);

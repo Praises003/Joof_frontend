@@ -11,7 +11,14 @@ const initialState = {
 
 export const createEvent = createAsyncThunk('event/createEvent', async(event, thunkApi) => {
     try {
-        const { data } = await axios.post("https://joof-backend.vercel.app/api/event", event, {withCredentials: true})
+        const token = thunkApi.getState().user.user.token
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+        const { data } = await axios.post(/*https://joof-backend.onrender.com/api/event"*/'http://localhost:5000/api/event', event, config, {withCredentials: true})
 
         console.log(data)
 

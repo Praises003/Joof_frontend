@@ -71,6 +71,11 @@ const stateData = {title, description, type, date}
   
   const submitFunc = (e) => {
       e.preventDefault()
+
+       if(!user) {
+        navigate('/login')
+      }
+
       if (!title || !description || !type || !date) { 
          toast.error("Fill Up All Fields")
       } 

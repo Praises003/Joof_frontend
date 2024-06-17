@@ -6,12 +6,15 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { FaList, FaRegCalendarAlt } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import meetings from "../assets/no_event.jpg";
+import axios from 'axios';
 
 const DashEvent = () => {
   const [event, setEvent] = useState(true);
   const [cal, setCal] = useState(false);
   const { guest } = useSelector(state => state.guest)
   console.log(guest)
+
+  const [userEvent, setUserEvent] = useState([])
 
   const { user } = useSelector(state => state.user)
     console.log(user)
@@ -24,6 +27,26 @@ const DashEvent = () => {
     const onNav = () => {
         navigate("/dash_event")
     }
+    const token = user.token
+    const config = {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+    }
+    useEffect(() => {
+      const fetchEvents = async() => {
+        try {
+          
+          const { data } = await axios.get("http://localhost:5000/api/event/current", config)
+          console.log(data)
+          setUserEvent(data)
+          console.log(userEvent)
+        } catch(err) {
+          console.error(err)
+        }
+      }
+      fetchEvents()
+    }, [])
 
   
   const onEventClick = () => {
@@ -62,8 +85,16 @@ const DashEvent = () => {
 
        {event && (
         <div className="">
-          <img src={meetings} alt="" className=' mb-3 w-7/12 md:w-4/12  bg-cover bg-no-repeat mx-auto' />
-          <p className="text-center text-lg md:text-xl font-semibold">No Events to show, create an Event</p>
+         {userEvent.map(event => event ?  (<div>
+            <div className="flex">
+              <img src={event?.image} alt="image"  />
+              <p className="">{event.title}</p>
+
+            </div>
+         </div>) : (<div className="">
+            <img src={meetings} alt="" className=' mb-3 w-7/12 md:w-4/12  bg-cover bg-no-repeat mx-auto' />
+           <p className="text-center text-lg md:text-xl font-semibold">No Events to show, create an Event</p>
+          </div>))}
         </div>
       )} 
 
