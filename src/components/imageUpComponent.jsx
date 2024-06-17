@@ -53,7 +53,7 @@ const ImageUpComponent = ({ onImage, images}) => {
       console.log(formData);
       
       try {
-        const {data} = await axios.post("http://localhost:5000/api/upload", formData)
+        const {data} = await axios.post("https://joof-backend.onrender.com/api/upload", formData)
       //setUploadPic(data)
       console.log(data)
       localStorage.setItem("image", JSON.stringify(data?.savedImage?.singleImage?.url))

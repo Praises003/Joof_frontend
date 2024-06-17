@@ -42,7 +42,61 @@ const HomeScreen = () => {
 
   const [image, setImage] = useState("")
   const [selectedImage, setSelectedImage] = useState(null)
+  const [firstImg, setFirstImage]= useState("")
+  const [secImg, setSecImg] = useState("")
+  const [thirdImg, setThirdImg] = useState("")
+  const [showImg, setShowImg] = useState(false)
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          console.log("Fetching images...");
+          await getFirstImage();
+          console.log("Images fetched successfully.");
+      } catch (error) {
+          console.error("Error fetching images:", error);
+          // Handle error as needed
+      }
+  };
+
+  
+
+  fetchData();
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          console.log("Fetching images...");
+          await getSecImage();
+          console.log("Images fetched successfully.");
+      } catch (error) {
+          console.error("Error fetching images:", error);
+          // Handle error as needed
+      }
+  };
+
+  
+
+  fetchData();
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+          console.log("Fetching images...");
+          await getThirdImage();
+          console.log("Images fetched successfully.");
+      } catch (error) {
+          console.error("Error fetching images:", error);
+          // Handle error as needed
+      }
+  };
+
+  
+
+  fetchData();
+  }, [])
   // Save updated visionText to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('visionText', visionText);
@@ -140,8 +194,113 @@ const HomeScreen = () => {
       
     }
   };
-  
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0])
+  }
+
+
+  const handleFirstImgUpload = async() => {
+    if(!image) {
+      console.error("No Image Selected")
+      return;
+    }
+
+    const formData = new FormData()
+
+    formData.append("file", image)
+
+    try {
+      const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageIII", formData)
+
+      console.log(data)
+      await getFirstImage()
+      setImage("")
+    } catch (err) {
+      console.error(err)
+
+    }
+
+  }
+
+  const handleSecondImgUpload = async() => {
+    if(!image) {
+      console.error("No Image Selected")
+      return;
+    }
+
+    const formData = new FormData()
+
+    formData.append("file", image)
+
+    try {
+      const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageIV", formData)
+
+      console.log(data)
+      await getSecImage()
+      setImage("")
+    } catch (err) {
+      console.error(err)
+
+    }
+
+  }
+
+  const handleThirdImgUpload = async() => {
+    if(!image) {
+      console.error("No Image Selected")
+      return;
+    }
+
+    const formData = new FormData()
+
+    formData.append("file", image)
+
+    try {
+      const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageV", formData)
+
+      console.log(data)
+      await getThirdImage()
+      setImage("")
+    } catch (err) {
+      console.error(err)
+
+    }
+
+  }
+
+  const getFirstImage = async() => {
+    try {
+      const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/imageIII")
+      console.log(data)
+      setFirstImage(data?.singleImage?.url)
+    } catch (err) {
+      console.error(err)
+
+    }
+  }
+
+  const getSecImage = async() => {
+    try {
+      const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/imageIV")
+      setSecImg(data?.singleImage?.url)
+    } catch (err) {
+      console.error(err)
+
+    }
+  }
+
+  const getThirdImage = async() => {
+    try {
+      const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/imageV")
+      setThirdImg(data?.singleImage?.url)
+    } catch (err) {
+      console.error(err)
+
+    }
+  }
+  
+console.log(firstImg)
   
 
   const settings = {
@@ -207,9 +366,9 @@ const HomeScreen = () => {
   return (
     <section className="">
       <div className="">
-        <ImageUpComponent onImage={handleSelectedImage} images={image} />
+        {/* <ImageUpComponent onImage={handleSelectedImage} images={image} />
         {console.log(image)}
-      
+       */}
       <Swiper
       modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
       
@@ -227,7 +386,7 @@ const HomeScreen = () => {
     >
          <SwiperSlide>
     <div className="relative bg bg-opacity-90 mb-3">
-      <img src={eventImg} className="w-full h-screen " alt="" />
+      <img src={firstImg} className="w-full h-screen " alt="" />
       <div class="absolute inset-0 bg-black opacity-70">
               <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
               <p className="absolute  top-52 left-32 bottom-4/5 transform  text-white text-xl ">{visionText}</p>
@@ -238,7 +397,7 @@ const HomeScreen = () => {
 
   <SwiperSlide>
     <div className="relative bg bg-opacity-90">
-      <img src={event} className="w-full h-screen" alt="" />
+      <img src={secImg} className="w-full h-screen" alt="" />
  
             <div class="absolute inset-0 bg-black opacity-70 ">
               <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
@@ -357,12 +516,114 @@ const HomeScreen = () => {
         </div>
       )}
 
+      {/* Image Section **/}
+
+      
+      {showImg && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
+          <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
+            <h2 className="text-lg font-semibold mb-4">Change First Image</h2>
+          
+            <input type='file'
+              onChange={handleImageChange} 
+             
+              className="w-full h-36 mb-4 p-2 " // Increased height to 36
+            />
+            <div className="flex justify-end">
+              <button 
+                onClick={handleFirstImgUpload}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => setShowImg(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+              
+              
+            </div>
+           
+            </div>
+
+            <br></br>
+            <br></br>
+
+            <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
+            <h2 className="text-lg font-semibold mb-4">Change Second Image</h2>
+            
+            <input type='file'
+              onChange={handleImageChange} 
+               
+              className="w-full h-36 mb-4 p-2 " // Increased height to 36
+            />
+            <div className="flex justify-end">
+              <button 
+                onClick={handleSecondImgUpload}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => setShowImg(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+              
+              
+            </div>
+        
+            </div>
+            <br></br>
+            <br></br>
+
+            <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
+            <h2 className="text-lg font-semibold mb-4">Change Third Image</h2>
+            
+            <input type='file'
+              onChange={handleImageChange} 
+             
+              className="w-full h-36 mb-4 p-2 " // Increased height to 36
+            />
+            <div className="flex justify-end">
+              <button 
+                onClick={handleThirdImgUpload}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update
+              </button>
+              <button
+                onClick={() => setShowImg(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+              
+              
+            </div>
+            
+            </div>
+
+
+    </div> )}
+
+
     <div className="flex items-center justify-center">
       <button onClick={() => setShowForm(true)}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
       ><div className="flex items-center justify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Banner</p>
         </div></button>
+
+        <button onClick={() => setShowImg(true)}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
+      ><div className="flex items-center justify-center">
+          <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
+        </div></button>
+
 
     </div>
   
@@ -423,13 +684,13 @@ const HomeScreen = () => {
       onSlideChange={() => console.log('slide change')}
     >
       <SwiperSlide><div className=" w-full">
-          <img src={event} className="w-full" alt="" />
+          <img src={firstImg} className="w-full" alt="" />
         </div></SwiperSlide>
       <SwiperSlide><div className="">
-          <img src={eventImg} className="w-full" alt="" />
+          <img src={secImg} className="w-full" alt="" />
         </div></SwiperSlide>
       <SwiperSlide><div className="">
-          <img src={meeting} className="w-full" alt="" />
+          <img src={thirdImg} className="w-full" alt="" />
         </div></SwiperSlide>
       <SwiperSlide><div className="">
           <img src={seminar} className="w-full" alt="" />
