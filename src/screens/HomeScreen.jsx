@@ -34,9 +34,9 @@ import { TbRuler2Off } from 'react-icons/tb'
 
 
 const HomeScreen = () => {
-  const [visionText, setVisionText] = useState(localStorage.getItem('visionText') || "Our Vision is to be a hub of excellence, innovation, and cultural enrichment in the heart of Igbara -Oke");  
-  const [missionText, setMissionText] = useState(localStorage.getItem('missionText') || "We aspire to create an iconic, state-of-the-art event center that offers unforgettable experiences.")
-  const [bannerText, setBannerText] = useState(localStorage.getItem('bannerText') ||"Profuselemo Multi-Purpose Event Center")
+  const [visionText, setVisionText] = useState( "Our Vision is to be a hub of excellence, innovation, and cultural enrichment in the heart of Igbara -Oke");  
+  const [missionText, setMissionText] = useState(  "We aspire to create an iconic, state-of-the-art event center that offers unforgettable experiences.")
+  const [bannerText, setBannerText] = useState("Profuselemo Multi-Purpose Event Center")
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false)
 
@@ -97,26 +97,6 @@ const HomeScreen = () => {
 
   fetchData();
   }, [])
-  // Save updated visionText to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('visionText', visionText);
-  }, [visionText]);
-
-  useEffect(() => {
-    localStorage.setItem('missionText', missionText);
-  }, [missionText]);
-
-  useEffect(() => {
-    localStorage.setItem('bannerText', bannerText);
-  }, [bannerText]);
-  // Retrieving image data from localStorage
-  // useEffect(() => {
-  //   const storedImg = localStorage.getItem('image');
-  //   if (storedImg) {
-  //     const parsedImg = JSON.parse(storedImg);
-  //     setImage(parsedImg);
-  //   }
-  // }, []);
 
 
 
@@ -146,54 +126,19 @@ const HomeScreen = () => {
   //   }
   // }, []);
 
-  const handleUpdateTextOne = async() => {
-    // Handle updating the text here, e.g., make an API request
-    try {
-      setLoading(true)
-      const {data} = await axios.put('http://localhost:5000/api/text', { text: visionText });
-      console.log(data)
-      setVisionText(data.text)
-      setLoading(false)
-      setShowForm(false); // Hide the form after updating text
-
-      
-    } catch (error) {
-      console.log(error)
-    }
-      };
-
-  const handleUpdateTextTwo = async() => {
-    // Handle updating the text here, e.g., make an API request
-    try {
-      setLoading(true)
-      const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: missionText });
-      console.log(data)
-      setMissionText(data.text)
-      setLoading(false)
-      setShowForm(false); // Hide the form after updating text
-
-      
-    } catch (error) {
-      console.log(error)
-    }
-  };
-
-  const handleUpdateTextThree = async() => {
-    // Handle updating the text here, e.g., make an API request
-    try {
-      setLoading(true)
-      const {data} = await axios.put('http://localhost:5000/api/text/edittwo', { text: bannerText });
-      console.log(data)
-      setBannerText(data.text)
-      setLoading(FaBedPulse)
-      setShowForm(false); // Hide the form after updating text
-
-      
-    } catch (error) {
-      console.log(error)
-      
-    }
-  };
+  useEffect(() => {
+    const fetchTextData = async () => {
+      try {
+        const { data } = await axios.get('http://localhost:5000/api/text');
+        setVisionText(data.visionText);
+        setMissionText(data.missionText);
+        setBannerText(data.bannerText);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTextData();
+  }, []);
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0])
@@ -299,6 +244,27 @@ const HomeScreen = () => {
 
     }
   }
+
+  const handleUpdateText = async (type) => {
+    try {
+      setLoading(true);
+      let updatedText;
+      if (type === 'vision') {
+        updatedText = await axios.put('http://localhost:5000/api/text/vision', { text: visionText });
+        setVisionText(updatedText.data.visionText);
+      } else if (type === 'mission') {
+        updatedText = await axios.put('http://localhost:5000/api/text/mission', { text: missionText });
+        setMissionText(updatedText.data.missionText);
+      } else if (type === 'banner') {
+        updatedText = await axios.put('http://localhost:5000/api/text/banner', { text: bannerText });
+        setBannerText(updatedText.data.bannerText);
+      }
+      setLoading(false);
+      setShowForm(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
 console.log(firstImg)
   
@@ -452,7 +418,7 @@ console.log(firstImg)
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('vision')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -475,7 +441,7 @@ console.log(firstImg)
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextTwo}
+                oonClick={() => handleUpdateText('mission')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -498,7 +464,7 @@ console.log(firstImg)
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextThree}
+                onClick={() => handleUpdateText('banner')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update

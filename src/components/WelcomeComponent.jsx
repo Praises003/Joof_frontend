@@ -12,38 +12,38 @@ import { FaPencilAlt } from "react-icons/fa";
 import VenueInfoCardComponent from './VenueInfoCardComponent'
 
 const WelcomeComponent = () => {
-    const [welcomeText, setWelcomeText] = useState(localStorage.getItem('welcomeText') || "Welcome To Prof Rufus")
-    const [secText, setSecText] = useState(localStorage.getItem('secText') || "Oladipo Elemo Event Center")
-    const [profText, setProfText] = useState(localStorage.getItem('profText') ||"At the Prof Rufus Elemo Multi-Purpose Event Centre, we are established to provide an event venue for various events and functions ranging from weddings, corporate functions, meetings, exhibition and so much more")
-    const [prov, setProv] = useState(localStorage.getItem('prov') || "What we provide") 
-    const [ded, setDed] = useState(localStorage.getItem('ded') || "DEDICATED & PROFESSIONAL SERVICE")
-    const [highly, setHighly] = useState(localStorage.getItem('highly') ||"HIGHLY AFFORDABLE & COMPETITIVE PRICES")
-    const [access, setAccess] = useState(localStorage.getItem('access')|| "ACCESSIBLE EVENT SPACE WITH GREAT PARKING")
-    const [success, setSuccess] = useState(localStorage.getItem('success') ||"WE ARE HERE TO MAKE YOUR EVENT SUCCESSFUL")
-    const [fac, setFac] = useState(localStorage.getItem('fac') || "GUARANTEED HIGH SECURITY & ADDED FACILITIES")
-    const [textOne, setTextOne] = useState(localStorage.getItem('textOne') ||"We have crafted and designed an event space for your special event–Book now to enjoy services fit for royalty")
-    const [textTwo, setTextTwo] = useState(localStorage.getItem('textTwo') || "Our professional & highly trained staff are ready to handle all your event needs. We also offer event planning services.")
-    const [textThree, setTextThree] = useState(localStorage.getItem('textThree') || "Book now & take the advantage of fair, affordable and highly competitive prices to host your special event today.")
-    const [textFour, setTextFour] = useState(localStorage.getItem('textFour') || "With ramp access & easily reached transportation routes, our event space is highly accessible with lots of parking to ensure that guests can easily locate and attend your event.")
-    const [textFive, setTextFive] = useState(localStorage.getItem('textFive') || "Our one universal goal is to ensure that everyone who attends your special event is able to have a fantastic time.")
-    const [textSix, setTextSix] = useState(localStorage.getItem('textSix') || "With State of the art surveillance & security personnel and a host of other facilities on site, you stand to get real value for your money when you host events at Noble Castle.")
+    const [welcomeText, setWelcomeText] = useState( "Welcome To Prof Rufus")
+    const [secText, setSecText] = useState( "Oladipo Elemo Event Center")
+    const [profText, setProfText] = useState("At the Prof Rufus Elemo Multi-Purpose Event Centre, we are established to provide an event venue for various events and functions ranging from weddings, corporate functions, meetings, exhibition and so much more")
+    const [prov, setProv] = useState( "What we provide") 
+    const [ded, setDed] = useState( "DEDICATED & PROFESSIONAL SERVICE")
+    const [highly, setHighly] = useState("HIGHLY AFFORDABLE & COMPETITIVE PRICES")
+    const [access, setAccess] = useState("ACCESSIBLE EVENT SPACE WITH GREAT PARKING")
+    const [success, setSuccess] = useState("WE ARE HERE TO MAKE YOUR EVENT SUCCESSFUL")
+    const [fac, setFac] = useState("GUARANTEED HIGH SECURITY & ADDED FACILITIES")
+    const [textOne, setTextOne] = useState("We have crafted and designed an event space for your special event–Book now to enjoy services fit for royalty")
+    const [textTwo, setTextTwo] = useState("Our professional & highly trained staff are ready to handle all your event needs. We also offer event planning services.")
+    const [textThree, setTextThree] = useState( "Book now & take the advantage of fair, affordable and highly competitive prices to host your special event today.")
+    const [textFour, setTextFour] = useState("With ramp access & easily reached transportation routes, our event space is highly accessible with lots of parking to ensure that guests can easily locate and attend your event.")
+    const [textFive, setTextFive] = useState( "Our one universal goal is to ensure that everyone who attends your special event is able to have a fantastic time.")
+    const [textSix, setTextSix] = useState("With State of the art surveillance & security personnel and a host of other facilities on site, you stand to get real value for your money when you host events at Noble Castle.")
     const [loading, setLoading] = useState(false)
 
     const [showForm, setShowForm] = useState(false);
     const [showImg, setShowImg] = useState(false);
     const [showSecImg, setShowSecImg] = useState(false);
 
-    const [visit, setVisit] = useState(localStorage.getItem('visit') || "Visit Our Event Centre")
+    const [visit, setVisit] = useState("Visit Our Event Centre")
 
-    const [rufus, setRufus] = useState(localStorage.getItem('rufus') || "Prof Rufus Oladipo Elemo Event Center")
+    const [rufus, setRufus] = useState( "Prof Rufus Oladipo Elemo Event Center")
 
-    const[eventText, setEventText] = useState(localStorage.getItem('eventText') || "The Event Centre seats 100 banquet setting has event packages. This package includes:")
+    const[eventText, setEventText] = useState("The Event Centre seats 100 banquet setting has event packages. This package includes:")
 
-    const [banquet, setBanquet] = useState(localStorage.getItem('banquet') ||"Banquet tables & Chairs")
+    const [banquet, setBanquet] = useState("Banquet tables & Chairs")
 
-    const [room, setRoom] = useState(localStorage.getItem('room') || "Change Room")
+    const [room, setRoom] = useState( "Change Room")
 
-    const [security, setSecurity] = useState(localStorage.getItem('security') || "Security Personnel")
+    const [security, setSecurity] = useState( "Security Personnel")
 
     const [image, setImage] = useState("")
     const [sel, setSel] = useState("")
@@ -52,65 +52,7 @@ const WelcomeComponent = () => {
     const [imgs, setImgs] = useState(localStorage.getItem('multiImg') ? JSON.parse(localStorage.getItem('multiImg')) :  [])
 
     // Save updated visionText to localStorage whenever it changes
-    useEffect(() => {
-        localStorage.setItem('welcomeText', welcomeText);
-      }, [welcomeText]);
-
-      useEffect(() => {
-        localStorage.setItem('secText', secText);
-      }, [secText]);
-
-      useEffect(() => {
-        localStorage.setItem('profText', profText);
-      }, [profText]);
-
-      useEffect(() => {
-        localStorage.setItem('prov', prov);
-      }, [prov]);
-
-      useEffect(() => {
-        localStorage.setItem('ded', ded);
-      }, [ded]);
-
-      useEffect(() => {
-        localStorage.setItem('highly', highly)
-      }, [highly]);
-
-      useEffect(() => {
-        localStorage.setItem('access', access);
-      }, [access]);
-
-      useEffect(() => {
-        localStorage.setItem('success', success);
-      }, [success]);
-
-      useEffect(() => {
-        localStorage.setItem('fac', fac);
-      }, [fac]);
-
-      useEffect(() => {
-        localStorage.setItem('textOne', textOne);
-      }, [textOne]);
-
-      useEffect(() => {
-        localStorage.setItem('textTwo', textTwo);
-      }, [textTwo]);
-
-      useEffect(() => {
-        localStorage.setItem('textThree', textThree);
-      }, [textThree]);
-
-      useEffect(() => {
-        localStorage.setItem('textFour', textFour);
-      }, [textFour]);
-
-      useEffect(() => {
-        localStorage.setItem('textFive', textFive);
-      }, [textFive]);
-
-      useEffect(() => {
-        localStorage.setItem('textSix', textSix);
-      }, [textSix]);
+    
 
       useEffect(() => {
         getImage()
@@ -119,6 +61,35 @@ const WelcomeComponent = () => {
       useEffect(() => {
         getSecImage()
       },[img])
+
+
+
+  useEffect(() => {
+    const fetchTextData = async () => {
+      try {
+        const { data } = await axios.get('http://localhost:5000/api/text');
+        setWelcomeText(data.welcomeText);
+        setSecText(data.secText);
+        setProfText(data.profText);
+        setProv(data.prov)
+        setDed(data.ded)
+        setHighly(data.highly)
+        setAccess(data.access)
+        setSuccess(data.success)
+        setFac(data.fac)
+        setTextOne(data.textOne)
+        setTextTwo(data.textTwo)
+        setTextThree(data.textThree)
+        setTextFour(data.textFour)
+        setTextFive(data.textFive)
+        setTextSix(data.textSix)
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTextData();
+  }, []);
 
 
 
@@ -165,166 +136,68 @@ const WelcomeComponent = () => {
         setSecurity(e.target.value);
       };
 
+
+
+      const handleUpdateText = async (type) => {
+        try {
+          setLoading(true);
+          let updatedText;
+          if (type === 'welcome') {
+            updatedText = await axios.put('http://localhost:5000/api/text/welcome', { text: welcomeText });
+            setVisionText(updatedText.data.welcomeText);
+          } else if (type === 'sec') {
+            updatedText = await axios.put('http://localhost:5000/api/text/secText', { text: secText });
+            setSecText(updatedText.data.secText);
+          } else if (type === 'prof') {
+            updatedText = await axios.put('http://localhost:5000/api/text/profText', { text: profText });
+            setProfText(updatedText.data.profText);
+          } else if (type === 'prov') {
+            updatedText = await axios.put('http://localhost:5000/api/text/prov', { text: prov });
+            setProv(updatedText.data.prov);
+          } else if (type === 'ded') {
+            updatedText = await axios.put('http://localhost:5000/api/text/ded', { text: ded });
+            setDed(updatedText.data.ded);
+          } else if (type === 'highly') {
+            updatedText = await axios.put('http://localhost:5000/api/text/highly', { text: highly });
+            setHighly(updatedText.data.highly);
+          } else if (type === 'access') {
+            updatedText = await axios.put('http://localhost:5000/api/text/access', { text: access });
+            setAccess(updatedText.data.access);
+          } else if (type === 'success') {
+            updatedText = await axios.put('http://localhost:5000/api/text/success', { text: success });
+           setSuccess(updatedText.data.success);
+          } else if (type === 'fac') {
+            updatedText = await axios.put('http://localhost:5000/api/text/fac', { text: fac });
+            setFac(updatedText.data.fac);
+          } else if (type === 'textOne') {
+            updatedText = await axios.put('http://localhost:5000/api/text/textOne', { text: textOne });
+            setTextOne(updatedText.data.textOne);
+          } else if (type === 'textTwo') {
+            updatedText = await axios.put('http://localhost:5000/api/text/textTwo', { text: textTwo });
+            setTextTwo(updatedText.data.textTwo);
+          } else if (type === 'textThree') {
+            updatedText = await axios.put('http://localhost:5000/api/text/textThree', { text: textThree });
+            setTextThree(updatedText.data.textThree);
+          } else if (type === 'textFour') {
+            updatedText = await axios.put('http://localhost:5000/api/text/textFour', { text: textFour });
+            setTextFour(updatedText.data.textFour);
+          } else if (type === 'textFive') {
+            updatedText = await axios.put('http://localhost:5000/api/text/textFive', { text: textFive });
+            setTextFive(updatedText.data.textFive);
+          } else if (type === 'textSix') {
+            updatedText = await axios.put('http://localhost:5000/api/text/textSix', { text: textSix });
+            setTextSix(updatedText.data.textSix);
+          }
+          setLoading(false);
+          setShowForm(false);
+        } catch (error) {
+          console.log(error);
+        }
+      };
       
 
 
-      const handleUpdateTextOne = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/welcomeText', { text: welcomeText });
-            console.log(data)
-            setWelcomeText(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-      };
-
-      const handleUpdateTextTwo = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/secText', { text: secText });
-            console.log(data)
-            setSecText(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-      };
-
-      const handleUpdateTextThree = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/ProfText', { text: profText });
-            console.log(data)
-            setWelcomeText(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-        
-      };
-
-
       
-      const handleUpdateTextFour = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/visitText', { text: visit });
-            console.log(data)
-            setVisit(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-        
-      };
-
-      
-      const handleUpdateTextFive = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/rufusText', { text: rufus });
-            console.log(data)
-            setRufus(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-        
-      };
-
-      
-      const handleUpdateTextSix = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/eventText', { text: eventText });
-            console.log(data)
-            setEventText(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-        
-      };
-
-      
-      const handleUpdateTextSeven = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/banquetText', { text: banquet });
-            console.log(data)
-            setBanquet(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-        
-      };
-
-      
-      const handleUpdateTextEight = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/roomText', { text: room });
-            console.log(data)
-            setRoom(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-        
-      };
-
-      
-      const handleUpdateTextNine = async() => {
-        // Handle updating the text here, e.g., make an API request
-        try {
-            setLoading(true)
-            const {data} = await axios.put('http://localhost:5000/api/text/securityText', { text: security });
-            console.log(data)
-            setSecurity(data.text)
-            setLoading(false)
-            setShowForm(false); // Hide the form after updating text
-            
-        } catch (error) {
-            console.log(error)
-        }
-        
-        
-      };
 
       const handleImageChange =  (event) => {
         const newImage = event.target.files[0];
@@ -514,7 +387,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('welcome')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -537,7 +410,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextTwo}
+                onClick={() => handleUpdateText('sec')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -560,7 +433,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextThree}
+                onClick={() => handleUpdateText('prof')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -661,7 +534,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextFour}
+                onClick={() => handleUpdateText('')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -684,7 +557,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextFive}
+                onClick={() => handleUpdateText('textFive')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -707,7 +580,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextSix}
+               onClick={() => handleUpdateText('textSix')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update

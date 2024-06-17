@@ -119,6 +119,91 @@ const AboutScreen = () => {
         setTextSix(e.target.value);
       };
 
+
+      
+  useEffect(() => {
+    const fetchTextData = async () => {
+      try {
+        const { data } = await axios.get('http://localhost:5000/api/text');
+        setWelcomeText(data.welcomeText);
+        setSecText(data.secText);
+        setProfText(data.profText);
+        setProv(data.prov)
+        setDed(data.ded)
+        setHighly(data.highly)
+        setAccess(data.access)
+        setSuccess(data.success)
+        setFac(data.fac)
+        setTextOne(data.textOne)
+        setTextTwo(data.textTwo)
+        setTextThree(data.textThree)
+        setTextFour(data.textFour)
+        setTextFive(data.textFive)
+        setTextSix(data.textSix)
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchTextData();
+  }, []);
+
+  const handleUpdateText = async (type) => {
+    try {
+      setLoading(true);
+      let updatedText;
+      if (type === 'welcome') {
+        updatedText = await axios.put('http://localhost:5000/api/text/welcome', { text: welcomeText });
+        setWelcome(updatedText.data.welcomeText);
+      }  else if (type === 'prov') {
+        updatedText = await axios.put('http://localhost:5000/api/text/prov', { text: prov });
+        setProv(updatedText.data.prov);
+      } else if (type === 'ded') {
+        updatedText = await axios.put('http://localhost:5000/api/text/ded', { text: ded });
+        setDed(updatedText.data.ded);
+      } else if (type === 'highly') {
+        updatedText = await axios.put('http://localhost:5000/api/text/highly', { text: highly });
+        setHighly(updatedText.data.highly);
+      } else if (type === 'access') {
+        updatedText = await axios.put('http://localhost:5000/api/text/access', { text: access });
+        setAccess(updatedText.data.access);
+      } else if (type === 'success') {
+        updatedText = await axios.put('http://localhost:5000/api/text/success', { text: success });
+       setSuccess(updatedText.data.success);
+      } else if (type === 'fac') {
+        updatedText = await axios.put('http://localhost:5000/api/text/fac', { text: fac });
+        setFac(updatedText.data.fac);
+      } else if (type === 'textOne') {
+        updatedText = await axios.put('http://localhost:5000/api/text/textOne', { text: textOne });
+        setTextOne(updatedText.data.textOne);
+      } else if (type === 'textTwo') {
+        updatedText = await axios.put('http://localhost:5000/api/text/textTwo', { text: textTwo });
+        setTextTwo(updatedText.data.textTwo);
+      } else if (type === 'textThree') {
+        updatedText = await axios.put('http://localhost:5000/api/text/textThree', { text: textThree });
+        setTextThree(updatedText.data.textThree);
+      } else if (type === 'textFour') {
+        updatedText = await axios.put('http://localhost:5000/api/text/textFour', { text: textFour });
+        setTextFour(updatedText.data.textFour);
+      } else if (type === 'textFive') {
+        updatedText = await axios.put('http://localhost:5000/api/text/textFive', { text: textFive });
+        setTextFive(updatedText.data.textFive);
+      } else if (type === 'textSix') {
+        updatedText = await axios.put('http://localhost:5000/api/text/textSix', { text: textSix });
+        setTextSix(updatedText.data.textSix);
+      }
+      setLoading(false);
+      setShowForm(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
+
+
+
      
       const handleImageChange = (e) => {
         setSelectedImage(e.target.files[0])
@@ -474,7 +559,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('welcome')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -538,7 +623,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+               onClick={() => handleUpdateText('prof')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -564,7 +649,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('textOne')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -688,7 +773,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('access')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -712,7 +797,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('textOne')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -736,7 +821,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+               onClick={() => handleUpdateText('success')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -761,7 +846,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+               onClick={() => handleUpdateText('textThree')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -796,7 +881,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+              onClick={() => handleUpdateText('textFive')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -842,7 +927,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('textSix')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
