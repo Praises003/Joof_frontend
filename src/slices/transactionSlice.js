@@ -11,7 +11,7 @@ const initialState = {
 
 export const getAllTransaction = createAsyncThunk('transaction/getTransactions', async(event, thunkApi) => {
     try {
-        const { data } = await axios.get("https://joof-backend.vercel.app/api/transaction",  {withCredentials: true})
+        const { data } = await axios.get("https://joof-backend.onrender.com/api/transaction",  {withCredentials: true})
 
         console.log(data)
 
