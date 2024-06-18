@@ -39,7 +39,7 @@ const DashEvent = () => {
       const fetchEvents = async() => {
         try {
           
-          const { data } = await axios.get("http://localhost:5000/api/event/current", config)
+          const { data } = await axios.get("https://joof-backend.onrender.com/api/event/current", config)
           console.log(data)
           setUserEvent(data)
           console.log(userEvent)
