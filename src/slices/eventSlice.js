@@ -20,7 +20,7 @@ export const createEvent = createAsyncThunk('event/createEvent', async(event, th
                 Authorization: `Bearer ${token}`
             }
         }
-        const { data } = await axios.post(/*https://joof-backend.onrender.com/api/event"*/'http://localhost:5000/api/event', event, config, {withCredentials: true})
+        const { data } = await axios.post(/*https://joof-backend.onrender.com/api/event"*/'https://joof-backend.onrender.com/api/event', event, config, {withCredentials: true})
 
         console.log(data)
 
