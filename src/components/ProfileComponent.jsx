@@ -32,9 +32,17 @@ const ProfileComponent = (props) => {
     
     //    }, [guest, Error, Success])
     const getGuest = async () => {
+        const token = user.token
+
+        
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
         try {
             setLoading(true)
-            const { data } =  await axios.get("https://joof-backend.vercel.app/api/guest", {withCredentials: true})
+            const { data } =  await axios.get("https://joof-backend.onrender.com/api/guest", config, {withCredentials: true})
             console.log(data)
             setSingleGuest([...singleGuest, data])
             setLoading(false)

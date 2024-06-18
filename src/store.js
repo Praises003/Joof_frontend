@@ -4,7 +4,7 @@ import eventReducer from './slices/eventSlice';
 import guestReducer, { addGuest } from './slices/guestSlice'
 import eventPackageReducer from './slices/eventPackageSlice';
 import moreEventReducer from "./slices/moreEventSlice"
-
+import tableReducer from "./slices/tableSlice"
 //import chatReducer, { chats } from './slices/chatSlice'
 //import singleChatReducer, { singleChats } from './slices/singleChatSlice'
 
@@ -14,9 +14,9 @@ const store = configureStore({
         event: eventReducer,
         guest: guestReducer,
         eventPackage:eventPackageReducer,
-        moreEvent: moreEventReducer
-        //chat: chatReducer,
-        //singleChat:singleChatReducer
+        moreEvent: moreEventReducer,
+        table: tableReducer
+        
     },
     devTools:true
 })

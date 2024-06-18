@@ -6,11 +6,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
 import { fetchTables, reserveSeat } from '../slices/tableSlice';
 
 
-const SeatSelectionComponent = () => {
+const seatSelScreen = () => {
     const dispatch = useDispatch();
     const { tables, loading } = useSelector((state) => state.table);
     console.log(tables, loading)
@@ -19,7 +18,6 @@ const SeatSelectionComponent = () => {
 
   const [guestName, setGuestName] = useState("")
   const [seatNum, setSeatNumber] = useState("")
-  const { guest, message} = useSelector(state => state.guest)
 
   useEffect(() => {
     dispatch(fetchTables());
@@ -57,10 +55,6 @@ const SeatSelectionComponent = () => {
 
 
     dispatch(addAsyncGuest(newSeat))
-
-    if (message) {
-        toast.error(message)
-    }
 
     setGuestName("")
     setSeatNumber("")
@@ -154,4 +148,4 @@ const SeatSelectionComponent = () => {
   );
 }
 
-export default SeatSelectionComponent
+export default seatSelScreen

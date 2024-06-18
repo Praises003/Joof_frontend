@@ -52,6 +52,7 @@ import EventMoreComponent from './components/EventMoreComponent'
 import TransactionScreen from './screens/TransactionScreen'
 import FounderScreen from './screens/FounderScreen'
 import TestScreen from './screens/TestScreen'
+import SeatSelScreen from './screens/seatSelScreen'
 
 function App() {
   const location = useLocation();
@@ -177,7 +178,7 @@ function App() {
 
              <Route path="/eventmore" element={<EventMoreComponent /> } /> 
 
-             <Route path="/test" element={<TestScreen /> } /> 
+             <Route path="/test" element={ <SeatSelScreen />} /> 
 
 
 
