@@ -13,6 +13,8 @@ export const createEvent = createAsyncThunk('event/createEvent', async(event, th
     try {
         const token = thunkApi.getState().user.user.token
 
+     
+
         const config = {
             headers: {
                 Authorization: `Bearer ${token}`

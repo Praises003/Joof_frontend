@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import YoutubeEmbed from '../components/YoutubeEmbed'; // Import your YoutubeEmbed component
 
 const YoutubeScreen = () => {
-  const [channelId, setChannelId] = useState('UCyEJX-kSj0kOOCS7Qlq2G7g'); // Replace with actual channel ID
+  const [channelId, setChannelId] = useState('UCJHuzwKKMrWvMMi8N232wKw'); // Replace with actual channel ID
   const [videoId, setVideoId] = useState(null);
+  const [err, setErr] = useState("")
   const apiKey = 'AIzaSyB1UEKwOdN-jdPbT1vFBVaw49PhtoLxB8k'; // Replace with your API key
 
   useEffect(() => {
@@ -15,6 +16,8 @@ const YoutubeScreen = () => {
           setVideoId(data.items[0].id.videoId);
         } else {
           console.warn('No live stream found for the provided channel ID.');
+          setErr('No live stream found for the provided channel ID.')
+
         }
       } catch (error) {
         console.error('Error fetching live stream data:', error);
@@ -32,7 +35,7 @@ const YoutubeScreen = () => {
         {videoId ? (
           <YoutubeEmbed videoId={videoId} />
         ) : (
-          <p>Loading live stream...</p>
+          <p className='text-3xl font-bold my-24'>Loading live stream...</p>
         )}
       </div>
     </div>

@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import meetings from "../assets/no_event.jpg";
 import axios from 'axios';
 
+
 const DashEvent = () => {
   const [event, setEvent] = useState(true);
   const [cal, setCal] = useState(false);
@@ -27,7 +28,8 @@ const DashEvent = () => {
     const onNav = () => {
         navigate("/dash_event")
     }
-    const token = user.token
+    const token = user?.token
+    console.log(token)
     const config = {
       headers: {
           Authorization: `Bearer ${token}`
@@ -86,11 +88,18 @@ const DashEvent = () => {
        {event && (
         <div className="">
          {userEvent.map(event => event ?  (<div>
-            <div className="flex">
-              <img src={event?.image} alt="image"  />
-              <p className="">{event.title}</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-2">
 
+        
+              <div className="border shadow-md border-t-8 border-r border-l- border-b- rounded border-t-yellow-500 p-4">  
+              <img src={event?.image} />
+                <p className="">Event Title: {event.title}</p>
+                <p className="">Event Description: {event.description}
+                </p>
+                <p className="">Event Category: {event.type}</p>
+              </div>
             </div>
+           
          </div>) : (<div className="">
             <img src={meetings} alt="" className=' mb-3 w-7/12 md:w-4/12  bg-cover bg-no-repeat mx-auto' />
            <p className="text-center text-lg md:text-xl font-semibold">No Events to show, create an Event</p>
