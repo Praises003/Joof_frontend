@@ -30,7 +30,7 @@ const SeatListComponent = ({ guest }) => {
 
         </div>  */}
         <div className="bg-blue-900 p-2 border rounded-lg">
-           {guest ? (guest.map(g => (
+           {guest.length > 0 ? (guest.map(g => (
             //console.log(g.name)
             <div key={g._id}>
               {console.log(guest)}
