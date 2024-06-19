@@ -112,10 +112,10 @@ const HomeScreen = () => {
     setBannerText(e.target.value);
   };
 
-  const handleSelectedImage = (img) => {
-    setImage(img)
-    // localStorage.setItem("image", JSON.stringify(img))
-  }
+  // const handleSelectedImage = (img) => {
+  //   setImage(img)
+  //   // localStorage.setItem("image", JSON.stringify(img))
+  // }
 
   // Retrieving image data from localStorage
   // useEffect(() => {

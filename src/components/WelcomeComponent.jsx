@@ -315,7 +315,7 @@ const WelcomeComponent = () => {
         /* Here we give the form name 'image'. this same name in the
            upload.array('image') middleware
         */
-        formData.append('photos', file);
+        formData.append('file', file);
     })
       //   files.forEach((file) => {
       //    formData.append('photos', file);

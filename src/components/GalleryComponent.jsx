@@ -108,7 +108,7 @@ const GalleryComponent = () => {
           /* Here we give the form name 'image'. this same name in the
              upload.array('image') middleware
           */
-          formData.append('photos', file);
+          formData.append('file', file);
       })
         //   files.forEach((file) => {
         //    formData.append('photos', file);
@@ -138,7 +138,7 @@ const GalleryComponent = () => {
           setLoading(true);
           const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/multi");
           console.log(data)
-           const imageURLs = data.map(img => ({ original: img.url, thumbnail: img.url }));
+           const imageURLs = data.map(img => ({ original: img.url, thumbnail: img.url, id: img.filename }));
            setImgs(imageURLs); // Update state with fetched images
           //  if(data === null || data === undefined || data === "" || !data) {
           //   setImgs([])
@@ -148,6 +148,7 @@ const GalleryComponent = () => {
           setLoading(false);
         } catch (error) {
           console.error(error);
+          if(error) setImgs([])
           setLoading(false);
         }
       };
@@ -162,8 +163,8 @@ const GalleryComponent = () => {
         try {
           
           // Send DELETE request to server
-          const response = await axios.delete("http://localhost:5000/api/upload/multi", {
-              data: { url: url }  // Payload to send with DELETE request
+          const response = await axios.delete("https://joof-backend.onrender.com/api/upload/del", {
+              data: { public_id: url }  // Payload to send with DELETE request
           });
           console.log("Image deleted:", response.data);
           
@@ -230,7 +231,7 @@ const GalleryComponent = () => {
 
           </div>
            
-          <button onClick={() => {removeImg(image.original); }}><FaTrashCan size={25} className='absolute text-red-700 top-2 right-3' /></button>
+          <button onClick={() => {removeImg(image.id); }}><FaTrashCan size={25} className='absolute text-red-700 top-2 right-3' /></button>
 
 
         </div>
