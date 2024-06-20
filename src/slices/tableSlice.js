@@ -9,22 +9,61 @@ const initialState = {
     
 }
 
-export const fetchTables = createAsyncThunk('tables/fetchTables', async () => {
-    const response = await axios.get('https://joof-backend.onrender.com/api/table');
+export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thunkApi) => {
+  try {
+
+    const token = thunkApi.getState().user.user.token
+    console.log(token)
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    const response = await axios.get('https://joof-backend.onrender.com/api/table', config);
     console.log(response.data)
     return response.data;
+    
+  } catch (err) {
+    const errMsg = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+        console.log(errMsg)
+        return thunkApi.rejectWithValue(errMsg)
+
+  }
+
+  
   });
 
   export const reserveSeat = createAsyncThunk(
     'tables/reserveSeat',
-    async ({ tableNumber, seatNumber, name }) => {
-      const response = await axios.post('https://joof-backend.onrender.com/api/table/reserve', {
+    async ({ tableNumber, seatNumber, name }, thunkApi) => {
+      try {
+
+        const token = thunkApi.getState().user.user.token
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+
+        const response = await axios.post('https://joof-backend.onrender.com/api/table/reserve', {
         tableNumber,
         seatNumber,
         name,
-      });
+      }, config );
       return { tableNumber, seatNumber, name, success: response.data.success };
-    }
+
+        
+      } catch (err) {
+        const errMsg = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+        console.log(errMsg)
+        console.log(thunkApi.getState().user.user.token)
+        return thunkApi.rejectWithValue(errMsg)
+
+        
+      }
+          }
   );
 
   const tableSlice = createSlice({
