@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export const fetchTables = createAsyncThunk('tables/fetchTables', async () => {
-    const response = await axios.get('http://localhost:5000/api/table');
+    const response = await axios.get('https://joof-backend.onrender.com/api/table');
     console.log(response.data)
     return response.data;
   });
@@ -18,7 +18,7 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async () => {
   export const reserveSeat = createAsyncThunk(
     'tables/reserveSeat',
     async ({ tableNumber, seatNumber, name }) => {
-      const response = await axios.post('http://localhost:5000/api/table/reserve', {
+      const response = await axios.post('https://joof-backend.onrender.com/api/table/reserve', {
         tableNumber,
         seatNumber,
         name,
