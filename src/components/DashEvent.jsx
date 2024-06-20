@@ -8,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import meetings from "../assets/no_event.jpg";
 import axios from 'axios';
 
+import parseDate from '../utils/dateUtil';
+
 
 const DashEvent = () => {
   const [event, setEvent] = useState(true);
@@ -63,6 +65,8 @@ const DashEvent = () => {
 
   return (
     <div>
+      {console.log(userEvent)}
+
       
       <div className="full-width">
         
@@ -85,27 +89,31 @@ const DashEvent = () => {
         </div>
       </div>
 
-       {event && (
-        <div className="">
-         {userEvent.map(event => event ?  (<div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-2">
-
+       {userEvent.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+         {userEvent.map(event =>  (<div className=''>
+         
+          <div className="  p-2 ">
+           
+     
         
-              <div className="border shadow-md border-t-8 border-r border-l- border-b- rounded border-t-yellow-500 p-4">  
+              <div className="border shadow-md border-t-8 border-r border-l- border-b- rounded border-t-yellow-500 p-4 w-full">  
               <img src={event?.image} />
                 <p className="">Event Title: {event.title}</p>
                 <p className="">Event Description: {event.description}
                 </p>
                 <p className="">Event Category: {event.type}</p>
+                <p className="">Date: {parseDate(event.date)}</p>
+                <p className="">Price: {event.price === 0 ? "Free": event.price}</p>
               </div>
             </div>
            
-         </div>) : (<div className="">
-            <img src={meetings} alt="" className=' mb-3 w-7/12 md:w-4/12  bg-cover bg-no-repeat mx-auto' />
-           <p className="text-center text-lg md:text-xl font-semibold">No Events to show, create an Event</p>
-          </div>))}
+         </div>) ) }
         </div>
-      )} 
+      ) :  (<div className="">
+      <img src={meetings} alt="" className=' mb-3 w-7/12 md:w-4/12  bg-cover bg-no-repeat mx-auto' />
+     <p className="text-center text-lg md:text-xl font-semibold">No Events to show, create an Event</p>
+    </div>)} 
 
 <div className="justify-between" style={{ height: '' }}>
       <style>
