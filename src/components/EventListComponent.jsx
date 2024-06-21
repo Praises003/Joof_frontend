@@ -8,6 +8,9 @@ import { FaUserAlt } from "react-icons/fa";
 
 import { fetchTables, reserveSeat } from '../slices/tableSlice';
 
+import SpinnerComponent from '../components/SpinnerComponent'
+
+
 
 
 const EventListComponent = () => {
@@ -73,7 +76,7 @@ console.log(reservedTable);
           </div>
 
 
-{tables.flatMap(table => {
+{loading ? (<SpinnerComponent />) : (tables.flatMap(table => {
     let tableNum = table.tableNumber;
     return table.seats
         .filter(seat => seat.isReserved && seat.reservedBy !== '') // Filter reserved seats with 'reservedBy' filled
@@ -90,7 +93,7 @@ console.log(reservedTable);
                 </p>
             </div>
         ))
-})}
+}))}
 
 
           

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import birthday from '../assets/conference.jpg'
 import fundraising from '../assets/fundraising.jpg'
 import graduation from '../assets/graduation.jpg'
@@ -20,6 +20,8 @@ import {AiTwotoneHeart} from "react-icons/ai"
 import { Link } from 'react-router-dom'
 import CustomerReviewComponent from '../components/CustomerReviewComponent'
 import EmailComponent from '../components/EmailComponent'
+import axios from 'axios'
+import SpinnerComponent from '../components/SpinnerComponent'
 
 const EventScreen = () => {
     const [upcoming, setUpcoming] = useState([{
@@ -134,6 +136,24 @@ const EventScreen = () => {
       }
       
     ])
+    const [events, setEvents] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+      const fetchEvents = async () => {
+        try {
+          setLoading(true)
+          const { data } = await axios.get('http://localhost:5000/api/package')
+          setEvents(data)
+          setLoading(false)
+        } catch (error) {
+          console.error(error)
+          
+        }
+      }
+      fetchEvents();
+    },[])
+    console.log(events)
   return (
     <div>
 
@@ -143,8 +163,28 @@ const EventScreen = () => {
           
         </div>
 
-        <h1 className='text-center font-bold mx-auto text-4xl my-9 md:text-4xl'>Upcoming Events</h1>
-        <div className="p-5">
+        {loading ? (<SpinnerComponent />) : (
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-8 p-2 mb-5'>
+          {events.map(ev => (
+          
+            <div className="border shadow-md border-t-8 border-r border-l- border-b- rounded border-t-yellow-500 p-4">
+              <div className="pb-5"></div>
+                <img src={ev.image} alt={"image"} />
+                <p className='text-center font-bold text-2xl mb-3'>{ev.name}</p>
+
+                <p className='  mb-2'>{ev.description.substring(0,535)}...</p>
+
+                <p className="text-center font-semibold text-2xl pb-4">₦{ev.price}</p>                      
+              
+              
+  
+            </div>
+          ))}
+          </div>
+        )}
+
+        {/* <h1 className='text-center font-bold mx-auto text-4xl my-9 md:text-4xl'>Upcoming Events</h1> */}
+        {/* <div className="p-5">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
            {upcoming.map(up => <div className='' key={up.id}>
                 <div className="border border-gray-300 shadow">
@@ -189,130 +229,10 @@ const EventScreen = () => {
             
           </div>
 
-        </div>
+        </div> */}
 
-        <h1 className='text-center font-bold mx-auto text-4xl my-9 md:text-5xl'> Events Packages</h1>
-        <div className="py-16  px-4 bg-gray-100">
-          <h1 className='text-center font-bold mx-auto text-2xl my-9 md:text-4xl'>Type Of Events</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-
-                <div className="border border-x-2 border-y-2  border-gray-400 bg-white px-8 py-16">
-                  {/*Logo */}
-                  <div className="w-1/4 mx-auto">
-                    <MdOutlineCorporateFare size={40} color='blue' />
-
-                  </div>
-                  
-                  <p className='text-center font-bold text-2xl mb-6'>CORPORATE EVENTS</p>
-                  
-                  <p className='text-center font-medium text-lg mb-3'>Bespoke Corporate Events</p>
-                  <p className='text-center font-medium text-lg mb-3'>Corporate Marquees/Tents</p>
-                  <p className='text-center font-medium text-lg mb-3'>Meetings</p>
-                  <p className='text-center font-medium text-lg mb-3'>Summer Parties</p>
-                  <p className='text-center font-medium text-lg mb-3'>Product Launches</p>
-                                  
-                </div>
-
-                <div className="border border-x-2 border-y-2  border-gray-400 bg-white px-8 py-16">
-                  {/*Logo */}
-                  <div className="w-1/4 mx-auto">
-                    <BiSolidParty size={40} color='blue' />
-
-                  </div>
-                  
-                  <p className='text-center font-bold text-2xl mb-6 uppercase'>Private Parties</p>
-                  
-                  <p className='text-center font-medium text-lg mb-3'>Milestone Birthdays</p>
-                  <p className='text-center font-medium text-lg mb-3'>Themed Events</p>
-                  <p className='text-center font-medium text-lg mb-3'>Special Celebrations</p>
-                  <p className='text-center font-medium text-lg mb-3'>Children/Teen Parties</p>
-                  <p className='text-center font-medium text-lg mb-3'>Seasonal Celebrations</p>
-                  
-                </div>
-
-                <div className="border border-x-2 border-y-2  border-gray-400 bg-white px-8 py-16">
-                  {/*Logo */}
-                  <div className="w-1/4 mx-auto">
-                    <AiTwotoneHeart size={40} color='blue' />
-
-                  </div>
-                  
-                  <p className='text-center font-bold text-2xl mb-6 uppercase'>Wedding</p>
-                  
-                  <p className='text-center font-medium text-lg mb-3'>Full Wedding Service</p>
-                  <p className='text-center font-medium text-lg mb-3'>Partial Wedding Planning</p>
-                  <p className='text-center font-medium text-lg mb-3'>Wedding Day Management</p>
-                  <p className='text-center font-medium text-lg mb-3'>Wedding Design</p>
-                  <p className='text-center font-medium text-lg mb-3'>Stunning Marquees</p>
-
-                </div>
-
-                
-              </div>
-          <h1 className='text-center font-bold mx-auto text-2xl my-9 md:text-4xl'>Event Pricing</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* {eventpack.map(event => <div className='p-5' key={event.id}>
-              <div className="border border-gray-300 shadow">
-              <img src={event.pic} alt=""  className='w-full bg-cover bg-no-repeat' />
-              <div className="">
-                <p>{event.name}</p>
-                <p>{event.price}</p>
-                <p>{event.description}</p>
-                <button className="w-full p-1.5 text-center bg-blue-900 text-white rounded-lg border">SEE MORE</button>
-                 
-                 {111}
-              </div>
-                
-              </div>
-             
-      </div>)} */}
-
-
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-
-                <div className="border border-x-2 border-y-2  border-gray-400 bg-white px-8 py-16">
-                  {/*Logo */}
-                  <p className='text-center font-bold text-xl mb-6'>Entry Package</p>
-                  <p className='text-center font-bold text-5xl mb-4'>₦15,000 </p>
-                  <p className='text-center font-bold text-xl mb-3'>Images</p>
-                  <p className='text-center font-bold text-xl mb-3'>Photo Album</p>
-                  <p className='text-center font-bold text-xl mb-3'>Photography</p>
-                  <p className='text-center font-bold text-xl mb-3'>Catering Services</p>
-                  <p className='text-center font-bold text-xl mb-3'>Videos</p>
-                  <button className='p-1.5 w-full text-white bg-blue-900 rounded-md'>See More</button>
-                </div>
-
-                <div className="border border-x-2 border-y-2  border-gray-400 bg-white px-8 py-16">
-                  {/*Logo */}
-                  <p className='text-center font-bold text-xl mb-6'>Advanced Package</p>
-                  <p className='text-center font-bold text-5xl mb-4'>₦30,000 </p>
-                  <p className='text-center font-bold text-xl mb-3'>Images</p>
-                  <p className='text-center font-bold text-xl mb-3'>Photo Album</p>
-                  <p className='text-center font-bold text-xl mb-3'>Photography</p>
-                  <p className='text-center font-bold text-xl mb-3'>Catering Services</p>
-                  <p className='text-center font-bold text-xl mb-3'>Videos</p>
-                  <button className='p-1.5 w-full text-white bg-blue-900 rounded-md'>See More</button>
-                </div>
-
-                <div className="border border-x-2 border-y-2  border-gray-400 bg-white px-8 py-16">
-                  {/*Logo */}
-                  <p className='text-center font-bold text-xl mb-6'>Premium Package</p>
-                  <p className='text-center font-bold text-5xl mb-4'>₦60,000 </p>
-                  <p className='text-center font-bold text-xl mb-3'>Images</p>
-                  <p className='text-center font-bold text-xl mb-3'>Photo Album</p>
-                  <p className='text-center font-bold text-xl mb-3'>Photography</p>
-                  <p className='text-center font-bold text-xl mb-3'>Catering Services</p>
-                  <p className='text-center font-bold text-xl mb-3'>Videos</p>
-                  <button className='p-1.5 w-full text-white bg-blue-900 rounded-md'>See More</button>
-                </div>
-
-                
-              </div>
-        </div>
+        {/* <h1 className='text-center font-bold mx-auto text-4xl my-9 md:text-5xl'> Events Packages</h1> */}
+       
 
         <div className="bg-blue-900 text-center text-white p-1.5 text-lg font-bold rounded-md mb-5 md:w-2/5 md:mx-auto mx-9 ">
           <Link to={"/calendar"}>Book An Event Now</Link>
