@@ -604,7 +604,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextSeven}
+                onClick={() => {}}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -628,7 +628,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextEight}
+                onClick={() => {}}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -653,7 +653,7 @@ const WelcomeComponent = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={handleUpdateTextNine}
+                onClick={() => {}}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update

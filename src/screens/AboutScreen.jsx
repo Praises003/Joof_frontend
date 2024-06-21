@@ -124,16 +124,16 @@ const AboutScreen = () => {
   useEffect(() => {
     const fetchTextData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/text');
-        setWelcomeText(data.welcomeText);
-        setSecText(data.secText);
-        setProfText(data.profText);
-        setProv(data.prov)
-        setDed(data.ded)
-        setHighly(data.highly)
-        setAccess(data.access)
+        const { data } = await axios.get('http://localhost:5000/api/texts');
+        setAbout(data.aboutText)
+        setWelcome(data.welcomeText);
+        setProf(data.profText);
+        
+       
+        //setHighly(data.highly)
+        //setAccess(data.access)
         setSuccess(data.success)
-        setFac(data.fac)
+        //setFac(data.fac)
         setTextOne(data.textOne)
         setTextTwo(data.textTwo)
         setTextThree(data.textThree)
@@ -153,43 +153,43 @@ const AboutScreen = () => {
       setLoading(true);
       let updatedText;
       if (type === 'welcome') {
-        updatedText = await axios.put('http://localhost:5000/api/text/welcome', { text: welcomeText });
+        updatedText = await axios.put('http://localhost:5000/api/texts/welcome', { text: welcomeText });
         setWelcome(updatedText.data.welcomeText);
       }  else if (type === 'prov') {
-        updatedText = await axios.put('http://localhost:5000/api/text/prov', { text: prov });
-        setProv(updatedText.data.prov);
+        updatedText = await axios.put('http://localhost:5000/api/texts/prov', { text: prov });
+        setProf(updatedText.data.profText);
       } else if (type === 'ded') {
-        updatedText = await axios.put('http://localhost:5000/api/text/ded', { text: ded });
+        updatedText = await axios.put('http://localhost:5000/api/texts/ded', { text: ded });
         setDed(updatedText.data.ded);
       } else if (type === 'highly') {
-        updatedText = await axios.put('http://localhost:5000/api/text/highly', { text: highly });
+        updatedText = await axios.put('http://localhost:5000/api/texts/highly', { text: highly });
         setHighly(updatedText.data.highly);
       } else if (type === 'access') {
-        updatedText = await axios.put('http://localhost:5000/api/text/access', { text: access });
+        updatedText = await axios.put('http://localhost:5000/api/texts/access', { text: access });
         setAccess(updatedText.data.access);
       } else if (type === 'success') {
-        updatedText = await axios.put('http://localhost:5000/api/text/success', { text: success });
+        updatedText = await axios.put('http://localhost:5000/api/texts/success', { text: success });
        setSuccess(updatedText.data.success);
       } else if (type === 'fac') {
-        updatedText = await axios.put('http://localhost:5000/api/text/fac', { text: fac });
+        updatedText = await axios.put('http://localhost:5000/api/texts/fac', { text: fac });
         setFac(updatedText.data.fac);
       } else if (type === 'textOne') {
-        updatedText = await axios.put('http://localhost:5000/api/text/textOne', { text: textOne });
+        updatedText = await axios.put('http://localhost:5000/api/texts/textOne', { text: textOne });
         setTextOne(updatedText.data.textOne);
       } else if (type === 'textTwo') {
-        updatedText = await axios.put('http://localhost:5000/api/text/textTwo', { text: textTwo });
+        updatedText = await axios.put('http://localhost:5000/api/texts/textTwo', { text: textTwo });
         setTextTwo(updatedText.data.textTwo);
       } else if (type === 'textThree') {
-        updatedText = await axios.put('http://localhost:5000/api/text/textThree', { text: textThree });
+        updatedText = await axios.put('http://localhost:5000/api/texts/textThree', { text: textThree });
         setTextThree(updatedText.data.textThree);
       } else if (type === 'textFour') {
-        updatedText = await axios.put('http://localhost:5000/api/text/textFour', { text: textFour });
+        updatedText = await axios.put('http://localhost:5000/api/texts/textFour', { text: textFour });
         setTextFour(updatedText.data.textFour);
       } else if (type === 'textFive') {
-        updatedText = await axios.put('http://localhost:5000/api/text/textFive', { text: textFive });
+        updatedText = await axios.put('http://localhost:5000/api/texts/textFive', { text: textFive });
         setTextFive(updatedText.data.textFive);
       } else if (type === 'textSix') {
-        updatedText = await axios.put('http://localhost:5000/api/text/textSix', { text: textSix });
+        updatedText = await axios.put('http://localhost:5000/api/texts/textSix', { text: textSix });
         setTextSix(updatedText.data.textSix);
       }
       setLoading(false);
