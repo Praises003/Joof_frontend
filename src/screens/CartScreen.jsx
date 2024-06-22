@@ -11,6 +11,7 @@ import axios from 'axios';
 import { useFlutterwave } from 'flutterwave-react-v3';
 import { FlutterWaveButton, closePaymentModal } from 'flutterwave-react-v3';
 import CartComponent from '../components/CartComponent'
+import { removeFromCart } from '../slices/eventPackageSlice';
 
 
 const CartScreen = () => {
@@ -23,9 +24,9 @@ const CartScreen = () => {
     const {eventPackage} = useSelector(state => state.eventPackage)
     const {moreEvent} = useSelector(state => state.moreEvent)
     const {guest} = useSelector(state => state.guest)
-    console.log(moreEvent)
-    console.log(guest)
+    const dispatch = useDispatch()
 
+      console.log(eventPackage)
     let total = eventPackage.reduce((sum, even ) => sum + even.price, 0 )
     console.log(total)
     // useEffect(() => {
@@ -126,9 +127,19 @@ console.log(stripe)
     <div>
         <div className="">
             <div className="">
-              {eventPackage.map(event => (
+            <p className="text-center font-bold text-3xl my-5">Your Packages</p>
+
+              {eventPackage.map((event, index) => (
                 
                     <div className="">
+                     
+<div className={` "rounded border p-4 bg-white border-x-2 border-y-2 mb-3"  "hidden"}`}>
+                        <p>Name: {event.name}</p>
+                        <p className='mb-1'>Price: {event.price}</p>
+                        <div className="mb-5 md:mx-auto">
+                            <button onClick={() => dispatch(removeFromCart(event._id))} className="bg-red-900 w-full rounded-xl p-4 md:w-1/4 lg:w-1/4 text-white text-center">Delete Package</button>
+                        </div>
+                        </div>
                     <div className=''>
                     
                     

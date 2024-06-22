@@ -60,6 +60,7 @@ const EventPackageScreen = () => {
 
     const cartEv = events.map(ev => {
         return {
+            _id: ev._id,
             name: ev.name,
             price: ev.price
         }
@@ -94,7 +95,7 @@ const EventPackageScreen = () => {
 
                 <p className="text-center font-semibold text-2xl pb-4">₦{ev.price}</p>    
 
-                 <div onClick={() => {dispatch(addToCart({name:ev.name, price: ev.price}))}} className="">
+                 <div onClick={() => {dispatch(addToCart({_id: ev._id, name: ev.name, price: ev.price}))}} className="">
                     <Link  className='bg-yellow-500 text-white  p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart Now</Link>
                 </div>                  
               

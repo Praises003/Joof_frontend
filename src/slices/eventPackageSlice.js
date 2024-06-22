@@ -40,6 +40,10 @@ const eventPackageSlice = createSlice({
             console.log(action)
             state.eventPackage = [...state.eventPackage, {...action.payload}]
             console.log(action.payload)
+        },
+        removeFromCart: (state, action) => {
+            const itemIdToRemove = action.payload;
+            state.eventPackage = state.eventPackage.filter(item => item._id !== itemIdToRemove);
         }
         
     }, 
@@ -80,4 +84,4 @@ const eventPackageSlice = createSlice({
 })
 
 export default eventPackageSlice.reducer
-export const { reset, addToCart } = eventPackageSlice.actions 
+export const { reset, addToCart, removeFromCart } = eventPackageSlice.actions 
