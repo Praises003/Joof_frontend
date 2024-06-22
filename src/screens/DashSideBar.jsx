@@ -18,6 +18,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useSelector, useDispatch} from "react-redux"
+import { logout } from '../slices/userSlice';
 
 
 const DashSideBar = ({ show }) => {
@@ -35,6 +36,7 @@ const DashSideBar = ({ show }) => {
    
    
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     
     const onDash = () => {
@@ -113,6 +115,8 @@ const DashSideBar = ({ show }) => {
         profile ? setProfile(false) : ""
         cartState ? setCartState(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
+        dispatch(logout())
+        navigate('/login')
     }
   return (
     <div>

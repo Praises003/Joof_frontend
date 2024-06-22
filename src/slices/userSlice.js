@@ -70,13 +70,13 @@ const userSlice = createSlice({
             state.isError = false
             state.message = ""
         },
-        logout: (state, action) => {
-            state.isLoading = false
-            state.isSuccess = true
-            state.isError = false
-            state.message= action.payload
-            state.user = null
-            localStorage.removeItem('user')
+        logout: (state) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isError = false;
+            state.message = "Logged out successfully";
+            state.user = null;
+            localStorage.removeItem('user');
         }
     },
     extraReducers: (builder) => {
