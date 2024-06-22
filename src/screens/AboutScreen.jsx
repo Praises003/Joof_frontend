@@ -26,22 +26,22 @@ import axios from 'axios';
 
 
 const AboutScreen = () => {
-    const [about, setAbout] = useState(localStorage.getItem('about') ||"ABOUT PROFUSELEMO MULTI-PURPOSE EVENT CENTER")
-    const [welcome, setWelcome] = useState(localStorage.getItem('welcome') ||"Welcome to Profuselemo Multi-Purpose Event Center")
-    const [event, setEvent] = useState(localStorage.getItem('event') ||"PROF RUFUS OLADIPO ELEMO EVENT CENTER is an ultra-modern event and conference meeting venue with a one-and-half-acre piece of property, uniquely brick built with state-of-the-art facilities within a well-kept vicinity. It is spacious, fully air-conditioned, and highly insulated with the capacity to host up to 1000 guests in banquet settings and 1300 guests in theater settings. This makes it convenient for us to host both corporate and retail events in a serene environment. We can conveniently host weddings, corporate functions, parties, banquets, church services, and more! It further has the capacity to accommodate over 300 cars parked within the premises without obstructing the free flow of traffic along the highway.")
-    const [prof, setProf] = useState(localStorage.getItem('prof') ||"PROFESSIONAL SECURITY")
-    const [uninter, setUnInter] = useState(localStorage.getItem('uninter') ||"UNINTERRUPTED POWER SUPPLY")
-    const [room, setRoom] = useState(localStorage.getItem('room') ||"REST ROOMS")
-    const [access, setAccess] = useState(localStorage.getItem('access') ||"ACCESSIBLE EVENT SPACE WITH GREAT PARKING")
-    const [success, setSuccess] = useState(localStorage.getItem('success') ||"WE ARE HERE TO MAKE YOUR EVENT SUCCESSFUL")
-    const [security, setSecurity] = useState(localStorage.getItem('security') ||"GUARANTEED HIGH SECURITY & ADDED FACILITIES")
+    const [about, setAbout] = useState("ABOUT PROFUSELEMO MULTI-PURPOSE EVENT CENTER")
+    const [welcome, setWelcome] = useState("Welcome to Profuselemo Multi-Purpose Event Center")
+    const [event, setEvent] = useState("PROF RUFUS OLADIPO ELEMO EVENT CENTER is an ultra-modern event and conference meeting venue with a one-and-half-acre piece of property, uniquely brick built with state-of-the-art facilities within a well-kept vicinity. It is spacious, fully air-conditioned, and highly insulated with the capacity to host up to 1000 guests in banquet settings and 1300 guests in theater settings. This makes it convenient for us to host both corporate and retail events in a serene environment. We can conveniently host weddings, corporate functions, parties, banquets, church services, and more! It further has the capacity to accommodate over 300 cars parked within the premises without obstructing the free flow of traffic along the highway.")
+    const [prof, setProf] = useState("PROFESSIONAL SECURITY")
+    const [uninter, setUnInter] = useState("UNINTERRUPTED POWER SUPPLY")
+    const [room, setRoom] = useState("REST ROOMS")
+    const [access, setAccess] = useState("ACCESSIBLE EVENT SPACE WITH GREAT PARKING")
+    const [success, setSuccess] = useState("WE ARE HERE TO MAKE YOUR EVENT SUCCESSFUL")
+    const [security, setSecurity] = useState("GUARANTEED HIGH SECURITY & ADDED FACILITIES")
 
-    const [textOne, setTextOne] = useState(localStorage.getItem('textOne') ||"We offer a first security system to support our clients on their events to ensure a hitch-free event. Arrangements are made to protect the VIPs, their invites as well as ensuring that the assets of our clients and their guests are safe and secured.")
-    const [textTwo, setTextTwo] = useState(localStorage.getItem('textTwo') || "We guarantee an uninterrupted power supply for our clients and their guests having our own 200KVA transformer which aids three-phase power supply from the PHCN. A dedicated 400KVA generator that can accommodate all our equipment, lighting, and multimedia facilities conveniently.")
-    const [textThree, setTextThree] = useState(localStorage.getItem('textThree') || "We have made adequate provisions for all our guests to be comfortable with both male and female conveniences thoroughly equipped with modern toiletry facilities.")
+    const [textOne, setTextOne] = useState("We offer a first security system to support our clients on their events to ensure a hitch-free event. Arrangements are made to protect the VIPs, their invites as well as ensuring that the assets of our clients and their guests are safe and secured.")
+    const [textTwo, setTextTwo] = useState( "We guarantee an uninterrupted power supply for our clients and their guests having our own 200KVA transformer which aids three-phase power supply from the PHCN. A dedicated 400KVA generator that can accommodate all our equipment, lighting, and multimedia facilities conveniently.")
+    const [textThree, setTextThree] = useState("We have made adequate provisions for all our guests to be comfortable with both male and female conveniences thoroughly equipped with modern toiletry facilities.")
     const [textFour, setTextFour] = useState(localStorage.getItem('textFour') || "With ramp access & easily reached transportation routes, our event space is highly accessible with lots of parking to ensure that guests can easily locate and attend your event.")
-    const [textFive, setTextFive] = useState(localStorage.getItem('textFive') || "Our one universal goal is to ensure that everyone who attends your special event is able to have a fantastic time.")
-    const [textSix, setTextSix] = useState(localStorage.getItem('textSix') || "With State of the art surveillance & security personnel and a host of other facilities on site, you stand to get real value for your money when you host events at Noble Castle.")
+    const [textFive, setTextFive] = useState("Our one universal goal is to ensure that everyone who attends your special event is able to have a fantastic time.")
+    const [textSix, setTextSix] = useState("With State of the art surveillance & security personnel and a host of other facilities on site, you stand to get real value for your money when you host events at Noble Castle.")
     const [showForm, setShowForm] = 
     useState(false);
     const [showSecForm, setShowSecForm] = useState(false);
@@ -124,15 +124,19 @@ const AboutScreen = () => {
   useEffect(() => {
     const fetchTextData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/texts');
+        const { data } = await axios.get('https://joof-backend.onrender.com/api/texts');
         setAbout(data.aboutText)
         setWelcome(data.welcomeText);
         setProf(data.profText);
         
        
         //setHighly(data.highly)
-        //setAccess(data.access)
+        setAccess(data.access)
         setSuccess(data.success)
+        setRoom(data.room)
+        setSecurity(data.security)
+        setUnInter(data.uninter)
+        setEvent(data.event)
         //setFac(data.fac)
         setTextOne(data.textOne)
         setTextTwo(data.textTwo)
@@ -153,43 +157,58 @@ const AboutScreen = () => {
       setLoading(true);
       let updatedText;
       if (type === 'welcome') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/welcome', { text: welcomeText });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/welcome', { text: welcome });
         setWelcome(updatedText.data.welcomeText);
-      }  else if (type === 'prov') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/prov', { text: prov });
+      }  else if (type === 'about') {
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/about', { text: about });
+        setProf(updatedText.data.profText);
+      } else if (type === 'prov') {
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/prov', { text: prov });
         setProf(updatedText.data.profText);
       } else if (type === 'ded') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/ded', { text: ded });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/ded', { text: ded });
         setDed(updatedText.data.ded);
+      } else if (type === 'event') {
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/event', { text: event });
+        setEvent(updatedText.data.event);
+      } else if (type === 'room') {
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/room', { text: room });
+        setRoom(updatedText.data.room);
+      } else if (type === 'security') {
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/security', { text: security });
+        setSecurity(updatedText.data.security);
+      } else if (type === 'uninter') {
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/uninter', { text: uninter });
+        setUnInter(updatedText.data.uninter);
       } else if (type === 'highly') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/highly', { text: highly });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/highly', { text: highly });
         setHighly(updatedText.data.highly);
       } else if (type === 'access') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/access', { text: access });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/access', { text: access });
         setAccess(updatedText.data.access);
       } else if (type === 'success') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/success', { text: success });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/success', { text: success });
        setSuccess(updatedText.data.success);
       } else if (type === 'fac') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/fac', { text: fac });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/fac', { text: fac });
         setFac(updatedText.data.fac);
       } else if (type === 'textOne') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/textOne', { text: textOne });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textOne', { text: textOne });
         setTextOne(updatedText.data.textOne);
       } else if (type === 'textTwo') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/textTwo', { text: textTwo });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textTwo', { text: textTwo });
         setTextTwo(updatedText.data.textTwo);
       } else if (type === 'textThree') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/textThree', { text: textThree });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textThree', { text: textThree });
         setTextThree(updatedText.data.textThree);
       } else if (type === 'textFour') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/textFour', { text: textFour });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textFour', { text: textFour });
         setTextFour(updatedText.data.textFour);
       } else if (type === 'textFive') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/textFive', { text: textFive });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textFive', { text: textFive });
         setTextFive(updatedText.data.textFive);
       } else if (type === 'textSix') {
-        updatedText = await axios.put('http://localhost:5000/api/texts/textSix', { text: textSix });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textSix', { text: textSix });
         setTextSix(updatedText.data.textSix);
       }
       setLoading(false);
@@ -527,7 +546,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                 onClick={() => handleUpdateText('about')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -673,7 +692,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('uninter')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -723,7 +742,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('room')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -748,7 +767,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('textThree')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -797,7 +816,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                onClick={() => handleUpdateText('textOne')}
+                onClick={() => handleUpdateText('textFour')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -846,7 +865,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-               onClick={() => handleUpdateText('textThree')}
+               onClick={() => handleUpdateText('success')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update
@@ -904,7 +923,7 @@ const AboutScreen = () => {
             />
             <div className="flex justify-end">
               <button
-                //onClick={handleUpdateTextOne}
+                onClick={() => handleUpdateText('security')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update

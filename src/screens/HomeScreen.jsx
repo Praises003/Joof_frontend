@@ -130,7 +130,8 @@ const HomeScreen = () => {
     const fetchTextData = async () => {
       try {
       
-        const { data } = await axios.get('http://localhost:5000/api/text', {withCredentials: true});
+        const { data } = await axios.get('https://joof-backend.onrender.com/api/texts', {withCredentials: true});
+        console.log(data)
         setVisionText(data.visionText);
         setMissionText(data.missionText);
         setBannerText(data.bannerText);
@@ -251,13 +252,14 @@ const HomeScreen = () => {
       setLoading(true);
       let updatedText;
       if (type === 'vision') {
-        updatedText = await axios.put('http://localhost:5000/api/text/vision', { text: visionText });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/vision', { text: visionText });
+        console.log(updatedText)
         setVisionText(updatedText.data.visionText);
       } else if (type === 'mission') {
-        updatedText = await axios.put('http://localhost:5000/api/text/mission', { text: missionText });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/mission', { text: missionText });
         setMissionText(updatedText.data.missionText);
       } else if (type === 'banner') {
-        updatedText = await axios.put('http://localhost:5000/api/text/banner', { text: bannerText });
+        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/banner', { text: bannerText });
         setBannerText(updatedText.data.bannerText);
       }
       setLoading(false);
@@ -442,7 +444,7 @@ console.log(firstImg)
             />
             <div className="flex justify-end">
               <button
-                oonClick={() => handleUpdateText('mission')}
+                onClick={() => handleUpdateText('mission')}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
               >
                 Update

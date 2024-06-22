@@ -30,6 +30,7 @@ const WelcomeComponent = () => {
     const [loading, setLoading] = useState(false)
 
     const [showForm, setShowForm] = useState(false);
+    const [showAno, setShowAno] = useState(false)
     const [showImg, setShowImg] = useState(false);
     const [showSecImg, setShowSecImg] = useState(false);
 
@@ -67,7 +68,7 @@ const WelcomeComponent = () => {
   useEffect(() => {
     const fetchTextData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/text');
+        const { data } = await axios.get('https://joof-backend.onrender.com/api/texts');
         setWelcomeText(data.welcomeText);
         setSecText(data.secText);
         setProfText(data.profText);
@@ -143,49 +144,49 @@ const WelcomeComponent = () => {
           setLoading(true);
           let updatedText;
           if (type === 'welcome') {
-            updatedText = await axios.put('http://localhost:5000/api/text/welcome', { text: welcomeText });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/welcome', { text: welcomeText });
             setVisionText(updatedText.data.welcomeText);
           } else if (type === 'sec') {
-            updatedText = await axios.put('http://localhost:5000/api/text/secText', { text: secText });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/secText', { text: secText });
             setSecText(updatedText.data.secText);
           } else if (type === 'prof') {
-            updatedText = await axios.put('http://localhost:5000/api/text/profText', { text: profText });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/profText', { text: profText });
             setProfText(updatedText.data.profText);
           } else if (type === 'prov') {
-            updatedText = await axios.put('http://localhost:5000/api/text/prov', { text: prov });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/prov', { text: prov });
             setProv(updatedText.data.prov);
           } else if (type === 'ded') {
-            updatedText = await axios.put('http://localhost:5000/api/text/ded', { text: ded });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/ded', { text: ded });
             setDed(updatedText.data.ded);
           } else if (type === 'highly') {
-            updatedText = await axios.put('http://localhost:5000/api/text/highly', { text: highly });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/highly', { text: highly });
             setHighly(updatedText.data.highly);
           } else if (type === 'access') {
-            updatedText = await axios.put('http://localhost:5000/api/text/access', { text: access });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/access', { text: access });
             setAccess(updatedText.data.access);
           } else if (type === 'success') {
-            updatedText = await axios.put('http://localhost:5000/api/text/success', { text: success });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/success', { text: success });
            setSuccess(updatedText.data.success);
           } else if (type === 'fac') {
-            updatedText = await axios.put('http://localhost:5000/api/text/fac', { text: fac });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/fac', { text: fac });
             setFac(updatedText.data.fac);
           } else if (type === 'textOne') {
-            updatedText = await axios.put('http://localhost:5000/api/text/textOne', { text: textOne });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textOne', { text: textOne });
             setTextOne(updatedText.data.textOne);
           } else if (type === 'textTwo') {
-            updatedText = await axios.put('http://localhost:5000/api/text/textTwo', { text: textTwo });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textTwo', { text: textTwo });
             setTextTwo(updatedText.data.textTwo);
           } else if (type === 'textThree') {
-            updatedText = await axios.put('http://localhost:5000/api/text/textThree', { text: textThree });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textThree', { text: textThree });
             setTextThree(updatedText.data.textThree);
           } else if (type === 'textFour') {
-            updatedText = await axios.put('http://localhost:5000/api/text/textFour', { text: textFour });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textFour', { text: textFour });
             setTextFour(updatedText.data.textFour);
           } else if (type === 'textFive') {
-            updatedText = await axios.put('http://localhost:5000/api/text/textFive', { text: textFive });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textFive', { text: textFive });
             setTextFive(updatedText.data.textFive);
           } else if (type === 'textSix') {
-            updatedText = await axios.put('http://localhost:5000/api/text/textSix', { text: textSix });
+            updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/textSix', { text: textSix });
             setTextSix(updatedText.data.textSix);
           }
           setLoading(false);
@@ -515,7 +516,7 @@ const WelcomeComponent = () => {
         </div>
 
         <div className="flex items-center justify-center mt-2.5">
-                <button onClick={() => setShowForm(true)}
+                <button onClick={() => setShowAno(true)}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block"
                 ><div className="flex items-center justify-center">
                     <FaPencilAlt size={18}/><p className='text-center'>Edit Event Center Section</p>
@@ -523,7 +524,7 @@ const WelcomeComponent = () => {
 
             </div>
 
-        {showForm && (
+        {showAno && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
           <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
             <h2 className="text-lg font-semibold mb-4">Update Text</h2>
@@ -540,7 +541,7 @@ const WelcomeComponent = () => {
                 Update
               </button>
               <button
-                onClick={() => setShowForm(false)}
+                onClick={() => setShowAno(false)}
                 className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
               >
                 Cancel
@@ -563,7 +564,7 @@ const WelcomeComponent = () => {
                 Update
               </button>
               <button
-                onClick={() => setShowForm(false)}
+                onClick={() => setShowAno(false)}
                 className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
               >
                 Cancel
@@ -586,7 +587,7 @@ const WelcomeComponent = () => {
                 Update
               </button>
               <button
-                onClick={() => setShowForm(false)}
+                onClick={() => setShowAno(false)}
                 className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
               >
                 Cancel
@@ -610,7 +611,7 @@ const WelcomeComponent = () => {
                 Update
               </button>
               <button
-                onClick={() => setShowForm(false)}
+                onClick={() => setShowAno(false)}
                 className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
               >
                 Cancel
@@ -634,7 +635,7 @@ const WelcomeComponent = () => {
                 Update
               </button>
               <button
-                onClick={() => setShowForm(false)}
+                onClick={() => setShowAno(false)}
                 className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
               >
                 Cancel
@@ -659,7 +660,7 @@ const WelcomeComponent = () => {
                 Update
               </button>
               <button
-                onClick={() => setShowForm(false)}
+                onClick={() => setShowAno(false)}
                 className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
               >
                 Cancel
