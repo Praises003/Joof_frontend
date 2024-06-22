@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 import birthday from '../assets/conference.jpg'
 import fundraising from '../assets/fundraising.jpg'
@@ -27,6 +28,7 @@ const GalleryComponent = () => {
     const [imgs, setImgs] = useState([])
     const [image, setImage] = useState([])
     const [loading, setLoading] = useState(false)
+    const { user } = useSelector(state => state.user)
 
     const images = [
         {
@@ -231,7 +233,7 @@ const GalleryComponent = () => {
 
           </div>
            
-          <button onClick={() => {removeImg(image.id); }}><FaTrashCan size={25} className='absolute text-red-700 top-2 right-3' /></button>
+         { user && user?.isAdmin ? (<button onClick={() => {removeImg(image.id); }}><FaTrashCan size={25} className='absolute text-red-700 top-2 right-3' /></button>) : (<></>)}
 
 
         </div>

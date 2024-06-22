@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { FaPencilAlt } from "react-icons/fa";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules'
@@ -39,7 +40,7 @@ const AboutScreen = () => {
     const [textOne, setTextOne] = useState("We offer a first security system to support our clients on their events to ensure a hitch-free event. Arrangements are made to protect the VIPs, their invites as well as ensuring that the assets of our clients and their guests are safe and secured.")
     const [textTwo, setTextTwo] = useState( "We guarantee an uninterrupted power supply for our clients and their guests having our own 200KVA transformer which aids three-phase power supply from the PHCN. A dedicated 400KVA generator that can accommodate all our equipment, lighting, and multimedia facilities conveniently.")
     const [textThree, setTextThree] = useState("We have made adequate provisions for all our guests to be comfortable with both male and female conveniences thoroughly equipped with modern toiletry facilities.")
-    const [textFour, setTextFour] = useState(localStorage.getItem('textFour') || "With ramp access & easily reached transportation routes, our event space is highly accessible with lots of parking to ensure that guests can easily locate and attend your event.")
+    const [textFour, setTextFour] = useState("With ramp access & easily reached transportation routes, our event space is highly accessible with lots of parking to ensure that guests can easily locate and attend your event.")
     const [textFive, setTextFive] = useState("Our one universal goal is to ensure that everyone who attends your special event is able to have a fantastic time.")
     const [textSix, setTextSix] = useState("With State of the art surveillance & security personnel and a host of other facilities on site, you stand to get real value for your money when you host events at Noble Castle.")
     const [showForm, setShowForm] = 
@@ -50,6 +51,7 @@ const AboutScreen = () => {
     const [selectedImage, setSelectedImage] = useState(null)
     const [loading, setLoading] = useState(false)
     const [showImg, setShowImg] = useState(false)
+    const { user } = useSelector(state => state.user)
 
     useEffect(() => {
       const fetchImg = async () => {
@@ -125,7 +127,7 @@ const AboutScreen = () => {
     const fetchTextData = async () => {
       try {
         const { data } = await axios.get('https://joof-backend.onrender.com/api/texts');
-        setAbout(data.aboutText)
+        setAbout(data.about)
         setWelcome(data.welcomeText);
         setProf(data.profText);
         
@@ -161,11 +163,13 @@ const AboutScreen = () => {
         setWelcome(updatedText.data.welcomeText);
       }  else if (type === 'about') {
         updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/about', { text: about });
-        setProf(updatedText.data.profText);
-      } else if (type === 'prov') {
-        updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/prov', { text: prov });
-        setProf(updatedText.data.profText);
-      } else if (type === 'ded') {
+        setAbout(updatedText.data.about);
+      } 
+      // else if (type === 'prov') {
+      //   updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/prov', { text: prov });
+      //   setProv(updatedText.data.prov);
+      // } 
+        else if (type === 'ded') {
         updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/ded', { text: ded });
         setDed(updatedText.data.ded);
       } else if (type === 'event') {
@@ -320,7 +324,7 @@ const AboutScreen = () => {
 
         
 
-        <div className="flex items-center justify-center">
+        { user && user?.isAdmin ? (<div className="flex items-center justify-center">
       <button onClick={() => setShowForm(true)}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
       ><div className="flex items-center justify-center">
@@ -333,8 +337,7 @@ const AboutScreen = () => {
           <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
         </div></button>
 
-    </div>
-
+    </div>) : (<></>)}
     {showImg && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
           <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
@@ -375,14 +378,14 @@ const AboutScreen = () => {
         </div> 
 
         {/** second section */}
-        <div className="flex items-center justify-center mb-5">
+        {user && user.isAdmin ? (<div className="flex items-center justify-center mb-5">
       <button onClick={() => setShowSecForm(true)}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
       ><div className="flex items-center justify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Welcome Section</p>
         </div></button>
 
-    </div>
+    </div>) : (<></>)}
 
 
         {/* <div className=" p-4">
@@ -487,14 +490,14 @@ const AboutScreen = () => {
         </div>
 
                 {/** third section */}
-                <div className="flex items-center justify-center my-5">
+              { user && user?.isAdmin ? (<div className="flex items-center justify-center my-5">
             <button onClick={() => setThdShowForm(true)}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
             ><div className="flex items-center justify-center">
                 <FaPencilAlt size={18}/><p className='text-center'>Edit This Section</p>
             </div></button>
 
-    </div>
+                </div>) : (<></>)}
 
         <div className="">
         <div className=" bg-black py-6 md:p-16 my-3">

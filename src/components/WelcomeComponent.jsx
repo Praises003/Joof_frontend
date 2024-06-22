@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import noble from '../assets/eve.jpg'
 import event from "../assets/bg_a.jpg"
@@ -51,6 +53,8 @@ const WelcomeComponent = () => {
     const [img, setImg] = useState("")
     const [files, setFiles] = useState([])
     const [imgs, setImgs] = useState(localStorage.getItem('multiImg') ? JSON.parse(localStorage.getItem('multiImg')) :  [])
+
+    const { user } = useSelector(state => state.user)
 
     // Save updated visionText to localStorage whenever it changes
     
@@ -361,17 +365,17 @@ const WelcomeComponent = () => {
         
     <div className="flex items-center justify-around">
 
-    <button onClick={() => setShowImg(true)}
+    {user?.isAdmin && <button onClick={() => setShowImg(true)}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
       ><div className="flex items-center justify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
-        </div></button>
+        </div></button>}
 
-      <button onClick={() => setShowForm(true)}
+      {user && user?.isAdmin ? (<button onClick={() => setShowForm(true)}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 md:3/4 block"
       ><div className="flex items-center justify-center">
           <FaPencilAlt size={18} className='hidden md:block'/><p className='text-center '>Edit Welcome Section</p>
-        </div></button>
+        </div></button>) : (<div></div>)}
 
         
 
@@ -499,11 +503,11 @@ const WelcomeComponent = () => {
                 <div className="lg:w-11/12 ">
                   {console.log(img)}
                     <img src={img} className='s bg-cover bg-no-repeat' alt="" />
-                    <button onClick={() => setShowSecImg(true)}
+                   {user && user.isAdmin ? (<button onClick={() => setShowSecImg(true)}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block mx-auto mt-3"
                 ><div className="flex items-center justify-center">
                     <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
-                    </div></button>
+                    </div></button>) : (<div></div>)}
                 </div>
 
                
@@ -516,11 +520,11 @@ const WelcomeComponent = () => {
         </div>
 
         <div className="flex items-center justify-center mt-2.5">
-                <button onClick={() => setShowAno(true)}
+                {user && user.isAdmin ?  (<button onClick={() => setShowAno(true)}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block"
                 ><div className="flex items-center justify-center">
                     <FaPencilAlt size={18}/><p className='text-center'>Edit Event Center Section</p>
-                    </div></button>
+                    </div></button>) : (<div></div>)}
 
             </div>
 
@@ -682,7 +686,7 @@ const WelcomeComponent = () => {
             <input type="file" onChange={handleImageChange} 
               className="w-full h-36 mb-4 p-2 border  rounded"
             />
-            <div className="flex justify-end">
+           { user.isAdmin && <div className="flex justify-end">
               <button
                 onClick={handleImageUpload}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
@@ -695,7 +699,7 @@ const WelcomeComponent = () => {
               >
                 Cancel
               </button>
-            </div>  
+            </div>}  
               
             </div>
     </div> )}

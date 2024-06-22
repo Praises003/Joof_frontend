@@ -584,17 +584,17 @@ console.log(firstImg)
 
 
     <div className="flex items-center justify-center">
-     {user?.isAdmin && <button onClick={() => setShowForm(true)}
+     {user && user?.isAdmin ? (<button onClick={() => setShowForm(true)}
         className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block `}     >
           <div className="flex items-centerjustify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Banner</p>
-        </div></button>}
+        </div></button>) : (<></>)}
 
-       { user?.isAdmin && <button onClick={() => setShowImg(true)}
+       {user && user?.isAdmin ? (<button onClick={() => setShowImg(true)}
         className={`  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block`}
       ><div className="flex items-center justify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
-        </div></button>
+        </div></button>) : (<></>)
 }
 
     </div>

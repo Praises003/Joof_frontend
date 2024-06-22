@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 import {FaMapLocation} from 'react-icons/fa6'
 import {RxAvatar} from 'react-icons/rx'
@@ -24,6 +25,8 @@ const VenueInfoCardComponent = () => {
 
     const [loading, setLoading] = useState(false)
     const [showForm, setShowForm] = useState(false);
+
+    const { user } = useSelector(state => state.user)
 
     const handlehighChange = (e) => {
         setHigh(e.target.value);
@@ -381,14 +384,14 @@ const VenueInfoCardComponent = () => {
 
         </div>
         {/* edit button*/}
-        <div className="flex items-center justify-center mb-16">
+       {user && user.isAdmin ?  (<div className="flex items-center justify-center mb-16">
       <button onClick={() => setShowForm(true)}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block"
       ><div className="flex items-center justify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit This Section</p>
         </div></button>
 
-    </div>
+    </div>) : (<></>)}
 
             {/* update form*/ }
             {showForm && (

@@ -6,6 +6,8 @@ import {Link} from "react-router-dom"
 import chatLogoo from "../assets/logo4.jpg"
 import { login } from '../slices/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import SpinnerComponent from '../components/SpinnerComponent'
+
 
 
 const LoginScreen = () => {
@@ -27,6 +29,10 @@ const LoginScreen = () => {
   
     if(user) {
       navigate("/dashboard")
+    }
+
+    if(user?.isAdmin) {
+      navigate("/admin")
     }
   
   },[user, dispatch, navigate, isError, message, isSuccess])
@@ -51,7 +57,9 @@ const LoginScreen = () => {
      return (
       <>
       <div className="bg-blue-900 md:w-8/12 mx-auto py-2">
-
+      <div className="">
+       {isLoading && (<SpinnerComponent /> ) }
+      </div>
       
         <div className="bg-gray-50 w-96  mx-auto mt-6 p-5 mb-4">
           <img className=' w-40 mx-auto' src={chatLogoo} alt="" />
