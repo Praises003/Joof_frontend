@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from "react-redux"
+import { Link, useNavigate } from 'react-router-dom';
 import {loadStripe} from '@stripe/stripe-js';
 import {
   PaymentElement,
@@ -25,6 +26,15 @@ const CartScreen = () => {
     const {moreEvent} = useSelector(state => state.moreEvent)
     const {guest} = useSelector(state => state.guest)
     const dispatch = useDispatch()
+
+    
+    console.log(user)
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( user === null ) {
+            navigate("/register")
+        }
+    }, [])
 
       console.log(eventPackage)
     let total = eventPackage.reduce((sum, even ) => sum + even.price, 0 )

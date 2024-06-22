@@ -1,6 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
+import {useSelector, useDispatch} from "react-redux"
 
 const UserListComponent = () => {
+  const { user } = useSelector(state => state.user)
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( !user.isAdmin ) {
+            navigate("/register")
+        }
+    }, [])
   return (
     <div>
         <div style={{background: "#202020"}}  className='p-4'>

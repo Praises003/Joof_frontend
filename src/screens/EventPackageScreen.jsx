@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import eventImg from '../assets/ev9.jpg'
 import {useSelector, useDispatch} from "react-redux"
+import { Link, useNavigate } from 'react-router-dom';
 import { addToCart } from '../slices/eventPackageSlice'
-import { Link } from 'react-router-dom'
+
 import { FaClock } from "react-icons/fa";
 import { FaRegHandshake } from "react-icons/fa6";
 import { IoFastFood } from "react-icons/io5";
@@ -41,7 +42,15 @@ const EventPackageScreen = () => {
     const dispatch = useDispatch()
     console.log(eventPackage)
 
-    
+    const { user } = useSelector(state => state.user)
+    console.log(user)
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( user === null ) {
+            navigate("/register")
+        }
+    }, [])
+
 
     useEffect(() => {
       const fetchEvents = async () => {

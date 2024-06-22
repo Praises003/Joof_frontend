@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { IoCalendarNumberSharp } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt } from "react-icons/fa";
@@ -17,7 +18,14 @@ const EventListComponent = () => {
   const dispatch = useDispatch();
   const { tables, loading } = useSelector((state) => state.table);
   console.log(tables, loading)
+  const { user } = useSelector(state => state.user)
 
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( !user.isAdmin ) {
+            navigate("/register")
+        }
+    }, [])
   useEffect(() => {
     dispatch(fetchTables());
   }, [dispatch]);

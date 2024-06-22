@@ -1,4 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
+import {useSelector, useDispatch} from "react-redux"
 import { FaUsers } from "react-icons/fa";
 import { IoTicketSharp } from "react-icons/io5";
 import { IoCalendarNumberSharp } from "react-icons/io5";
@@ -14,6 +16,14 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 
 const AdminSectionComponent = ({show, setShow}) => {
+  const { user } = useSelector(state => state.user)
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        if ( !user.isAdmin ) {
+            navigate("/register")
+        }
+    }, [])
 
   const menuClick = () => {
     setShow(true)

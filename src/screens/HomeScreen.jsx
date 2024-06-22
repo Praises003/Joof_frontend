@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import eventImg from "../assets/event3.jpg"
 import event from "../assets/event2.jpeg"
 import seminar from "../assets/seminar.jpg"
@@ -46,6 +47,8 @@ const HomeScreen = () => {
   const [secImg, setSecImg] = useState("")
   const [thirdImg, setThirdImg] = useState("")
   const [showImg, setShowImg] = useState(false)
+
+  const { user } = useSelector(state => state.user)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -581,18 +584,18 @@ console.log(firstImg)
 
 
     <div className="flex items-center justify-center">
-      <button onClick={() => setShowForm(true)}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
-      ><div className="flex items-center justify-center">
+     {user?.isAdmin && <button onClick={() => setShowForm(true)}
+        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block `}     >
+          <div className="flex items-centerjustify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Banner</p>
-        </div></button>
+        </div></button>}
 
-        <button onClick={() => setShowImg(true)}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
+       { user?.isAdmin && <button onClick={() => setShowImg(true)}
+        className={`  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block`}
       ><div className="flex items-center justify-center">
           <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
         </div></button>
-
+}
 
     </div>
   
