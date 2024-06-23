@@ -7,6 +7,7 @@ import {TfiFacebook, TfiInstagram} from 'react-icons/tfi'
 import {FaXTwitter} from 'react-icons/fa6'
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+import { FaUserLarge } from "react-icons/fa6";
 
 const NavComponent = () => {
   const [navList, setNavList] = useState(false)
@@ -46,6 +47,10 @@ const NavComponent = () => {
 
         <div className="hidden lg:block">
             <Link to={"/calendar"} className='bg-yellow-500 px-3 py-3 text-white text-lg font-bold  rounded-md'>Book An Event</Link>
+        </div>
+
+        <div className="">
+        <Link to={"/dashboard"} className='hidden lg:block pl-2 pr-4  font-bold text-lg'><FaUserLarge color='white' size={20} /></Link>
         </div>
 
         <div className=" w-1/12 lg:block hidden">
@@ -89,6 +94,15 @@ const NavComponent = () => {
         </div>
 }
             <Link to={"/contact"} className='block pb-4 font-medium text-lg'>Contact Us</Link>
+
+            <div className="mb-3">
+            <Link to={"/dashboard"} className="block  py-2 text-sm text-gray-700 hover:bg-gray-100" >
+              <div className="flex items-center">
+              <FaUserLarge className='mr-4 ' color='white' size={20} /> 
+              <p className=" font-medium text-lg text-white">Dashboard</p>
+
+              </div></Link>
+            </div>
             <div className="bg-yellow-500 p-3  rounded-lg text-white text-center w-full font-bold text-lg ">
               <Link to={"/calendar"}>Book an Event</Link>
             </div>

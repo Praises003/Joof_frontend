@@ -49,14 +49,24 @@ const AboutScreen = () => {
     const [showThdForm, setThdShowForm] = useState(false);
     const [image, setImage] = useState("")
     const [selectedImage, setSelectedImage] = useState(null)
+    const [secImg, setSecImg] = useState("")
     const [loading, setLoading] = useState(false)
     const [showImg, setShowImg] = useState(false)
+    const[showSecImg, setShowSecImg] = useState(false)
     const { user } = useSelector(state => state.user)
 
     useEffect(() => {
       const fetchImg = async () => {
         console.log("fetching images")
         await getImage()
+        console.log("success")
+      }
+      fetchImg()
+    },[])
+    useEffect(() => {
+      const fetchImg = async () => {
+        console.log("fetching images")
+        await getSecImage()
         console.log("success")
       }
       fetchImg()
@@ -252,6 +262,38 @@ const AboutScreen = () => {
         }
       }
 
+      const handleSecImageUpload = async() => {
+        if (!selectedImage) { // Check if image is available before using it
+          console.error('No image selected');
+          return;
+        }
+
+       
+      
+        const formData = new FormData();
+       
+        formData.append("file", selectedImage);
+       
+        
+        try {
+          const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageI", formData)
+        //setUploadPic(data)
+        console.log(data)
+        await getSecImage()
+        // if (data) {
+        //     localStorage.setItem('secImg', JSON.stringify(data?.savedImage?.singleImage?.url))
+        // }
+        // setImg(data?.savedImage?.singleImage?.url)
+        setImage("")
+        
+        } catch (error) {
+          console.error(error)
+        }
+      
+       
+               };
+  
+
       const getImage = async() => {
         try {
           setLoading(true)
@@ -263,6 +305,22 @@ const AboutScreen = () => {
         } catch (error) {
           
         }
+      }
+
+      
+      const getSecImage = async() => {
+        try {
+          setLoading(true);
+          const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/imageI");
+    
+          setSecImg(data?.singleImage?.url)
+           
+          setLoading(false);
+        } catch (error) {
+          console.error(error);
+          setLoading(false);
+        }
+
       }
 
 
@@ -366,26 +424,36 @@ const AboutScreen = () => {
         <div className=" p-4">
             <p className='text-center text-3xl md:text-4xl font-semibold mb-10'>{welcome}</p>
             <div className="flex flex-col md:flex-row justify-between ">
-                <div className="w-full">
-                    <img src={eventImage} alt="" className='w-full bg-no-repeat bg-cover'/>
-                </div>
+                {/* <div className="w-full">
+                    {<img src={secImg} alt="" className='w-full bg-no-repeat bg-cover'/>}
+                </div> */}
+                 <div className="lg:w-11/12 ">
+                 
+                    <img src={secImg} className='s bg-cover bg-no-repeat' alt="" />
+                   {user && user.isAdmin ? (<button onClick={() => setShowSecImg(true)}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block mx-auto mt-3"
+                ><div className="flex items-center justify-center">
+                    <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
+                    </div></button>) : (<div></div>)}
+                </div> 
                 <div className="w-full p-2">
-                    <p className="text-lg font-semibold">
+                    <p className="text-lg font-semibold mb-10">
                         {event}</p>
+                         {/** second section */}
+        {user && user.isAdmin ? (<div className="flex items-center justify-center mb-5">
+      <button onClick={() => setShowSecForm(true)}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block"
+      ><div className="flex items-center justify-center ">
+          <FaPencilAlt size={18}/><p className='text-center'>Edit This Section</p>
+        </div></button>
+
+    </div>) : (<></>)}
 
                 </div>
             </div>
         </div> 
 
-        {/** second section */}
-        {user && user.isAdmin ? (<div className="flex items-center justify-center mb-5">
-      <button onClick={() => setShowSecForm(true)}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-1/4 block"
-      ><div className="flex items-center justify-center">
-          <FaPencilAlt size={18}/><p className='text-center'>Edit Welcome Section</p>
-        </div></button>
-
-    </div>) : (<></>)}
+       
 
 
         {/* <div className=" p-4">
@@ -567,6 +635,32 @@ const AboutScreen = () => {
           </div>
         </div>
       )}
+
+      {/** SecImg */}
+      {showSecImg && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 ">
+          <div className="bg-white p-8 rounded-lg w-96 h-96 overflow-y-auto"> {/* Increased width to 96 */}
+            <h2 className="text-lg font-semibold mb-4">Update Image</h2>
+            <input type="file" onChange={handleImageChange} 
+              className="w-full h-36 mb-4 p-2 border  rounded"
+            />
+            <div className="flex justify-end">
+              <button
+                onClick={handleSecImageUpload}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+              >
+                Update Image
+              </button>
+              <button
+                onClick={() => setShowSecImg(false)}
+                className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+              >
+                Cancel
+              </button>
+            </div>  
+              
+            </div>
+    </div> )}
 
 
       {/*second section */}

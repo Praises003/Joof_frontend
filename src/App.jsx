@@ -178,7 +178,7 @@ function App() {
 
              <Route path="/eventmore" element={<EventMoreComponent /> } /> 
 
-             <Route path="/test" element={ <SeatSelScreen />} /> 
+             <Route path="/test" element={ <TestScreen /> } /> 
 
 
 

@@ -12,6 +12,8 @@ import { IoShirt } from "react-icons/io5";
 import { Link } from 'react-router-dom'
 import { FaPencilAlt } from "react-icons/fa";
 import VenueInfoCardComponent from './VenueInfoCardComponent'
+import VideoUploadComponent from '../components/VideoUploadComponent'
+
 
 const WelcomeComponent = () => {
     const [welcomeText, setWelcomeText] = useState( "Welcome To Prof Rufus")
@@ -500,7 +502,7 @@ const WelcomeComponent = () => {
 
  
                 </div>
-                <div className="lg:w-11/12 ">
+                {/* <div className="lg:w-11/12 ">
                   {console.log(img)}
                     <img src={img} className='s bg-cover bg-no-repeat' alt="" />
                    {user && user.isAdmin ? (<button onClick={() => setShowSecImg(true)}
@@ -508,7 +510,13 @@ const WelcomeComponent = () => {
                 ><div className="flex items-center justify-center">
                     <FaPencilAlt size={18}/><p className='text-center'>Edit Image</p>
                     </div></button>) : (<div></div>)}
+                </div> */}
+                <div className="mx-2">
+                  <VideoUploadComponent />
+
+
                 </div>
+                
 
                
             </div>
