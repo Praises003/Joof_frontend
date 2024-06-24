@@ -22,7 +22,7 @@ const NavComponent = () => {
   console.log(isOpen)
   return (
     <nav className=' flex justify-between items-center py-5 px-3  mb-0.5 shadow-lg sticky top-0 z-20 bg-black text-white'>
-        <img src={noblecastle} alt="" className='border h-20 md:w-1/5  w-1/3'/>
+        <img src={noblecastle} alt="" className='border h-20 lg:mx-auto  w-40'/>
         <div className="hidden lg:block">
         <div className="flex justify-between items-center ">
             <Link to={"/"} className='block  font-bold text-lg'>Home</Link>
