@@ -45,7 +45,7 @@ const ContactComponent = () => {
                     <h1 className='text-white font-bold text-xl mb-8 uppercase'>Our Location</h1>
                     <p className='text-white font-medium text-lg mb-4'><span>ADDRESS:</span> Aiyegbaju Street, behind Iroko market, Igbara Oke</p>
                     <p className='text-white font-medium text-lg mb-4'><span>PHONE:</span> +2349036069035</p>
-                    <p className='text-white font-medium text-lg mb-16'><span>EMAIL:</span> 
+                    <p className='text-white font-medium text-lg mb-16'><span>EMAIL: </span> 
                     rufuselemoeventcentre@gmail.com</p>
                 </div>
                 <div className=' bg-white py-10 px-10 w-full   '>
