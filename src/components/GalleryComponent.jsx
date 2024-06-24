@@ -252,7 +252,7 @@ const GalleryComponent = () => {
        <div className='lg:bg-gray-900 lg:p-6'> <ImageGallery items={imgs}  /> </div>
 
       </div>)}
-      <div className="flex items-center justify-center mt-2.5">
+     { user && user?.isAdmin ? (<div className="flex items-center justify-center mt-2.5">
                 <button onClick={() => setShowForm(true)}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  items-center w-3/4 block"
                 ><div className="flex items-center justify-center">
@@ -265,8 +265,7 @@ const GalleryComponent = () => {
                  <p className='text-center'>Delete All Pictures</p>
                     </div></button>
 
-            </div>
-
+            </div>) : (<></>)}
             
 
       {showForm && (
