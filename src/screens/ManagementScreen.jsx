@@ -13,9 +13,15 @@ import sergio from "../assets/sergio.jpg"
 import christopher from "../assets/christopher.jpg"
 import stefan from "../assets/stefan.jpg"
 import jonas from "../assets/jonas.jpg"
+import alex from "../assets/Alex.jpg"
+import segun from "../assets/segun.jpg"
+import damola from "../assets/Damola.jpg"
+import kay from "../assets/kay.jpg"
+import wunmi from "../assets/wunmi.jpg"
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
+import { BsAlexa } from 'react-icons/bs'
 //import jonas from "../assets/jonas.jpg"
 
 
@@ -127,9 +133,9 @@ const ManagementScreen = () => {
             
                      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-2">
                         <div className="">
-                            <img src={sergio} alt="" srcset="" />
-                            <p className="">Blake Howard</p>
-                            <p className="">Member</p>
+                            <img src={wunmi} alt="" srcset="" />
+                            <p className="">Dr. Omowiunmi O Elemo-Kaka- BoT </p>
+                            <p className="">Chairperson</p>
                             <div className="flex justify-between items-center">
                                 <p className="">social links:</p>
                                 <FaFacebookSquare size={30} />
@@ -143,8 +149,8 @@ const ManagementScreen = () => {
                         
                     
                     <div className="">
-                        <img src={christopher} alt="" srcset="" />
-                        <p className="">Blake Howard</p>
+                        <img src={alex} alt="" srcset="" />
+                        <p className="">Engr. Alexander Elemo</p>
                         <p className="">Member</p>
                         <div className="flex justify-between items-center">
                             <p className="">social links:</p>
@@ -158,8 +164,23 @@ const ManagementScreen = () => {
                         
                     </div>
                     <div className="">
-                        <img src={bod6} alt="" srcset="" />
-                        <p className="">Blake Howard</p>
+                        <img src={damola} alt="" srcset="" />
+                        <p className="">Mr Damola Oluwasanmi</p>
+                        <p className="">Secretary</p>
+                        <div className="flex justify-between items-center">
+                            <p className="">social links:</p>
+                            <FaFacebookSquare size={30} />
+                            <FaLinkedin size={30} />
+                            <FaInstagramSquare size={30} />
+                        </div>
+
+
+
+                        
+                    </div>
+                    <div className="">
+                        <img src={segun} alt="" srcset="" />
+                        <p className="">Dr. Segun Adebayo</p>
                         <p className="">Member</p>
                         <div className="flex justify-between items-center">
                             <p className="">social links:</p>
@@ -173,8 +194,9 @@ const ManagementScreen = () => {
                         
                     </div>
                     <div className="">
-                        <img src={bod7} alt="" srcset="" />
-                        <p className="">Blake Howard</p>
+                        <img src={kay} alt="" srcset="" />
+
+                        <p className="">Mr Kayode Obe</p>
                         <p className="">Member</p>
                         <div className="flex justify-between items-center">
                             <p className="">social links:</p>
@@ -187,33 +209,7 @@ const ManagementScreen = () => {
 
                         
                     </div>
-                    <div className="">
-                        <img src={bod8} alt="" srcset="" />
-
-                        <p className="">Blake Howard</p>
-                        <p className="">Member</p>
-                        <div className="flex justify-between items-center">
-                            <p className="">social links:</p>
-                            <FaFacebookSquare size={30} />
-                            <FaLinkedin size={30} />
-                            <FaInstagramSquare size={30} />
-                        </div>
-
-
-
-                        
-                    </div>
-                    <div className="">
-                        <img src={bod9} alt="" srcset="" />
-                        <p className="">Blake Howard</p>
-                        <p className="">Member</p>
-                        <div className="flex justify-between items-center">
-                            <p className="">social links:</p>
-                            <FaFacebookSquare size={30} />
-                            <FaLinkedin size={30} />
-                            <FaInstagramSquare size={30} />
-                        </div>
-                    </div>
+                   
 
                 </div>
             </div>
