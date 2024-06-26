@@ -361,7 +361,7 @@ console.log(firstImg)
       <img src={firstImg} className="w-full h-screen " alt="" />
       <div class="absolute inset-0 bg-black opacity-70">
               <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
-              <p className="absolute  top-52 left-32 bottom-4/5 transform  text-white text-xl ">{visionText}</p>
+              <p className="absolute  top-52 left-32 lg:left-36 bottom-4/5 transform  text-white text-center text-xl lg:text-3xl font-semibold ">{visionText}</p>
             </div>
       
     </div>
@@ -373,7 +373,7 @@ console.log(firstImg)
  
             <div class="absolute inset-0 bg-black opacity-70 ">
               <p class="absolute top-20 left-32 bottom-4/5 transform  text-white text-3xl md:text-5xl font-semibold">{bannerText}</p>
-              <p className="absolute  top- top-52 left-32 bottom-4/5 transform  text-white text-xl font-semibold">{missionText}</p>
+              <p className="absolute  top- top-52 left-32 lg:left-36 bottom-4/5 transform  text-white text-center text-xl lg:text-3xl font-semibold">{missionText}</p>
             </div>
       
     </div>

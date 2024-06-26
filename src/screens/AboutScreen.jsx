@@ -366,14 +366,16 @@ const AboutScreen = () => {
   {/* Content */}
   <div style={{
       position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      textAlign: "center",
+      top: "30%",
+      left: "30%",
+      transform: "translate(-30%, -50%)",
+      textAlign: "",
       zIndex: 1, // Ensure content is above the image and gradient
     }}
   >
-    <p className='uppercase text-4xl font-semibold md:text-5xl text-white'>{about}</p>
+    <p className='uppercase text-3xl font-semibold  lg:text-5xl text-white mb-7'>{about}</p>
+
+    <p className="text-white  text-xl lg:text-3xl font-semibold">Owned By Janet Olufunmilayo Oluwasanmi Foundation AGSI</p>
   </div>
 </div>
 
