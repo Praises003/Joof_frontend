@@ -143,7 +143,7 @@ const EventScreen = () => {
       const fetchEvents = async () => {
         try {
           setLoading(true)
-          const { data } = await axios.get('http://localhost:5000/api/package')
+          const { data } = await axios.get('https://joof-backend.onrender.com/api/package')
           setEvents(data)
           setLoading(false)
         } catch (error) {
