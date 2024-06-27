@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, {useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoCalendarNumberSharp } from "react-icons/io5";
@@ -27,6 +27,7 @@ const EventListComponent = () => {
   const handleOpenEditModal = (tableData) => {
     setSelectedTable(tableData);
     setIsEditModalOpen(true);
+  
   };
 
   const handleCloseEditModal = () => {
@@ -49,8 +50,10 @@ const EventListComponent = () => {
     dispatch(fetchTables());
   }, [dispatch]);
 let tableNumber;
+let tableName;
   let reservedTable = tables.flatMap(table => {
-     tableNumber = table.tableNumber;
+     tableNumber = table?.tableNumber;
+     tableName = table?.tableName
     return table.seats
         .filter(seat => seat.isReserved && seat.reservedBy !== '') // Filter reserved seats with 'reservedBy' filled
         .map(seat => ({
@@ -115,12 +118,12 @@ console.log(reservedTable);
 
 
 {loading ? (<SpinnerComponent />) : (tables.flatMap(table => {
-    let tableNum = table.tableNumber;
-    let tableName = table.tableName
+    let tableNum = table?.tableNumber;
+    let tableName = table?.tableName
     return table.seats
         .filter(seat => seat.isReserved && seat.reservedBy !== '') // Filter reserved seats with 'reservedBy' filled
         .map(seat => (
-            <div key={seat._id} className="grid grid-cols-3 gap-4 bg-gray-200 p-4 rounded-md mb-2">
+            <div key={seat._id} className="grid grid-cols-5 gap-4 bg-gray-200 p-4 rounded-md mb-2">
                 <p className=" text-center text-lg font-semibold text-white bg-gray-700 py-2 rounded-t-md">
                     {seat.reservedBy}
                 </p>
@@ -128,16 +131,18 @@ console.log(reservedTable);
                     Table: {tableNum}
                 </p>
 
-                <p className="text-center font-semibold">
-                    TableName: {tableName ? (tableName) : ("No Table Name")}
-                </p>
+               
                 <p className="text-center bg-blue-900 text-white rounded-md px-2.5 py-1">
                     Seat: {seat.seatNumber}
                 </p>
 
+                <p className="text-center font-semibold">
+                    TableName: {tableName ? (tableName) : ("No Table Name")}
+                </p>
+
                 <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => handleOpenEditModal({ ...seat, tableNumber: table.tableNumber })}
+                    onClick={() => handleOpenEditModal({ ...seat, tableNumber: tableNum })}
                   >
                     Edit
                   </button>

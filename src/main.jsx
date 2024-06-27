@@ -7,6 +7,9 @@ import { BrowserRouter} from 'react-router-dom'
 import store from './store.js'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
