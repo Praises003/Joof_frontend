@@ -15,7 +15,7 @@ const SeatSelectionComponent = () => {
     const { tables, loading } = useSelector((state) => state.table);
     console.log(tables, loading)
   const [name, setName] = useState('');
-  const [selectedSeat, setSelectedSeat] = useState({ tableNumber: null, seatNumber: null });
+  const [selectedSeat, setSelectedSeat] = useState({ tableNumber: null, tableName: '', seatNumber: null });
 
   const [guestName, setGuestName] = useState("")
   const [seatNum, setSeatNumber] = useState("")
@@ -25,8 +25,8 @@ const SeatSelectionComponent = () => {
     dispatch(fetchTables());
   }, [dispatch]);
 
-  const handleSeatClick = (tableNumber, seatNumber) => {
-    setSelectedSeat({ tableNumber, seatNumber });
+  const handleSeatClick = (tableNumber,tableName, seatNumber) => {
+    setSelectedSeat({ tableNumber,tableName, seatNumber });
   };
 
   const handleSubmit = (e) => {
@@ -80,7 +80,7 @@ const SeatSelectionComponent = () => {
               {table?.seats.map((seat) => (
                 <div className='lg:w-full'
                   key={seat?.seatNumber}
-                  onClick={() => handleSeatClick(table.tableNumber, seat.seatNumber)}
+                  onClick={() => handleSeatClick(table.tableNumber, table.tableName, seat.seatNumber)}
                   style={{
                     margin: '5px',
                     padding: '10px',
@@ -98,16 +98,34 @@ const SeatSelectionComponent = () => {
       </div>
       <form className="max-w-sm mx-auto my-10" onSubmit={handleSubmit}>
 
-      <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Name</label>
-        <input
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Your Name"
-          required
-        />
-        <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4" type="submit">Reserve Seat</button>
+      <div className='mb-5'>
+          <label htmlFor='tableName' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>Enter Table Name</label>
+          <input
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            type='text'
+            value={selectedSeat.tableName}
+            onChange={(e) => setSelectedSeat({ ...selectedSeat, tableName: e.target.value })}
+            placeholder='Table Name'
+            required
+          />
+        </div>
+        <div className='mb-5'>
+          <label htmlFor='name' className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>Enter Name</label>
+          <input
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            type='text'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder='Your Name'
+            required
+          />
+        </div>
+        <button
+          className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4'
+          type='submit'
+        >
+          Reserve Seat
+        </button>
       </form>
      
       <div className="flex justify-center    items-center my-5 ">

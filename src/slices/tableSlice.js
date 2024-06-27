@@ -36,7 +36,7 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
 
   export const reserveSeat = createAsyncThunk(
     'tables/reserveSeat',
-    async ({ tableNumber, seatNumber, name }, thunkApi) => {
+    async ({ tableNumber, tableName, seatNumber, name }, thunkApi) => {
       try {
 
         const token = thunkApi.getState().user.user.token
@@ -49,6 +49,7 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
 
         const response = await axios.post('https://joof-backend.onrender.com/api/table/reserve', {
         tableNumber,
+        tableName,
         seatNumber,
         name,
       }, config );
