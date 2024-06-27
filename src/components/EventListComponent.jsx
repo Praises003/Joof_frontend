@@ -7,9 +7,10 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaTicket } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 
-import { fetchTables, reserveSeat } from '../slices/tableSlice';
+import { fetchTables, reserveSeat, updateSeat } from '../slices/tableSlice';
 
 import SpinnerComponent from '../components/SpinnerComponent'
+import EditModal from '../utils/EditModal';
 
 
 
@@ -19,6 +20,24 @@ const EventListComponent = () => {
   const { tables, loading } = useSelector((state) => state.table);
   console.log(tables, loading)
   const { user } = useSelector(state => state.user)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedTable, setSelectedTable] = useState(null);
+
+
+  const handleOpenEditModal = (tableData) => {
+    setSelectedTable(tableData);
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setSelectedTable(null);
+    setIsEditModalOpen(false);
+  };
+
+  const handleSubmitUpdate = (formData) => {
+    dispatch(updateSeat(formData)); // Assuming updateSeat action handles the API call
+  };
+
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -115,13 +134,25 @@ console.log(reservedTable);
                 <p className="text-center bg-blue-900 text-white rounded-md px-2.5 py-1">
                     Seat: {seat.seatNumber}
                 </p>
+
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleOpenEditModal({ ...seat, tableNumber: table.tableNumber })}
+                  >
+                    Edit
+                  </button>
             </div>
         ))
 }))}
 
 
           
-
+        <EditModal
+          isOpen={isEditModalOpen}
+          closeModal={handleCloseEditModal}
+          tableData={selectedTable}
+          handleSubmitUpdate={handleSubmitUpdate}
+        />
           
 
         

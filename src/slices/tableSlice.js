@@ -66,6 +66,33 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
       }
           }
   );
+  export const updateSeat = createAsyncThunk(
+    'tables/updateSeat',
+    async ({ tableNumber, seatNumber, newSeatNumber, newName, newTableName }, thunkApi) => {
+      try {
+        const token = thunkApi.getState().user.user.token;
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await axios.put(
+          `https://joof-backend.onrender.com/api/table/update-seat/${tableNumber}/${seatNumber}`,
+          { newSeatNumber, newName, newTableName },
+          config
+        );
+        return response.data;
+      } catch (err) {
+        const errMsg = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+        
+      
+        return thunkApi.rejectWithValue(errMsg)
+    }
+  }
+  );
+  
+
+  
 
   const tableSlice = createSlice({
     name:"table",
@@ -76,6 +103,17 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
     
   extraReducers: (builder) => {
     builder
+    .addCase(reserveSeat.fulfilled, (state, action) => {
+      const { tableNumber, seatNumber, name, success } = action.payload;
+      if (success) {
+        const table = state.tables.find((t) => t.tableNumber === tableNumber);
+        const seat = table.seats.find((s) => s.seatNumber === seatNumber);
+        seat.isReserved = true;
+        seat.reservedBy = name;
+      }
+    })
+
+
       .addCase(fetchTables.pending, (state) => {
         state.loading = true;
       })
@@ -87,15 +125,27 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(reserveSeat.fulfilled, (state, action) => {
-        const { tableNumber, seatNumber, name, success } = action.payload;
-        if (success) {
-          const table = state.tables.find((t) => t.tableNumber === tableNumber);
-          const seat = table.seats.find((s) => s.seatNumber === seatNumber);
-          seat.isReserved = true;
-          seat.reservedBy = name;
-        }
-      });
+      .addCase(updateSeat.pending, (state) => {
+        state.loading = true;
+    })
+    .addCase(updateSeat.fulfilled, (state, action) => {
+        const { tableNumber, seatNumber, newSeatNumber, newName, newTableName } = action.payload;
+        const table = state.tables.find((t) => t.tableNumber === tableNumber);
+        const seat = table.seats.find((s) => s.seatNumber === seatNumber);
+        seat.seatNumber = newSeatNumber;
+        seat.reservedBy = newName;
+        seat.tableName = newTableName;
+        state.loading = false;
+    })
+    .addCase(updateSeat.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message || 'Failed to update seat';
+    });
+    
+      
+
+      
+     
   }
   
 
