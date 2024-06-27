@@ -35,7 +35,9 @@ let tableNumber;
     return table.seats
         .filter(seat => seat.isReserved && seat.reservedBy !== '') // Filter reserved seats with 'reservedBy' filled
         .map(seat => ({
+            
             tableNumber: tableNumber,
+            tableName: tableName,
             seatNumber: seat.seatNumber,
             reservedBy: seat.reservedBy
         }));
@@ -70,6 +72,15 @@ console.log(reservedTable);
               </div>
             </div>
 
+            <div className="flex items-center">
+              <FaCalendarAlt size={40} className='pr-5 text-white' />
+              <div className="
+              ">
+                <p className="text-white text-lg">Table Name</p>
+                
+              </div>
+            </div>
+
 
           
 
@@ -86,6 +97,7 @@ console.log(reservedTable);
 
 {loading ? (<SpinnerComponent />) : (tables.flatMap(table => {
     let tableNum = table.tableNumber;
+    let tableName = table.tableName
     return table.seats
         .filter(seat => seat.isReserved && seat.reservedBy !== '') // Filter reserved seats with 'reservedBy' filled
         .map(seat => (
@@ -95,6 +107,10 @@ console.log(reservedTable);
                 </p>
                 <p className="text-center font-semibold">
                     Table: {tableNum}
+                </p>
+
+                <p className="text-center font-semibold">
+                    TableName: {tableName ? (tableName) : ("No Table Name")}
                 </p>
                 <p className="text-center bg-blue-900 text-white rounded-md px-2.5 py-1">
                     Seat: {seat.seatNumber}
