@@ -3,10 +3,11 @@ import Modal from 'react-modal';
 
 const EditModal = ({ isOpen, closeModal, tableData, handleSubmitUpdate }) => {
   const [formData, setFormData] = useState({
+    tableNumber: tableData?.tableNumber || '',
     newSeatNumber: tableData?.seatNumber || '',
     newName: tableData?.reservedBy || '',
     newTableName: tableData?.tableName || '',
-    tableNumber: tableData?.tableNumber || '',
+    
   });
 
   const handleChange = (e) => {
