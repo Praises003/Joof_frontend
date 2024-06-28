@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 
 const EditModal = ({ isOpen, closeModal, tableData, handleSubmitUpdate }) => {
   const [formData, setFormData] = useState({
-    tableNumber: tableData?.tableNumber || '',
+    newTableNumber: tableData?.tableNumber || '',
     newSeatNumber: tableData?.seatNumber || '',
     newName: tableData?.reservedBy || '',
     newTableName: tableData?.tableName || '',
@@ -17,9 +17,11 @@ const EditModal = ({ isOpen, closeModal, tableData, handleSubmitUpdate }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    handleSubmitUpdate(formData); // Include tableNumber in the form data
+    handleSubmitUpdate({  tableNumber: tableData.tableNumber, seatNumber: tableData.seatNumber, ...formData, }); // Include tableNumber in the form data
     closeModal();
   };
+
+  console.log(formData)
 
   return (
     <Modal
@@ -73,7 +75,8 @@ const EditModal = ({ isOpen, closeModal, tableData, handleSubmitUpdate }) => {
             <label className="block mb-2">
               New Table Number:
                 <input type="number"
-                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" name="tableNumber" value={formData.tableNumber} />
+                 onChange={handleChange}
+                 className="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" name="newTableNumber" value={formData.newTableNumber} />
             </label>
           </div>
           <div className="flex justify-end space-x-4">

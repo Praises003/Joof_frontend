@@ -70,6 +70,7 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
     'tables/updateSeat',
     async ({ tableNumber, seatNumber, newSeatNumber, newName, newTableName }, thunkApi) => {
       try {
+        console.log(tableNumber, seatNumber)
         const token = thunkApi.getState().user.user.token;
         const config = {
           headers: {
@@ -77,13 +78,16 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
           },
         };
         const response = await axios.put(
-          `https://joof-backend.onrender.com/api/table/update-seat/${tableNumber}/${seatNumber}`,
+          `https://joof-backend.onrender.com/api/table/update-reserve/${tableNumber}/${seatNumber}`,
           { newSeatNumber, newName, newTableName },
           config
         );
-        return response.data;
+        console.log('Response:', response.data);
+        return { tableNumber: tableNumber, seatNumber, newSeatNumber, newName, newTableName };
       } catch (err) {
         const errMsg = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+        console.error(err)
+        console.error(errMsg)
         
       
         return thunkApi.rejectWithValue(errMsg)
@@ -129,6 +133,7 @@ export const fetchTables = createAsyncThunk('tables/fetchTables', async (_, thun
         state.loading = true;
     })
     .addCase(updateSeat.fulfilled, (state, action) => {
+      console.log(state.tables)
         const { tableNumber, seatNumber, newSeatNumber, newName, newTableName } = action.payload;
         const table = state.tables.find((t) => t.tableNumber === tableNumber);
         const seat = table.seats.find((s) => s.seatNumber === seatNumber);
