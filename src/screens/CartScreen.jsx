@@ -135,9 +135,9 @@ const CartScreen = () => {
 
 
 
-  // Wema ALAT API Credentials
-  const primaryKey = "be675a4ae9804fbc8a7f89793a6cb6aa"; // Replace with your actual Primary Key
-  const secondaryKey = "0139e03561e24c99a6543aa0b6052ffe"; // Replace with your actual Secondary Key
+  //  Credentials
+  const primaryKey = "be675a4ae9804fbc8a7f89793a6cb6aa"; 
+  const secondaryKey = "0139e03561e24c99a6543aa0b6052ffe"; 
 
   // Function to make payment request
   const makePayment = async () => {
@@ -150,8 +150,8 @@ const CartScreen = () => {
           email: user.email,
           name: user.name
         },
-        redirect_url: "https://yourwebsite.com/redirect", // Replace with your actual redirect URL
-        callback_url: "https://yourwebsite.com/callback" // Replace with your actual callback URL
+        redirect_url: "", 
+        callback_url: "" // 
       }, {
         headers: {
           Authorization: `Bearer ${primaryKey}`, // Use primary key for authorization
