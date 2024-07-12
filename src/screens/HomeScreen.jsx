@@ -53,9 +53,9 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          console.log("Fetching images...");
+          
           await getFirstImage();
-          console.log("Images fetched successfully.");
+         
       } catch (error) {
           console.error("Error fetching images:", error);
           // Handle error as needed
@@ -70,9 +70,9 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          console.log("Fetching images...");
+         
           await getSecImage();
-          console.log("Images fetched successfully.");
+          
       } catch (error) {
           console.error("Error fetching images:", error);
           // Handle error as needed
@@ -87,9 +87,9 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          console.log("Fetching images...");
+          
           await getThirdImage();
-          console.log("Images fetched successfully.");
+          
       } catch (error) {
           console.error("Error fetching images:", error);
           // Handle error as needed
@@ -134,7 +134,7 @@ const HomeScreen = () => {
       try {
       
         const { data } = await axios.get('https://joof-backend.onrender.com/api/texts', {withCredentials: true});
-        console.log(data)
+       
         setVisionText(data.visionText);
         setMissionText(data.missionText);
         setBannerText(data.bannerText);
@@ -163,7 +163,7 @@ const HomeScreen = () => {
     try {
       const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageIII", formData)
 
-      console.log(data)
+      
       await getFirstImage()
       setImage("")
     } catch (err) {
@@ -186,7 +186,6 @@ const HomeScreen = () => {
     try {
       const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageIV", formData)
 
-      console.log(data)
       await getSecImage()
       setImage("")
     } catch (err) {
@@ -209,7 +208,7 @@ const HomeScreen = () => {
     try {
       const {data} = await axios.post("https://joof-backend.onrender.com/api/upload/imageV", formData)
 
-      console.log(data)
+     
       await getThirdImage()
       setImage("")
     } catch (err) {
@@ -222,7 +221,7 @@ const HomeScreen = () => {
   const getFirstImage = async() => {
     try {
       const { data } = await axios.get("https://joof-backend.onrender.com/api/upload/imageIII")
-      console.log(data)
+
       setFirstImage(data?.singleImage?.url)
     } catch (err) {
       console.error(err)
@@ -272,7 +271,7 @@ const HomeScreen = () => {
     }
   };
   
-console.log(firstImg)
+
   
 
   const settings = {
@@ -354,7 +353,7 @@ console.log(firstImg)
      
       //scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      onSlideChange={() => console.log('')}
     >
          <SwiperSlide>
     <div className="relative bg bg-opacity-90 mb-3">

@@ -24,8 +24,7 @@ const AdminNavComponent = ({ shows, setShows}) => {
     const adminMenuT = () => {
         setShow(true)
     }
-      console.log(show)
-      console.log(setShow)
+     
     
   return (
     <div style={{background: "#FE8D01", }} className='relative z-10 '>
@@ -36,9 +35,9 @@ const AdminNavComponent = ({ shows, setShows}) => {
                 
             </div>
 
-            <div onClick={() => navigate("/users")} className="flex px-5 items-center mb-2">
+            <div onClick={() => navigate("/admin_eventpackage")} className="flex px-5 items-center mb-2">
                 <FaUserFriends className='text-white pr-3.5' size={40} />
-                <p className="text-lg text-white font-semibold">Users</p>
+                <p className="text-lg text-white font-semibold">Update Event Packages</p>
             </div>
 
             <div onClick={() => navigate("/events")} className="flex px-5 items-center mb-2">

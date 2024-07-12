@@ -36,7 +36,7 @@ const EventListComponent = () => {
   };
 
   const handleSubmitUpdate = (formData) => {
-    console.log(formData)
+   
     dispatch(updateSeat(formData)); // Assuming updateSeat action handles the API call
   };
 

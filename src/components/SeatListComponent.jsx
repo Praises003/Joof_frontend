@@ -7,7 +7,7 @@ const SeatListComponent = ({ guest }) => {
   //console.log(props)
   //console.log(meU)
   //console.log(selectedSeats)
-  console.log(guest)
+
 
 
   return (
@@ -33,7 +33,7 @@ const SeatListComponent = ({ guest }) => {
            {guest.length > 0 ? (guest.map(g => (
             //console.log(g.name)
             <div key={g._id}>
-              {console.log(guest)}
+
             <p className="text-white">Name: {g.name}</p>
             <p className="text-white mb-3">Seat No: {g.seatNum}</p>
             <div className="flex justify-around">

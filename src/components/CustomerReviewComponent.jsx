@@ -2,7 +2,7 @@ import React from 'react'
 import {BsStarFill} from "react-icons/bs"
 
 const CustomerReviewComponent = ({ rev }) => {
-    console.log(rev)
+    
   return (
     <div>
         <p className='mt-10 text-3xl font-bold text-center'>Customers Review</p>

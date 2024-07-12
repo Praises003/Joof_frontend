@@ -31,7 +31,7 @@ const EventMoreComponent = ({ event}) => {
     const makePayment = async() => {
         try {
           const stripe = await loadStripe("pk_test_51OToy2I3dQudUwMT7FmUGmDarYEIG5uP9z7HudbcukrACNhMlWFUqdLEwl9ZObXn25CK31Ffs8LDWB470P0ikGrn00N5SgS1CF")
-    console.log(stripe)
+   
         const body = {
           products: eventPackage
         }
@@ -39,8 +39,7 @@ const EventMoreComponent = ({ event}) => {
         const { data } =  await axios.post("https://joof-backend.vercel.app/create-checkout-session", {
           products: eventPackage
         },)
-        console.log(data)
-    
+      
         const result = stripe.redirectToCheckout({
           sessionId: data.id
         })

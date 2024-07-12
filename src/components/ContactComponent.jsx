@@ -26,8 +26,7 @@ const ContactComponent = () => {
             ...prevData, [e.target.name] : e.target.value
         }))
     }
-    console.log(formData)
-
+   
     const submitFunc = (e) => {
         e.preventDefault()
         console.log("submitted")

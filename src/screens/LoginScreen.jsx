@@ -53,7 +53,7 @@ const LoginScreen = () => {
     dispatch(login(userData))
     
   }
-  console.log(formData)
+
      return (
       <>
       <div className="bg-blue-900 md:w-8/12 mx-auto py-2">

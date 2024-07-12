@@ -72,67 +72,99 @@ const CartScreen = () => {
   //         return newTotalPrice;
   // })
   // }, [])
-  let token = "sk_test_51OToy2I3dQudUwMT5Rg9sYBNmpwjHDnZXQrAYGKJrjyf6T65Tex5LwmxuW2vkvCV2tuZSXrznW5xjFF6CoMBkw8P00sRVpzrvm"
-    const configs = {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
+  // let token = "sk_test_51OToy2I3dQudUwMT5Rg9sYBNmpwjHDnZXQrAYGKJrjyf6T65Tex5LwmxuW2vkvCV2tuZSXrznW5xjFF6CoMBkw8P00sRVpzrvm"
+  //   const configs = {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`
+  //   }
+  // }
   
-  const makePayment = async() => {
-    try {
-      const stripe = await loadStripe("pk_test_51OToy2I3dQudUwMT7FmUGmDarYEIG5uP9z7HudbcukrACNhMlWFUqdLEwl9ZObXn25CK31Ffs8LDWB470P0ikGrn00N5SgS1CF")
-console.log(stripe)
-    const body = {
-      products: eventPackage
-    }
-    //https://joof-backend.vercel.app
-    const { data } =  await axios.post("https://joof-backend.vercel.app/create-checkout-session", {
-      products: eventPackage
-    },)
-    console.log(data)
+//   const makePayment = async() => {
+//     try {
+//       const stripe = await loadStripe("pk_test_51OToy2I3dQudUwMT7FmUGmDarYEIG5uP9z7HudbcukrACNhMlWFUqdLEwl9ZObXn25CK31Ffs8LDWB470P0ikGrn00N5SgS1CF")
+// console.log(stripe)
+//     const body = {
+//       products: eventPackage
+//     }
+//     //https://joof-backend.vercel.app
+//     const { data } =  await axios.post("https://joof-backend.vercel.app/create-checkout-session", {
+//       products: eventPackage
+//     },)
+//     console.log(data)
 
-    const result = stripe.redirectToCheckout({
-      sessionId: data.id
-    })
+//     const result = stripe.redirectToCheckout({
+//       sessionId: data.id
+//     })
       
-    } catch (error) {
-      console.log(error)
-    }
+//     } catch (error) {
+//       console.log(error)
+//     }
     
-  }
+//   }
 
 
-  const config = {
-    public_key: import.meta.env.VITE_PUBLIC_KEY,
-    tx_ref: Date.now(),
-    amount: total,
-    currency: 'NGN',
-    payment_options: 'card,mobilemoney,ussd',
-    customer: {
-      email: "User 0ne",
-      phone_number: '070********',
-      name: "Simeone",
-    },
-    customizations: {
-      title: 'Event Center',
-      description: 'Payment for items in cart',
-      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
-    },
+  // const config = {
+  //   public_key: import.meta.env.VITE_PUBLIC_KEY,
+  //   tx_ref: Date.now(),
+  //   amount: total,
+  //   currency: 'NGN',
+  //   payment_options: 'card,mobilemoney,ussd',
+  //   customer: {
+  //     email: "User 0ne",
+  //     phone_number: '070********',
+  //     name: "Simeone",
+  //   },
+  //   customizations: {
+  //     title: 'Event Center',
+  //     description: 'Payment for items in cart',
+  //     logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+  //   },
+  // };
+
+  //const handleFlutterPayment = useFlutterwave(config);
+
+  // const fwConfig = {
+  //   ...config,
+  //   text: 'Pay Now With Flutterwave',
+  //   callback: (response) => {
+  //      console.log(response);
+  //     closePaymentModal() // this will close the modal programmatically
+  //   },
+  //   onClose: () => {},
+  // };
+
+
+
+  // Wema ALAT API Credentials
+  const primaryKey = "be675a4ae9804fbc8a7f89793a6cb6aa"; // Replace with your actual Primary Key
+  const secondaryKey = "0139e03561e24c99a6543aa0b6052ffe"; // Replace with your actual Secondary Key
+
+  // Function to make payment request
+  const makePayment = async () => {
+    try {
+      const response = await axios.post("https://alatpay-dev.azurewebsites.net/payments", {
+        amount: total,
+        currency: "NGN",
+        description: "Payment for event packages",
+        customer: {
+          email: user.email,
+          name: user.name
+        },
+        redirect_url: "https://yourwebsite.com/redirect", // Replace with your actual redirect URL
+        callback_url: "https://yourwebsite.com/callback" // Replace with your actual callback URL
+      }, {
+        headers: {
+          Authorization: `Bearer ${primaryKey}`, // Use primary key for authorization
+          "Content-Type": "application/json"
+        }
+      });
+      
+      const paymentUrl = response.data.payment_url; // Assuming the response contains a payment URL
+      window.location.href = paymentUrl;
+    } catch (error) {
+      console.error("Error making payment request:", error);
+    }
   };
-
-  const handleFlutterPayment = useFlutterwave(config);
-
-  const fwConfig = {
-    ...config,
-    text: 'Pay Now With Flutterwave',
-    callback: (response) => {
-       console.log(response);
-      closePaymentModal() // this will close the modal programmatically
-    },
-    onClose: () => {},
-  };
-
   return (
     <div>
         <div className="">

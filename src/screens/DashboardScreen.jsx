@@ -87,7 +87,7 @@ const DashboardScreen = () => {
 ])
 
     const { user } = useSelector(state => state.user)
-    console.log(user)
+   
     const navigate = useNavigate()
     useEffect(() => {
         if ( user === null ) {

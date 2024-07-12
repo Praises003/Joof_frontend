@@ -15,7 +15,7 @@ const DashEvent = () => {
   const [event, setEvent] = useState(true);
   const [cal, setCal] = useState(false);
   const { guest } = useSelector(state => state.guest)
-  console.log(guest)
+
 
   const [userEvent, setUserEvent] = useState([])
 
@@ -42,9 +42,9 @@ const DashEvent = () => {
         try {
           
           const { data } = await axios.get("https://joof-backend.onrender.com/api/event/current", config)
-          console.log(data)
+          
           setUserEvent(data)
-          console.log(userEvent)
+          
         } catch(err) {
           console.error(err)
         }
@@ -65,7 +65,7 @@ const DashEvent = () => {
 
   return (
     <div>
-      {console.log(userEvent)}
+      
 
       
       <div className="full-width">

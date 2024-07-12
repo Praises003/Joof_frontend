@@ -40,10 +40,10 @@ const EventPackageScreen = () => {
     const {eventPackage} = useSelector(state => state.eventPackage)
 
     const dispatch = useDispatch()
-    console.log(eventPackage)
+    
 
     const { user } = useSelector(state => state.user)
-    console.log(user)
+    
     const navigate = useNavigate()
     useEffect(() => {
         if ( user === null ) {

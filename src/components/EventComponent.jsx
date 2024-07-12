@@ -27,7 +27,7 @@ const handleType = (e) => {
     const submitFunc = (e) => {
         e.preventDefault()
        
-        console.log("submitted");
+       
     }
 
     const onchangeFunc = () => {
@@ -36,7 +36,6 @@ const handleType = (e) => {
 
     
 
-    console.log(events)
    
     
   return (

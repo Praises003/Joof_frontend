@@ -19,7 +19,7 @@ const NavComponent = () => {
   const navToggle = () => {
     setNavList(!navList)
   }
-  console.log(isOpen)
+  
   return (
     <nav className=' flex justify-between items-center py-5 px-3  mb-0.5 shadow-lg sticky top-0 z-20 bg-black text-white'>
         <img src={noblecastle} alt="" className='border h-20 lg:mx-auto  w-40'/>

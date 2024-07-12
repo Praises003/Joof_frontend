@@ -10,10 +10,10 @@ const ImageComponent = ({ onImage}) => {
        setImage(event.target.files[0]);
         //console.log(event.target.files)
         //console.log(newImage)
-         console.log(image)
+        
       };
 
-      console.log(image)
+     
 
       
 
@@ -42,7 +42,7 @@ const ImageComponent = ({ onImage}) => {
     
       const formData = new FormData();
       formData.append("file", image);
-      console.log(formData);
+      
       setSel(formData);
       // onImage(formData); // Uncomment this line if you want to send the FormData to the server immediately
     };

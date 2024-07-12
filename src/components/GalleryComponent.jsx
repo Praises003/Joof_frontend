@@ -168,14 +168,13 @@ const GalleryComponent = () => {
           const response = await axios.delete("https://joof-backend.onrender.com/api/upload/del", {
               data: { public_id: url }  // Payload to send with DELETE request
           });
-          console.log("Image deleted:", response.data);
+          
           
           // Update state and fetch updated images
           await fetchUpdatedImages(); // Assuming this function updates the `imgs` state
   
           // Log or perform additional actions
-          console.log("URL after deletion:", url);
-          console.log("Updated images:", imgs); // Assuming `imgs` is updated by `fetchUpdatedImages`
+          
   
       } catch (error) {
             if (error.response) {

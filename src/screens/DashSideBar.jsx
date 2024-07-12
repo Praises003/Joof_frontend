@@ -32,7 +32,7 @@ const DashSideBar = ({ show }) => {
     const {eventPackage} = useSelector(state => state.eventPackage)
 
 
-    console.log(eventPackage)
+   
    
    
     const navigate = useNavigate()
