@@ -75,9 +75,7 @@ const EventPackageScreen = () => {
         }
     })
 
-    console.log(events)
-    console.log(cartEv)
-
+    
 
 
   return (

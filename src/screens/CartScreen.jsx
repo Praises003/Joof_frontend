@@ -28,7 +28,7 @@ const CartScreen = () => {
     const dispatch = useDispatch()
 
     
-    console.log(user)
+    
     const navigate = useNavigate()
     useEffect(() => {
         if ( user === null ) {
@@ -36,135 +36,81 @@ const CartScreen = () => {
         }
     }, [])
 
-      console.log(eventPackage)
+   
     let total = eventPackage.reduce((sum, even ) => sum + even.price, 0 )
-    console.log(total)
-    // useEffect(() => {
-    //   eventPackage.map(ev => (
-    //     my = [ev.price + ev.price]
-    //     //console.log(ev.price)
-    //   ))
-    //   console.log(my)
-    // }, [eventPackage])
-    //let sum = eventPackage.reduce((acc, cur) => {
-
-    // //})
-    // useEffect(() => {
-    //   setTotalPrice(totalPrice + testP)
-    // },[eventPackage])
-    //
-    //console.log(totalPrice)
-  //   useEffect(() => {
-  //     //setTotalPrice((prevTotalPrice) => prevTotalPrice + parseFloat(event.price));
-  //     console.log(testP)
-  //     //setTotalPrice((prevTotalPrice) => prevTotalPrice + parseFloat(event.price));
-  //     //console.log(totalPrice)
-  //     setTotalPrice((prevPrice) => prevPrice + 23)
-  //     console.log(totalPrice)
-  //     setTotalPrice((prevTotalPrice) => {
-  //       console.log(prevTotalPrice)
-  //       //const priceToAdd = parseFloat(testP.price) || 0;
-  //       const newTotalPrice = prevTotalPrice + testP;
-  //         console.log(testP)
-  //         let updaate = newTotalPrice + testP
-  //         console.log(newTotalPrice); // Log the updated total price
-  //         console.log(updaate)
-  //         return newTotalPrice;
-  // })
-  // }, [])
-  // let token = "sk_test_51OToy2I3dQudUwMT5Rg9sYBNmpwjHDnZXQrAYGKJrjyf6T65Tex5LwmxuW2vkvCV2tuZSXrznW5xjFF6CoMBkw8P00sRVpzrvm"
-  //   const configs = {
-  //   headers: {
-  //     Authorization: `Bearer ${token}`
-  //   }
-  // }
-  
-//   const makePayment = async() => {
-//     try {
-//       const stripe = await loadStripe("pk_test_51OToy2I3dQudUwMT7FmUGmDarYEIG5uP9z7HudbcukrACNhMlWFUqdLEwl9ZObXn25CK31Ffs8LDWB470P0ikGrn00N5SgS1CF")
-// console.log(stripe)
-//     const body = {
-//       products: eventPackage
-//     }
-//     //https://joof-backend.vercel.app
-//     const { data } =  await axios.post("https://joof-backend.vercel.app/create-checkout-session", {
-//       products: eventPackage
-//     },)
-//     console.log(data)
-
-//     const result = stripe.redirectToCheckout({
-//       sessionId: data.id
-//     })
-      
-//     } catch (error) {
-//       console.log(error)
-//     }
     
-//   }
+   
+   
 
-
-  // const config = {
-  //   public_key: import.meta.env.VITE_PUBLIC_KEY,
-  //   tx_ref: Date.now(),
-  //   amount: total,
-  //   currency: 'NGN',
-  //   payment_options: 'card,mobilemoney,ussd',
-  //   customer: {
-  //     email: "User 0ne",
-  //     phone_number: '070********',
-  //     name: "Simeone",
-  //   },
-  //   customizations: {
-  //     title: 'Event Center',
-  //     description: 'Payment for items in cart',
-  //     logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
-  //   },
-  // };
-
-  //const handleFlutterPayment = useFlutterwave(config);
-
-  // const fwConfig = {
-  //   ...config,
-  //   text: 'Pay Now With Flutterwave',
-  //   callback: (response) => {
-  //      console.log(response);
-  //     closePaymentModal() // this will close the modal programmatically
-  //   },
-  //   onClose: () => {},
-  // };
-
-
-
-  //  Credentials
-  const primaryKey = "be675a4ae9804fbc8a7f89793a6cb6aa"; 
-  const secondaryKey = "0139e03561e24c99a6543aa0b6052ffe"; 
+   
 
   // Function to make payment request
-  const makePayment = async () => {
-    try {
-      const response = await axios.post("https://alatpay-dev.azurewebsites.net/payments", {
-        amount: total,
-        currency: "NGN",
-        description: "Payment for event packages",
-        customer: {
-          email: user.email,
-          name: user.name
-        },
-        redirect_url: "", 
-        callback_url: "" // 
-      }, {
-        headers: {
-          Authorization: `Bearer ${primaryKey}`, // Use primary key for authorization
-          "Content-Type": "application/json"
-        }
-      });
+  // const makePayment = async () => {
+  //   try {
+  //     const response = await axios.post("https://alatpay-dev.azurewebsites.net/payments", {
+  //       amount: total,
+  //       currency: "NGN",
+  //       description: "Payment for event packages",
+  //       customer: {
+  //         email: user.email,
+  //         name: user.name
+  //       },
+  //       redirect_url: "", 
+  //       callback_url: "" // 
+  //     }, {
+  //       headers: {
+  //         Authorization: `Bearer ${primaryKey}`, // Use primary key for authorization
+  //         "Content-Type": "application/json"
+  //       }
+  //     });
       
-      const paymentUrl = response.data.payment_url; // Assuming the response contains a payment URL
-      window.location.href = paymentUrl;
-    } catch (error) {
-      console.error("Error making payment request:", error);
+  //     const paymentUrl = response.data.payment_url; // Assuming the response contains a payment URL
+  //     window.location.href = paymentUrl;
+  //   } catch (error) {
+  //     console.error("Error making payment request:", error);
+  //   }
+  // };
+  const makePayment = () => {
+    // Ensure all required fields are filled
+    if (!user || !user.email || !user.name  || !total) {
+        alert("Please fill all required fields.");
+        return;
     }
-  };
+
+    // Setup Alatpay payment
+    let popup = Alatpay.setup({
+        apiKey: import.meta.env.VITE_ALAT_PRIMARY_KEY, // Replace with your actual API key
+        businessId: import.meta.env.VITE_BUSINESS_ID, // Replace with your actual business ID
+        email: user.email, // [Required] customer email
+        firstName: user.name, // customer first name
+        lastName: user.name, // customer last name
+        metaData: null,
+        currency: "NGN",
+        amount: total , // [Required] Payment Amount in kobo
+        // onTransaction: function (response) {
+        //     console.log("API response is ", response);
+        //     // Handle the response from Alatpay, e.g., save the transaction details in your database
+        //     axios.post('/api/save-transaction', response)
+        //         .then(res => {
+        //             console.log("Transaction saved:", res.data);
+        //         })
+        //         .catch(error => {
+        //             console.error("Error saving transaction:", error);
+        //         });
+        // },
+        
+        onTransaction: function (response) {
+
+          console.log("API response is ", response)
+          
+          },
+        onClose: function () {
+            console.log("Payment gateway is closed");
+        }
+    });
+
+    popup.show();
+};
   return (
     <div>
         <div className="">

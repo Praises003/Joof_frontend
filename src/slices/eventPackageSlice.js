@@ -37,9 +37,9 @@ const eventPackageSlice = createSlice({
             state.message = ""
         },
         addToCart : (state, action) => {
-            console.log(action)
+           
             state.eventPackage = [...state.eventPackage, {...action.payload}]
-            console.log(action.payload)
+           
         },
         removeFromCart: (state, action) => {
             const itemIdToRemove = action.payload;
