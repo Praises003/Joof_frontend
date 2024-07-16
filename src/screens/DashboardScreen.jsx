@@ -100,29 +100,7 @@ const DashboardScreen = () => {
   return (
     <div>
         <div className="">
-        {/*    <div className="px-4 py-2 flex  justify-between items-center">
-                <div className="">
-                    <FaHome size={40} className='mx-auto text-blue-900' />
-                    <Link className="">Home</Link>
-                </div>
-
-                <div onClick={onNav} className="">
-                    <IoCalendarNumberSharp size={40} className='mx-auto text-blue-900' />
-                    <Link to={"/dash_event"} className="">Events</Link>
-                </div>
-
-                <div className="">
-                    <IoTicket size={40} className='mx-auto text-blue-900' />
-                    <Link to={""} className="">Tickets</Link>
-                </div>
-
-                <div className="">
-                    <FaSignOutAlt size={40} className='mx-auto text-blue-900' />
-                    <p className="">Log Out</p>
-                </div>
-
-                
-            </div> */}
+        
         </div>
 
         <div className="ml-4">
@@ -132,7 +110,7 @@ const DashboardScreen = () => {
         <div className="">
             <div className="flex flex-col md:flex-row justify-between p-4">
                 <div className="">
-                    <img src={meetings} alt="" className=' w-full mb-3 md:w-11/12 h-3/4 bg-cover bg-no-repeat mx-auto' />
+                    <img src={"https://res.cloudinary.com/dyliuyezy/image/upload/v1718808701/test/whn8btmalot0cmsyjuco.jpg"} alt="" className=' w-full mb-3 md:w-11/12 h-3/4 bg-cover bg-no-repeat mx-auto' />
 
                 </div>
                 <div className="w-full bg-gray-200 h-2/4  pt-16 pb-16 md:pb-16">
@@ -154,53 +132,8 @@ const DashboardScreen = () => {
             </div> */}
         </div>
 
-        <h1 className='text-center font-bold mx-auto text-4xl my-9 md:text-4xl'>Upcoming Events</h1>
-        <div className="p-5">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-           {upcoming.map(up => <div className='' key={up.id}>
-                <div className="border border-gray-300 shadow">
-                    <div className="">
-                    <img src={up.img} alt="" className='w-full bg-cover bg-no-repeat' />
-                    <div className="p-5">
-                    <p className='text-blue-700 font-bold text-2xl mb-3'>{up.title}</p>
-                    <div className="flex justify-between items-center mb-6">
-                    <p className='bg-blue-900 text-white rounded-2xl px-3 py-0.5'>{up.category}</p>
-                    <div className="flex justify-between items-center">
-                    <FaRegCalendarAlt />
-                    <p className='p-1'> {up.date}</p>
 
-                    </div>
- 
-
-                    </div>
-
-                    <p className='mb-4'>{up.text}</p>
-                    
-                    
-
-                    <div className="flex items-center justify-start mb-3">
-                      <FaRegHourglassHalf color='blue' />
-                      <p className='ml-3 text'>{up.status}</p>
-                    </div>
-
-                    <button className="w-full p-1.5 text-center bg-blue-900 text-white rounded-lg border">MORE INFORMATION</button>
-                    
-                    
-
-                    </div>
-                    
-
-                    </div>
-                    
-
-                </div>
-           
-            </div>)}
-
-            
-          </div>
-
-        </div>
+     
         
           
        

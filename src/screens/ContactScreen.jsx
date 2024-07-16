@@ -1,5 +1,5 @@
 import React from 'react'
-import eventImg from '../assets/ev9.jpg'
+import eventImg from '../assets/joof.jpg'
 import { FaLocationDot } from "react-icons/fa6";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { FaClock } from "react-icons/fa";
@@ -9,7 +9,7 @@ const ContactScreen = () => {
   return (
     <div>
          <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "80vh"}} className={` mb-5 relative`}>
-             <p className='uppercase text-4xl font-semibold left-32 md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'>  CONTACT US</p>
+             <p className='uppercase text-4xl font-semibold left-96 right-56 md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'>  CONTACT US</p>
         </div>
 
         <div className="flex md:flex-row flex-col justify-between p-4">

@@ -61,6 +61,18 @@ const AdminEventPackageScreen = () => {
         }
     };
 
+    const handleDeletePackage = async (id) => {
+        try {
+            setLoading(true);
+            await axios.delete(`https://joof-backend.onrender.com/api/package/${id}`);
+            setEvents(events.filter(event => event._id !== id));
+            setLoading(false);
+        } catch (error) {
+            console.error('Error deleting package:', error);
+            setLoading(false);
+        }
+    };
+
     return (
         <div>
             <div style={{ background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "80vh" }} className="mb-5 relative">
@@ -84,6 +96,8 @@ const AdminEventPackageScreen = () => {
                                 <Link className='bg-yellow-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center'>Add To Cart Now</Link>
                             </div>
                             <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full' onClick={() => setSelectedPackage(ev)}>Update Package</button>
+                            
+                            <button className='bg-red-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full' onClick={() => handleDeletePackage(ev._id)}>Delete Package</button>
                         </div>
                     ))}
                 </div>

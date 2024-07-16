@@ -1,5 +1,5 @@
 import React from 'react'
-import eventImg from '../assets/ev9.jpg'
+import eventImg from '../assets/joof.jpg'
 import img from '../assets/ev11.jpg'
 import Img from '../assets/ev10.jpg'
 import evImg from '../assets/ev8.jpg'
@@ -17,7 +17,7 @@ const CorporateScreen = () => {
   return (
     <div>
          <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "80vh"}} className={` mb-5 relative`}>
-             <p className='uppercase text-4xl font-semibold left-32 md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'> CORPORATE </p>
+             <p className='uppercase text-4xl font-semibold left-60 md:text-5xl text-white absolute top-52 md:top-52 md:left-96 right-64 text-center'> CORPORATE </p>
         
         </div>
 
@@ -25,7 +25,7 @@ const CorporateScreen = () => {
             <p className="text-2xl md:text-3xl font-bold text-center">Our Vision Statement</p>
             <div className="flex flex-col md:flex-row justify-between p-4 ">
                 <div className="w-full">
-                    <img src={img} alt="" className='w-full md:w-10/12 bg-no-repeat bg-cover mx-auto'/>
+                    <img src={"https://res.cloudinary.com/dyliuyezy/image/upload/v1718808865/test/my3xv91ib2gbgiavvrzt.jpg"} alt="" className='w-full md:w-10/12 bg-no-repeat bg-cover mx-auto'/>
                 </div>
                 <div className="w-full p-2">
                     <p className="text font-semibold ">
@@ -40,7 +40,7 @@ const CorporateScreen = () => {
             <p className="text-2xl md:text-3xl font-bold text-center">Our Mission Statement</p>
             <div className="flex flex-col md:flex-row justify-between p-4 ">
                 <div className="w-full">
-                    <img src={Img} alt="" className='w-full md:w-10/12 bg-no-repeat bg-cover mx-auto'/>
+                    <img src={"https://res.cloudinary.com/dyliuyezy/image/upload/v1718808701/test/whn8btmalot0cmsyjuco.jpg"} alt="" className='w-full md:w-10/12 bg-no-repeat bg-cover mx-auto'/>
                 </div>
                 <div className="w-full p-2">
                     <p className="text-base font-semibold ">

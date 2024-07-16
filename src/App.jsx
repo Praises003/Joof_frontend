@@ -54,11 +54,12 @@ import FounderScreen from './screens/FounderScreen'
 import TestScreen from './screens/TestScreen'
 import SeatSelScreen from './screens/seatSelScreen'
 import AdminEventPackageScreen from './screens/AdminEventPackageScreen'
+import AddEventPackageScreen from './screens/AddEventPackageScreen'
 
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder", "/media", "/create_ticket"].includes(location.pathname);
-  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket', "/transaction", "/admin_eventpackage"  ].includes(location.pathname);
+  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket', "/transaction", "/admin_eventpackage", "/add_event"  ].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
@@ -101,6 +102,7 @@ function App() {
             <Route path="/admin" element={<AdminSectionComponent /> } />
             <Route path="/admin_eventpackage" element={<AdminEventPackageScreen /> } />
             <Route path="/users" element={<UserListComponent /> } />
+            <Route path='/add_event' element={<AddEventPackageScreen />} />
             <Route path="/events" element={<EventListComponent /> } />
             <Route path="/ticket" element={<TicketScreen /> } />
             <Route path="/transaction" element={<TransactionScreen /> } />
