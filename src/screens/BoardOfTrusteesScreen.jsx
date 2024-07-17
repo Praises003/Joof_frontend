@@ -76,7 +76,7 @@ const BoardOfTrusteesScreen = () => {
       
           try {
             setLoading(true)
-            const response = await axios.post('http://localhost:5000/api/image', imageData);
+            const response = await axios.post('"https://joof-backend.onrender.com/api/image', imageData);
             imageUrl = response.data.url; // Assuming your backend sends back the Cloudinary URL
             setLoading(false)
           } catch (error) {
@@ -96,7 +96,7 @@ const BoardOfTrusteesScreen = () => {
           // Update existing member
           try {
             setLoading(true)
-           const {data} = await axios.patch(`http://localhost:5000/api/member/${formData.id}`, updatedFormData);
+           const {data} = await axios.patch(`"https://joof-backend.onrender.com/api/member/${formData.id}`, updatedFormData);
            await fetchBoardData();
            setLoading(false)
             // Handle success or navigate away
@@ -108,7 +108,7 @@ const BoardOfTrusteesScreen = () => {
           // Create new member
           try {
             
-           const {data} = await axios.post('http://localhost:5000/api/member', updatedFormData);
+           const {data} = await axios.post('"https://joof-backend.onrender.com/api/member', updatedFormData);
            await fetchBoardData()
            
             // Handle success or navigate away
@@ -126,7 +126,7 @@ const BoardOfTrusteesScreen = () => {
 
       const fetchBoardData = async() => {
         try {
-            const { data } = await axios.get("http://localhost:5000/api/member")
+            const { data } = await axios.get("https://joof-backend.onrender.com/api/member")
 
             
             setBoardState(data)
