@@ -46,6 +46,7 @@ const ManagementScreen = () => {
       const [loading, setLoading] = useState(false)
       const [formData, setFormData] = useState(initialFormData);
       const [managementState, setManagementState] = useState([])
+      const[selectedMan, setSelectedMan] = useState(null)
     
       const [imageFile, setImageFile] = useState(null); // State to hold the selected image file
       const [showForm, setShowForm] = useState(false)
@@ -137,6 +138,39 @@ const ManagementScreen = () => {
         }
         setShowForm(false) 
       };
+
+      const updateManagement = async (id) => {
+        let imageUrl = formData.imageUrl; // Default to existing imageUrl
+      
+        if (imageFile) {
+          const imageData = new FormData();
+          imageData.append('file', imageFile);
+          imageData.append('cloud_name', 'dyliuyezy'); // Replace with your Cloudinary upload preset
+      
+          try {
+         
+            const response = await axios.post('"https://joof-backend.onrender.com/api/image', imageData);
+            imageUrl = response.data.url ? response.data.url : imageUrl; // Assuming your backend sends back the Cloudinary URL
+   
+          } catch (error) {
+            toast.error('Error uploading image: ');
+            console.error('Error uploading image: ', error);
+          }
+        }
+      
+        // Prepare data to be sent to backend (including updated imageUrl)
+        const updatedFormData = { ...formData, imageUrl };
+      
+        try {
+          setLoading(true)
+          const { data } = await axios.put(`https://joof-backend.onrender.com/api/management/${id}`, updatedFormData)
+          await fetchManData()
+          selectedMan(null)
+          setLoading(false)
+        } catch (error) {
+          
+        }
+      }
       const fetchManData = async() => {
         try {
             const { data } = await axios.get("https://joof-backend.onrender.com/api/management")
@@ -171,7 +205,11 @@ const ManagementScreen = () => {
 
                              <Link to={`/${manage?.socialLinks?.instagram}`}> <FaInstagramSquare size={30} /> </Link>
                          </div>
+                         <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full' onClick={() => setSelectedMan(manage)}>Update Management Council</button>
+                            
                      </div>
+
+                     
 
                     ))}
                
@@ -298,7 +336,106 @@ const ManagementScreen = () => {
               </div>
             </div>
           )}
+           {selectedMan && (
+                <div>
+                    {loading ? (<SpinnerComponent />) : (
+                    <>
+                    <h2 className='text-center text-2xl capitalize'>Update Management Council</h2>
+                    <form onSubmit={(e) => { e.preventDefault(); updateManagement(selectedMan._id); }}>
+                    <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={onChange}
+                      placeholder="Enter name"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="position" className="block text-sm font-medium text-gray-700">
+                      Position
+                    </label>
+                    <input
+                      type="text"
+                      id="position"
+                      name="position"
+                      value={formData.position}
+                      onChange={onChange}
+                      placeholder="Enter position"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="facebook" className="block text-sm font-medium text-gray-700">
+                      Facebook
+                    </label>
+                    <input
+                      type="text"
+                      id="facebook"
+                      name="facebook"
+                      value={formData.socialLinks.facebook}
+                      onChange={onChange}
+                      placeholder="Enter Facebook link"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">
+                      LinkedIn
+                    </label>
+                    <input
+                      type="text"
+                      id="linkedin"
+                      name="linkedin"
+                      value={formData.socialLinks.linkedin}
+                      onChange={onChange}
+                      placeholder="Enter LinkedIn link"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="instagram" className="block text-sm font-medium text-gray-700">
+                      Instagram
+                    </label>
+                    <input
+                      type="text"
+                      id="instagram"
+                      name="instagram"
+                      value={formData.socialLinks.instagram}
+                      onChange={onChange}
+                      placeholder="Enter Instagram link"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">
+                      Image (Upload)
+                    </label>
+                    <input
+                      type="file"
+                      id="imageUrl"
+                      name="imageUrl"
+                      onChange={handleImageChange}
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                        <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  type="submit">Save</button>
+                        <button className='bg-red-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  onClick={() => setSelectedPackage(null)}>Cancel</button>
+                    </form>
+                    </>
+                    )}
+                </div>
+            
+               
+            )}
         </>
+
+       
       )}
     </div>
   )

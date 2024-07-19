@@ -30,6 +30,7 @@ const BoardOfTrusteesScreen = () => {
       const [loading, setLoading] = useState(false)
       const [formData, setFormData] = useState(initialFormData);
       const [boardState, setBoardState] = useState([])
+      const [selectBoard, setSelectedBoard] = useState(null)
     
       const [imageFile, setImageFile] = useState(null); // State to hold the selected image file
       const [showForm, setShowForm] = useState(false)
@@ -94,16 +95,7 @@ const BoardOfTrusteesScreen = () => {
         // Determine whether to create or update based on presence of id
         if (formData.id) {
           // Update existing member
-          try {
-            setLoading(true)
-           const {data} = await axios.patch(`"https://joof-backend.onrender.com/api/member/${formData.id}`, updatedFormData);
-           await fetchBoardData();
-           setLoading(false)
-            // Handle success or navigate away
-          } catch (error) {
-            toast.error('Error updating member: ');
-            console.error('Error updating member: ', error);
-          }
+          
         } else {
           // Create new member
           try {
@@ -123,6 +115,40 @@ const BoardOfTrusteesScreen = () => {
         }
         setShowForm(false) 
       };
+
+      const updateBoard = async (id) => {
+        let imageUrl = formData.imageUrl; // Default to existing imageUrl
+      
+        if (imageFile) {
+          const imageData = new FormData();
+          imageData.append('file', imageFile);
+          imageData.append('cloud_name', 'dyliuyezy'); // Replace with your Cloudinary upload preset
+      
+          try {
+       
+            const response = await axios.post('"https://joof-backend.onrender.com/api/image', imageData);
+            imageUrl = response.data.url ? response.data.url : imageUrl; // Assuming your backend sends back the Cloudinary URL
+          
+          } catch (error) {
+            toast.error('Error uploading image: ');
+            console.error('Error uploading image: ', error);
+          }
+        }
+      
+        // Prepare data to be sent to backend (including updated imageUrl)
+        const updatedFormData = { ...formData, imageUrl };
+      
+        try {
+          setLoading(true)
+          const { data } = await axios.put(`https://joof-backend.onrender.com/api/member/${id}`, updatedFormData)
+          await fetchBoardData()
+          selectBoard(null)
+          setLoading(false)
+  
+        } catch (error) {
+          setLoading(false)
+        }
+      }
 
       const fetchBoardData = async() => {
         try {
@@ -155,6 +181,8 @@ const BoardOfTrusteesScreen = () => {
 
                             <Link to={`/${board?.socialLinks?.facebook}`}><FaInstagramSquare size={30} /> </Link>
                         </div>
+
+                        <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full' onClick={() => setSelectedBoard(board)}>Update Management Council</button>
 
                     </div>
                     ))}
@@ -288,6 +316,105 @@ const BoardOfTrusteesScreen = () => {
               </div>
             </div>
           )}
+
+
+        {selectBoard && (
+                <div>
+                    {loading ? (<SpinnerComponent />) : (
+                    <>
+                    <h2 className='text-center text-2xl capitalize'>Update Board of Trustees </h2>
+                    <form onSubmit={(e) => { e.preventDefault(); updateBoard(selectBoard._id); }}>
+                    <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={onChange}
+                      placeholder="Enter name"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="position" className="block text-sm font-medium text-gray-700">
+                      Position
+                    </label>
+                    <input
+                      type="text"
+                      id="position"
+                      name="position"
+                      value={formData.position}
+                      onChange={onChange}
+                      placeholder="Enter position"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="facebook" className="block text-sm font-medium text-gray-700">
+                      Facebook
+                    </label>
+                    <input
+                      type="text"
+                      id="facebook"
+                      name="facebook"
+                      value={formData.socialLinks.facebook}
+                      onChange={onChange}
+                      placeholder="Enter Facebook link"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">
+                      LinkedIn
+                    </label>
+                    <input
+                      type="text"
+                      id="linkedin"
+                      name="linkedin"
+                      value={formData.socialLinks.linkedin}
+                      onChange={onChange}
+                      placeholder="Enter LinkedIn link"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="instagram" className="block text-sm font-medium text-gray-700">
+                      Instagram
+                    </label>
+                    <input
+                      type="text"
+                      id="instagram"
+                      name="instagram"
+                      value={formData.socialLinks.instagram}
+                      onChange={onChange}
+                      placeholder="Enter Instagram link"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">
+                      Image (Upload)
+                    </label>
+                    <input
+                      type="file"
+                      id="imageUrl"
+                      name="imageUrl"
+                      onChange={handleImageChange}
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                        <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  type="submit">Save</button>
+                        <button className='bg-red-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  onClick={() => setSelectedBoard(null)}>Cancel</button>
+                    </form>
+                    </>
+                    )}
+                </div>
+            
+               
+            )}
         </>
       )}
     
