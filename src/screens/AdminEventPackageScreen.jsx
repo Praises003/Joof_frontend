@@ -10,11 +10,15 @@ const AdminEventPackageScreen = () => {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedPackage, setSelectedPackage] = useState(null); // For updating package
+    const [imageFile, setImageFile] = useState(null)
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        price: ''
+        price: '',
+        image: ""
     });
+
+   const {name, description, price, image} = formData
 
     const { user } = useSelector(state => state.user);
     const navigate = useNavigate();
@@ -40,6 +44,10 @@ const AdminEventPackageScreen = () => {
         fetchEvents();
     }, []);
 
+    const handleImageChange = (e) => {
+        setImageFile(e.target.files[0]);
+      };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -47,11 +55,17 @@ const AdminEventPackageScreen = () => {
             [name]: value
         });
     };
-
     const handleUpdatePackage = async (id) => {
+        const pic = await postPic()
         try {
             setLoading(true); // Start loading
-            const { data } = await axios.put(`https://joof-backend.onrender.com/api/package/${id}`, formData);
+            
+          
+    
+            const updatedFormData = { ...formData, image };
+            const { data } = await axios.put(`https://joof-backend.onrender.com/api/package/${id}`, {name, description, price, image:pic});
+    
+            console.log(data);
             setEvents(events.map(event => event._id === id ? data : event));
             setSelectedPackage(null);
             setLoading(false); // Stop loading
@@ -60,6 +74,21 @@ const AdminEventPackageScreen = () => {
             setLoading(false); // Stop loading
         }
     };
+    
+
+    const postPic = async() => {
+         const formD = new FormData()
+        formD.append("file", imageFile)
+         formD.append("cloud_name", "dyliuyezy")
+         try {
+           const { data } = await axios.post('https://joof-backend.onrender.com/api/image', formD)
+             console.log(data)
+         //setUploadPic(data)
+         return data.url
+         } catch (error) {
+           console.error(error)
+         }
+       } 
 
     const handleDeletePackage = async (id) => {
         try {
@@ -120,6 +149,11 @@ const AdminEventPackageScreen = () => {
                         <div>
                             <label className="block mb-3">Price</label>
                             <input className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3" type="number" name="price" value={formData.price} onChange={handleInputChange} placeholder={selectedPackage.price} />
+                        </div>
+
+                        <div>
+                            <label className="block mb-3">Image</label>
+                            <input className="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3" type="file" name="name"  onChange={handleImageChange} placeholder={"Add A Picture"} />
                         </div>
                         <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  type="submit">Save</button>
                         <button className='bg-red-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  onClick={() => setSelectedPackage(null)}>Cancel</button>
