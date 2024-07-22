@@ -182,7 +182,7 @@ const BoardOfTrusteesScreen = () => {
                             <Link to={`/${board?.socialLinks?.facebook}`}><FaInstagramSquare size={30} /> </Link>
                         </div>
 
-                        <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full' onClick={() => setSelectedBoard(board)}>Update Management Council</button>
+                        <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full' onClick={() => setSelectedBoard(board)}>Update Information</button>
 
                     </div>
                     ))}
@@ -199,7 +199,7 @@ const BoardOfTrusteesScreen = () => {
                 {user && user?.isAdmin ? (<button onClick={() => setShowForm(true)}
                 className={`  bg-blue-500 mt-10  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded items-center w-2/4 mx-auto block`}
                 ><div className="flex items-center justify-center">
-                    <FaPencilAlt size={18}/><p className='text-center'>Edit Board of Trustees</p>
+                    <FaPencilAlt size={18}/><p className='text-center'>Edit Information</p>
                 </div></button>) : (<></>)}
 
             </div>
