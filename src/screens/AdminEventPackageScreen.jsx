@@ -57,15 +57,16 @@ const AdminEventPackageScreen = () => {
     };
     const handleUpdatePackage = async (id) => {
         const pic = await postPic()
+        
         try {
             setLoading(true); // Start loading
             
           
     
             const updatedFormData = { ...formData, image };
-            const { data } = await axios.put(`https://joof-backend.onrender.com/api/package/${id}`, {name, description, price, image:pic});
+            const { data } = await axios.put(`http://localhost:5000/api/package/${id}`, {name, description, price, image: pic});
     
-            console.log(data);
+          
             setEvents(events.map(event => event._id === id ? data : event));
             setSelectedPackage(null);
             setLoading(false); // Stop loading
@@ -82,7 +83,7 @@ const AdminEventPackageScreen = () => {
          formD.append("cloud_name", "dyliuyezy")
          try {
            const { data } = await axios.post('https://joof-backend.onrender.com/api/image', formD)
-             console.log(data)
+             
          //setUploadPic(data)
          return data.url
          } catch (error) {

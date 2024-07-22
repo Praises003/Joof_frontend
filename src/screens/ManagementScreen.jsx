@@ -149,7 +149,7 @@ const ManagementScreen = () => {
       
           try {
          
-            const response = await axios.post('"https://joof-backend.onrender.com/api/image', imageData);
+            const response = await axios.post('https://joof-backend.onrender.com/api/image', imageData);
             imageUrl = response.data.url ? response.data.url : imageUrl; // Assuming your backend sends back the Cloudinary URL
    
           } catch (error) {
@@ -164,6 +164,7 @@ const ManagementScreen = () => {
         try {
           setLoading(true)
           const { data } = await axios.put(`https://joof-backend.onrender.com/api/management/${id}`, updatedFormData)
+          setLoading(false)
           await fetchManData()
           selectedMan(null)
           setLoading(false)

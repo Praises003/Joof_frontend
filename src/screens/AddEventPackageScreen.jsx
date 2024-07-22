@@ -52,20 +52,23 @@ const AddEventPackageScreen = () => {
         e.preventDefault();
 
         const url = await postPic()
+       
 
                 
 
-          const updatedFormData = {name, description, price, image: url};
+          const updatedFormData = {name, description, price, image:url };
           console.log(updatedFormData)
          
         try {
             setLoading(true);
-            const { data } = await axios.post('https://joof-backend.onrender.com/api/package', updatedFormData);
+            const { data } = await axios.post('https://joof-backend.onrender.com/api/package', {name, description, price, image:url});
             console.log(data)
             setEvents([...events, data]);
             setFormData({ name: '', image: "", description: '', price: '' });
             setLoading(false);
         } catch (error) {
+            setLoading(false)
+            toast.error('Error creating package ');
             console.error('Error creating package:', error);
             setLoading(false);
         }
@@ -79,7 +82,7 @@ const AddEventPackageScreen = () => {
         formD.append("cloud_name", "dyliuyezy")
         try {
           const { data } = await axios.post('https://joof-backend.onrender.com/api/image', formD)
-            console.log(data)
+            //console.log(data)
         //setUploadPic(data)
         return data.url
         } catch (error) {

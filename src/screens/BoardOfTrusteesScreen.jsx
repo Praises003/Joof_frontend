@@ -126,7 +126,7 @@ const BoardOfTrusteesScreen = () => {
       
           try {
        
-            const response = await axios.post('"https://joof-backend.onrender.com/api/image', imageData);
+            const response = await axios.post('https://joof-backend.onrender.com/api/image', imageData);
             imageUrl = response.data.url ? response.data.url : imageUrl; // Assuming your backend sends back the Cloudinary URL
           
           } catch (error) {
