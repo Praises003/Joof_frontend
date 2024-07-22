@@ -43,7 +43,7 @@ const EventListComponent = () => {
 
     const navigate = useNavigate()
     useEffect(() => {
-        if ( !user.isAdmin ) {
+        if ( user && !user?.isAdmin ) {
             navigate("/register")
         }
     }, [])
