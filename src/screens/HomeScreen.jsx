@@ -255,7 +255,7 @@ const HomeScreen = () => {
       let updatedText;
       if (type === 'vision') {
         updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/vision', { text: visionText });
-        console.log(updatedText)
+        
         setVisionText(updatedText.data.visionText);
       } else if (type === 'mission') {
         updatedText = await axios.put('https://joof-backend.onrender.com/api/texts/mission', { text: missionText });
