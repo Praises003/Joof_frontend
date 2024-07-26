@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import {toast} from "react-toastify"
 import eventImg from '../assets/joof.jpg'
@@ -8,6 +8,7 @@ import { FaClock } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import axios from 'axios';
 import { FaPencilAlt } from "react-icons/fa";
+import MapComponent from '../components/MapComponent';
 
 
 const ContactScreen = () => {
@@ -25,6 +26,7 @@ const ContactScreen = () => {
         const fetchContactText = async () => {
             try {
                 const { data } = await axios.get('https://joof-backend.onrender.com/api/contactText', {withCredentials: true});
+                
 
                 setAddress(data.address)
                 setPhone(data.phone)
@@ -85,14 +87,17 @@ const ContactScreen = () => {
         }
     }
 
-    console.log(address)
+    const googleMapsApiKey = import.meta.env.VITE_MAP_API
+    const mapAddress = 'Aiyegbaju Street, behind Iroko market, Igbara Oke'
+
+    
   return (
     <div>
          <div style={{background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),url('${eventImg}')`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center", height: "80vh"}} className={` mb-5 relative`}>
              <p className='uppercase text-4xl font-semibold left-96 right-56 md:text-5xl text-white absolute top-52 md:top-52 md:left-52 text-center'>  CONTACT US</p>
         </div>
 
-        <div className="grid grid-cols-4 gap-2 p-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 p-4">
             <div className="">
                 <div className="flex items-center">
                     <FaLocationDot size={25} />
@@ -141,6 +146,12 @@ const ContactScreen = () => {
        
 
     </div>
+
+    <div>
+      <h1>Google Maps </h1>
+      <MapComponent />
+    </div>
+
 
 
         {showForm && (
@@ -240,6 +251,8 @@ const ContactScreen = () => {
           </div>
         </div>
       )}
+
+
 
     </div>
   )

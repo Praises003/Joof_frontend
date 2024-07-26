@@ -1,6 +1,12 @@
+/* src/index.css or src/App.css */
+@import url('https://unpkg.com/leaflet/dist/leaflet.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
 
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -71,6 +77,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+
 
 .loadingSpinnerContainer {
   position: fixed;
