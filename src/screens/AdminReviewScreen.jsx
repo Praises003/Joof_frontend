@@ -10,12 +10,12 @@ const AdminReviewScreen = () => {
 
   useEffect(() => {
     const fetchAllReviews = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/reviews');
+      const { data } = await axios.get('https://joof-backend.onrender.com/api/reviews');
       setAllReviews(data);
     };
 
     const fetchReviews = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/reviews/approved');
+      const { data } = await axios.get('https://joof-backend.onrender.com/api/reviews/approved');
       setReviews(data);
     };
 
@@ -25,20 +25,20 @@ const AdminReviewScreen = () => {
 
   const addReview = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post('http://localhost:5000/api/reviews', { author, text });
+    const { data } = await axios.post('https://joof-backend.onrender.com/api/reviews', { author, text });
     setAllReviews([...allReviews, data]);
     setAuthor('');
     setText('');
   };
 
   const approveReview = async (id) => {
-    const { data } = await axios.put(`http://localhost:5000/api/reviews/${id}`);
+    const { data } = await axios.put(`hhttps://joof-backend.onrender.com/api/reviews/${id}`);
     setAllReviews(allReviews.map(review => review._id === id ? data : review));
     setReviews([...reviews, data]);
   };
 
   const deleteReview = async (id) => {
-    await axios.delete(`http://localhost:5000/api/reviews/${id}`);
+    await axios.delete(`https://joof-backend.onrender.com/api/reviews/${id}`);
     setAllReviews(allReviews.filter(review => review._id !== id));
     setReviews(reviews.filter(review => review._id !== id));
   };

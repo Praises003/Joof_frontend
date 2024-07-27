@@ -8,40 +8,14 @@ const ReviewScreen = () => {
   const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
 
-//   useEffect(() => {
-//     const fetchAllReviews = async () => {
-//       const { data } = await axios.get('http://localhost:5000/api/reviews');
-//       setAllReviews(data);
-//     };
-
-//     const fetchReviews = async () => {
-//       const { data } = await axios.get('http://localhost:5000/api/reviews/approved');
-//       setReviews(data);
-//     };
-
-//     fetchReviews();
-//     fetchAllReviews();
-//   }, []);
-
   const addReview = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post('http://localhost:5000/api/reviews', { author, text });
+    const { data } = await axios.post('https://joof-backend.onrender.com/api/reviews', { author, text });
     setAllReviews([...allReviews, data]);
     setAuthor('');
     setText('');
   };
 
-//   const approveReview = async (id) => {
-//     const { data } = await axios.put(`http://localhost:5000/api/reviews/${id}`);
-//     setAllReviews(allReviews.map(review => review._id === id ? data : review));
-//     setReviews([...reviews, data]);
-//   };
-
-//   const deleteReview = async (id) => {
-//     await axios.delete(`http://localhost:5000/api/reviews/${id}`);
-//     setAllReviews(allReviews.filter(review => review._id !== id));
-//     setReviews(reviews.filter(review => review._id !== id));
-//   };
 
   return (
     <div className="max-w-2xl mx-auto p-4 bg-white shadow-lg rounded-lg">
