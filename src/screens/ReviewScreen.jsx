@@ -2,26 +2,26 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const TestScreen = () => {
+const ReviewScreen = () => {
   const [reviews, setReviews] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
   const [author, setAuthor] = useState('');
   const [text, setText] = useState('');
 
-  useEffect(() => {
-    const fetchAllReviews = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/reviews');
-      setAllReviews(data);
-    };
+//   useEffect(() => {
+//     const fetchAllReviews = async () => {
+//       const { data } = await axios.get('http://localhost:5000/api/reviews');
+//       setAllReviews(data);
+//     };
 
-    const fetchReviews = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/reviews/approved');
-      setReviews(data);
-    };
+//     const fetchReviews = async () => {
+//       const { data } = await axios.get('http://localhost:5000/api/reviews/approved');
+//       setReviews(data);
+//     };
 
-    fetchReviews();
-    fetchAllReviews();
-  }, []);
+//     fetchReviews();
+//     fetchAllReviews();
+//   }, []);
 
   const addReview = async (e) => {
     e.preventDefault();
@@ -31,17 +31,17 @@ const TestScreen = () => {
     setText('');
   };
 
-  const approveReview = async (id) => {
-    const { data } = await axios.put(`http://localhost:5000/api/reviews/${id}`);
-    setAllReviews(allReviews.map(review => review._id === id ? data : review));
-    setReviews([...reviews, data]);
-  };
+//   const approveReview = async (id) => {
+//     const { data } = await axios.put(`http://localhost:5000/api/reviews/${id}`);
+//     setAllReviews(allReviews.map(review => review._id === id ? data : review));
+//     setReviews([...reviews, data]);
+//   };
 
-  const deleteReview = async (id) => {
-    await axios.delete(`http://localhost:5000/api/reviews/${id}`);
-    setAllReviews(allReviews.filter(review => review._id !== id));
-    setReviews(reviews.filter(review => review._id !== id));
-  };
+//   const deleteReview = async (id) => {
+//     await axios.delete(`http://localhost:5000/api/reviews/${id}`);
+//     setAllReviews(allReviews.filter(review => review._id !== id));
+//     setReviews(reviews.filter(review => review._id !== id));
+//   };
 
   return (
     <div className="max-w-2xl mx-auto p-4 bg-white shadow-lg rounded-lg">
@@ -69,7 +69,7 @@ const TestScreen = () => {
           Add Review
         </button>
       </form>
-      <h2 className="text-xl font-semibold mb-4">Approved Reviews</h2>
+      {/* <h2 className="text-xl font-semibold mb-4">Approved Reviews</h2>
       <ul className="mb-6">
         {reviews.map(review => (
           <li key={review._id} className="mb-4 p-4 bg-gray-100 rounded">
@@ -77,9 +77,9 @@ const TestScreen = () => {
             <p>{review.text}</p>
           </li>
         ))}
-      </ul>
-      <h2 className="text-xl font-semibold mb-4">All Reviews</h2>
-      <ul>
+      </ul> */}
+      {/* <h2 className="text-xl font-semibold mb-4">All Reviews</h2> */}
+      {/* <ul>
         {allReviews.map(review => (
           <li key={review._id} className="mb-4 p-4 bg-gray-100 rounded">
             <p className="font-bold">{review.author}</p>
@@ -100,9 +100,9 @@ const TestScreen = () => {
             </button>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
 
-export default TestScreen;
+export default ReviewScreen;

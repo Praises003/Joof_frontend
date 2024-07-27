@@ -29,6 +29,7 @@ const DashSideBar = ({ show }) => {
     const [selectSeat, setSelectedSeat] = useState(false)
     const [packages, setPackages] = useState(false)
     const [cartState, setCartState] = useState(false)
+    const [customer, setCustomer] = useState(false)
     const {eventPackage} = useSelector(state => state.eventPackage)
 
 
@@ -43,10 +44,12 @@ const DashSideBar = ({ show }) => {
         setDash(true)
         tick ? setTick(false) : ""
         profile ? setProfile(false) : ""
+        customer ? setCustomer(false) : ""
         sign ? setSign(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
         packages ? setPackages(false) : ""
         cartState ? setCartState(false) : ""
+
         navigate("/dashboard")
     }
 
@@ -54,6 +57,7 @@ const DashSideBar = ({ show }) => {
         setTick(true)
         dash ? setDash(false) : ""
         profile ? setProfile(false) : ""
+        customer ? setCustomer(false) : ""
         sign ? setSign(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
         navigate("/dash_event")
@@ -68,6 +72,7 @@ const DashSideBar = ({ show }) => {
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
         profile ? setProfile(false) : ""
+        customer ? setCustomer(false) : ""
         packages ? setPackages(false) : ""
         cartState ? setCartState(false) : ""
         navigate("/seat")
@@ -78,10 +83,22 @@ const DashSideBar = ({ show }) => {
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
+        profile ? setProfile(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
         packages ? setPackages(false) : ""
         cartState ? setCartState(false) : ""
         navigate("/profile")
+    }
+
+    const onCustomer = () => {
+        setCustomer(true)
+        dash ? setDash(false) : ""
+        tick ? setTick(false) : ""
+        sign ? setSign(false) : ""
+        selectSeat ? setSelectedSeat(false) : ""
+        packages ? setPackages(false) : ""
+        cartState ? setCartState(false) : ""
+        navigate("/customer_review")
     }
 
     const onPackage = () => {
@@ -141,6 +158,11 @@ const DashSideBar = ({ show }) => {
                 <div onClick={onProfile} className={`${profile ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
                     <RxAvatar  size={30} className={`${profile ? "text-white" : "text-blue-900"}`} />
                     <p className="ml-4 text-xl">Profile</p>
+                </div>
+
+                <div onClick={onCustomer} className={`${customer ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>
+                    <RxAvatar  size={30} className={`${customer ? "text-white" : "text-blue-900"}`} />
+                    <p className="ml-4 text-xl">Customer Review</p>
                 </div>
 
                 <div onClick={onPackage} className={`${packages ? "bg-black text-white border rounded-lg px-2 py-3" : "" } flex items-center mb-5`}>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const TestScreen = () => {
+const AdminReviewScreen = () => {
   const [reviews, setReviews] = useState([]);
   const [allReviews, setAllReviews] = useState([]);
   const [author, setAuthor] = useState('');
@@ -46,44 +46,11 @@ const TestScreen = () => {
   return (
     <div className="max-w-2xl mx-auto p-4 bg-white shadow-lg rounded-lg">
       <h1 className="text-2xl font-bold mb-4 text-center">Customer Reviews</h1>
-      <form className="mb-6" onSubmit={addReview}>
-        <input
-          type="text"
-          placeholder="Author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          required
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-        />
-        <textarea
-          placeholder="Review Text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          required
-          className="w-full p-2 mb-4 border border-gray-300 rounded"
-        ></textarea>
-        <button
-          type="submit"
-          className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-        >
-          Add Review
-        </button>
-      </form>
-      <h2 className="text-xl font-semibold mb-4">Approved Reviews</h2>
-      <ul className="mb-6">
-        {reviews.map(review => (
-          <li key={review._id} className="mb-4 p-4 bg-gray-100 rounded">
-            <p className="font-bold">{review.author}</p>
-            <p>{review.text}</p>
-          </li>
-        ))}
-      </ul>
-      <h2 className="text-xl font-semibold mb-4">All Reviews</h2>
       <ul>
         {allReviews.map(review => (
           <li key={review._id} className="mb-4 p-4 bg-gray-100 rounded">
-            <p className="font-bold">{review.author}</p>
-            <p>{review.text}</p>
+            <p className="font-bold text-lg">Name: {review.author}</p>
+            <p className="font-medium text-lg">{review.text}</p>
             {!review.isApproved && (
               <button
                 onClick={() => approveReview(review._id)}
@@ -105,4 +72,4 @@ const TestScreen = () => {
   );
 };
 
-export default TestScreen;
+export default AdminReviewScreen;

@@ -50,9 +50,9 @@ const AdminNavComponent = ({ shows, setShows}) => {
                 <p className="text-lg text-white font-semibold">Add EventPackages</p>
             </div>
 
-            <div onClick={() => navigate("/guests")} className="flex px-5 items-center mb-2">
+            <div onClick={() => navigate("/admin_review")} className="flex px-5 items-center mb-2">
                 <FaUsers className='text-white pr-3.5' size={40} />
-                <p className="text-lg text-white font-semibold">Guest List</p>
+                <p className="text-lg text-white font-semibold">Admin Customer Reviews</p>
             </div>
 
             {/* <div className="flex px-5 items-center mb-2">
