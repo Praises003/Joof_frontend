@@ -84,6 +84,7 @@ const DashSideBar = ({ show }) => {
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
         profile ? setProfile(false) : ""
+        customer ? setCustomer(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
         packages ? setPackages(false) : ""
         cartState ? setCartState(false) : ""
@@ -95,6 +96,7 @@ const DashSideBar = ({ show }) => {
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
+        profile ? setProfile(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
         packages ? setPackages(false) : ""
         cartState ? setCartState(false) : ""
@@ -104,6 +106,7 @@ const DashSideBar = ({ show }) => {
     const onPackage = () => {
         setPackages(true)
         profile ? setProfile(false) : ""
+        customer ? setCustomer(false) : ""
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
@@ -117,6 +120,7 @@ const DashSideBar = ({ show }) => {
         setCartState(true)
         packages ? setPackages(false) : ""
         profile ? setProfile(false) : ""
+        customer ? setCustomer(false) : ""
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         sign ? setSign(false) : ""
@@ -130,6 +134,7 @@ const DashSideBar = ({ show }) => {
         dash ? setDash(false) : ""
         tick ? setTick(false) : ""
         profile ? setProfile(false) : ""
+        customer ? setCustomer(false) : ""
         cartState ? setCartState(false) : ""
         selectSeat ? setSelectedSeat(false) : ""
         dispatch(logout())

@@ -177,7 +177,7 @@ const CartScreen = () => {
                
             </div>
             <div className="">
-              <p className="mt-12 text-xl font-semibold">Total Price: ${total.toFixed(2)}</p>
+              <p className="mt-12 text-xl font-semibold">Total Price: ₦{total.toFixed(2)}</p>
               <button onClick={makePayment} className="block cursor-pointer bg-blue-900 text-white text-lg w-full rounded-lg py-1.5">Buy</button>
             </div>
 
