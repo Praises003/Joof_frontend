@@ -64,7 +64,7 @@ const AdminEventPackageScreen = () => {
           
     
             const updatedFormData = { ...formData, image };
-            const { data } = await axios.put(`http://localhost:5000/api/package/${id}`, {name, description, price, image: pic});
+            const { data } = await axios.put(`https://joof-backend.onrender.com/api/package/${id}`, {name, description, price, image: pic});
     
           
             setEvents(events.map(event => event._id === id ? data : event));
