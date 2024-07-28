@@ -24,6 +24,14 @@ const EventListComponent = () => {
   const [selectedTable, setSelectedTable] = useState(null);
 
 
+
+  const navigate = useNavigate()
+  useEffect(() => {
+      if ( !user && !user?.isAdmin  ) {
+          navigate("/login")
+      }
+  }, [])
+
   const handleOpenEditModal = (tableData) => {
     setSelectedTable(tableData);
     setIsEditModalOpen(true);
@@ -41,12 +49,7 @@ const EventListComponent = () => {
   };
 
 
-    const navigate = useNavigate()
-    useEffect(() => {
-        if ( user && !user?.isAdmin ) {
-            navigate("/register")
-        }
-    }, [])
+
   useEffect(() => {
     dispatch(fetchTables());
   }, [dispatch]);
