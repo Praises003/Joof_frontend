@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import eventImg from '../assets/joof.jpg';
 import { FaLightbulb } from "react-icons/fa6";
@@ -11,6 +12,9 @@ const CorporateScreen = () => {
     const [currentTextType, setCurrentTextType] = useState('');
 
     const [loading, setLoading] = useState(false)
+
+    const { user } = useSelector(state => state.user)
+
   
     // Fetch corporate data
     const [corporateData, setCorporateData] = useState({});
@@ -54,10 +58,11 @@ useEffect(() => {
       >
         <p className='uppercase text-4xl font-semibold left-60 md:text-5xl text-white absolute top-52 md:top-52 md:left-96 right-64 text-center'> CORPORATE </p>
       </div>
+      { user && user?.isAdmin ? (<button onClick={() => openModal('bannerText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block mx-auto">Edit</button>) : (<div></div>)}
 
       <div className="">
         <p className="text-2xl md:text-3xl font-bold text-center">{corporateData.visionText}</p>
-        <button onClick={() => openModal('visionText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block mx-auto">Edit</button>
+        { user && user?.isAdmin ? (<button onClick={() => openModal('visionText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block mx-auto">Edit</button>) : (<div></div>)}
         <div className="flex flex-col md:flex-row justify-between p-4">
           <div className="w-full">
             <img src={corporateData.visionImage} alt="Vision" className='w-full md:w-10/12 bg-no-repeat bg-cover mx-auto' />
@@ -66,15 +71,14 @@ useEffect(() => {
             <p className="text font-semibold">
               {corporateData.visionDes}
             </p>
-            <button onClick={() => openModal('visionDes')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4">Edit</button>
-
+            { user && user?.isAdmin ? (<button onClick={() => openModal('visionDes')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4">Edit</button>): (<div></div>)}
           </div>
         </div>
         
 
         <div className="">
         <p className="text-2xl md:text-3xl font-bold text-center">{corporateData.mission}</p>
-        <button onClick={() => openModal('mission')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block mx-auto">Edit</button>
+        { user && user?.isAdmin ? (<button onClick={() => openModal('mission')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block mx-auto">Edit</button>) : (<div></div>)}
           <div className="flex flex-col md:flex-row justify-between p-4">
             <div className="w-full">
               <img src={corporateData.missionImage} alt="Mission" className='w-full md:w-10/12 bg-no-repeat bg-cover mx-auto' />
@@ -83,7 +87,7 @@ useEffect(() => {
               <p className="text-base font-semibold">
                 {corporateData.missionDes}
               </p>
-              <button onClick={() => openModal('missionDes')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+              { user && user?.isAdmin ? (<button onClick={() => openModal('missionDes')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
             </div>
           </div>
           
@@ -91,7 +95,7 @@ useEffect(() => {
 
         <div className="">
           <p className="text-2xl md:text-3xl font-bold text-center">{corporateData.value}</p>
-          <button onClick={() => openModal('value')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block mx-auto">Edit</button>
+          { user && user?.isAdmin ? (<button onClick={() => openModal('value')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block mx-auto">Edit</button>) : (<div></div>) }
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-2">
             <div className="w-full shadow-lg pt-8 px-8 pb-12 rounded-md mb-3">
               <div className="flex items-center py-4">
@@ -103,7 +107,7 @@ useEffect(() => {
               <p className="font-medium">
                 {corporateData.communityText}
               </p>
-              <button onClick={() => openModal('communityText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+              { user && user?.isAdmin ? (<button onClick={() => openModal('communityText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>) }
             </div>
             <div className="w-full shadow-lg pt-8 px-4 pb-12 rounded-md mb-3">
               <div className="flex items-center py-4">
@@ -114,7 +118,7 @@ useEffect(() => {
               <p className="font-medium">
                 {corporateData.excellenceText}
               </p>
-              <button onClick={() => openModal('excellenceText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+              { user && user?.isAdmin ? (<button onClick={() => openModal('excellenceText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
             </div>
             <div className="w-full shadow-lg pt-8 px-4 pb-12 rounded-md mb-3">
               <div className="flex items-center py-4">
@@ -125,41 +129,41 @@ useEffect(() => {
               <p className="font-medium">
                 {corporateData.innovationText}
               </p>
-              <button onClick={() => openModal('innovationText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+              { user && user?.isAdmin ? (<button onClick={() => openModal('innovationText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
             </div>
             <div className="w-full shadow-lg pt-8 px-4 pb-12 rounded-md mb-3">
               <div className="flex items-center py-4">
                 <GiDrum size={45} className='text-blue-900' />
                 <h1 className="font-bold text-lg pl-3">Cultural Enrichment</h1>
-                <button onClick={() => openModal('culture')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+                { user && user?.isAdmin ? (<button onClick={() => openModal('culture')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
               </div>
               <p className="font-medium">
                 {corporateData.cultureText}
               </p>
-              <button onClick={() => openModal('cultureText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+              { user && user?.isAdmin ? (<button onClick={() => openModal('cultureText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
             </div>
             <div className="w-full shadow-lg pt-8 px-4 pb-12 rounded-md mb-3">
               <div className="flex items-center py-4">
                 <MdOutlineCastForEducation size={45} className='text-blue-900' />
                 <h1 className="font-bold text-lg pl-3">EDUCATION</h1>
-                <button onClick={() => openModal('education')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+                { user && user?.isAdmin ? (<button onClick={() => openModal('education')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
               </div>
               <p className="font-medium">
                 {corporateData.educationText}
               </p>
-              <button onClick={() => openModal('educationText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+              { user && user?.isAdmin ? (<button onClick={() => openModal('educationText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
             </div>
             <div className="w-full shadow-lg pt-8 px-4 pb-12 rounded-md mb-3">
               <div className="flex items-center py-4">
                 <PiSealCheckFill size={45} className='text-blue-900' />
                 <h1 className="font-bold text-lg pl-3">COLLABORATION</h1>
-                <button onClick={() => openModal('collaboration')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+                { user && user?.isAdmin ?  (<button onClick={() => openModal('collaboration')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>) }
               </div>
               <p className="font-medium">
                 {corporateData.collaborationText}
               </p>
-              <button onClick={() => openModal('collaborationText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
-            </div>
+              { user && user?.isAdmin ? (<button onClick={() => openModal('collaborationText')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<div></div>)}
+              </div>
           </div>
         </div>
       </div>
