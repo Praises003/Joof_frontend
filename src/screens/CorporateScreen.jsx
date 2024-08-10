@@ -124,7 +124,7 @@ useEffect(() => {
               <div className="flex items-center py-4">
                 <FaLightbulb size={45} className='text-blue-900' />
                 <h1 className="font-bold text-lg pl-3">INNOVATION</h1>
-                <button onClick={() => openModal('innovation')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>
+                { user && user?.isAdmin ? (<button onClick={() => openModal('innovation')} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none mt-4 block">Edit</button>) : (<></>)}
               </div>
               <p className="font-medium">
                 {corporateData.innovationText}

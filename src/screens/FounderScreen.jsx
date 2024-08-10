@@ -1,29 +1,387 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import {toast} from "react-toastify"
+import { useSelector, useDispatch } from 'react-redux';
+import SpinnerComponent from '../components/SpinnerComponent'
+
+import { FaPencilAlt } from "react-icons/fa";
 import founder from "../assets/prof.jpg"
 
 const FounderScreen = () => {
+    const initialFormData = {
+        title: '',
+        name: '',
+        image: '', 
+        description: "",
+        email: ""
+      };
+      const [loading, setLoading] = useState(false)
+      const [formData, setFormData] = useState(initialFormData);
+      const [founderState, setFounderState] = useState([])
+      const [selectFounder, setSelectedFounder] = useState(null)
+    
+      const [imageFile, setImageFile] = useState(null); // State to hold the selected image file
+      const [showForm, setShowForm] = useState(false)
+      const { user } = useSelector(state => state.user)
+
+
+
+    useEffect(() => {
+        fetchFounderData()
+    }, []);
+
+    const onChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+      };
+
+      const handleImageChange = (e) => {
+        setImageFile(e.target.files[0]);
+      };
+
+      const onSubmit = async (e) => {
+        e.preventDefault();
+        // Check if any required field is empty
+        if (!formData.name ) {
+          toast.error('Please fill out all fields');
+          return;
+        }
+      
+        // Upload image to Cloudinary if imageFile exists
+        let image = formData.imageUrl; // Default to existing imageUrl
+      
+        if (imageFile) {
+          const imageData = new FormData();
+          imageData.append('file', imageFile);
+          imageData.append('cloud_name', 'dyliuyezy'); // Replace with your Cloudinary upload preset
+      
+          try {
+            setLoading(true)
+            const response = await axios.post('"https://joof-backend.onrender.com/api/image', imageData);
+            image = response.data.url; // Assuming your backend sends back the Cloudinary URL
+            setLoading(false)
+          } catch (error) {
+            toast.error('Error uploading image: ');
+            console.error('Error uploading image: ', error);
+          }
+        }
+      
+        // Prepare data to be sent to backend (including updated imageUrl)
+        if(!image ) {
+          toast.error("Please Fill the image Field")
+        } 
+        const updatedFormData = { ...formData, image };
+      
+        // Determine whether to create or update based on presence of id
+        if (formData.id) {
+          // Update existing member
+          
+        } else {
+          // Create new member
+          try {
+            
+           const {data} = await axios.post('https://joof-backend.onrender.com/api/founder', updatedFormData);
+           await  fetchFounderData()
+           
+            // Handle success or navigate away
+             // Clear form fields after successful submission
+          setFormData(initialFormData);
+          setImageFile(null);
+          toast.success('Form submitted successfully');
+          } catch (error) {
+            console.error('Error creating member: ', error);
+            toast.error('Failed to submit form');
+          }
+        }
+        setShowForm(false) 
+      };
+
+
+      
+      const updateFounder = async (id) => {
+        let image = formData.image; // Default to existing imageUrl
+      
+        if (imageFile) {
+          const imageData = new FormData();
+          imageData.append('file', imageFile);
+          imageData.append('cloud_name', 'dyliuyezy'); // Replace with your Cloudinary upload preset
+      
+          try {
+       
+            const response = await axios.post('https://joof-backend.onrender.com/api/image', imageData);
+            image = response.data.url ? response.data.url : image; // Assuming your backend sends back the Cloudinary URL
+          
+          } catch (error) {
+            toast.error('Error uploading image: ');
+            console.error('Error uploading image: ', error);
+          }
+        }
+      
+        // Prepare data to be sent to backend (including updated imageUrl)
+        const updatedFormData = { ...formData, image };
+      
+        try {
+          setLoading(true)
+          const { data } = await axios.put(`https://joof-backend.onrender.com/api/founder/${id}`, updatedFormData)
+          await fetchFounderData()
+          selectFounder(null)
+          setLoading(false)
+  
+        } catch (error) {
+          setLoading(false)
+        }
+      }
+
+    
+    
+    
+    // Fetch FounderData
+    const fetchFounderData = async () => {
+        try {
+            setLoading(true);
+            const { data } = await axios.get('https://joof-backend.onrender.com/api/founder')
+           
+            setFounderState(data)
+            
+        } catch(error) {
+            console.error('Error fetching founder data:', error);
+
+        } finally {
+            setLoading(false)
+        }
+    };
+
+ 
   return (
     <div>
         <p className="font-semibold text-2xl text-center">FOUNDER</p>
+
         <div className="flex lg:flex-row flex-col justify-between items-start">
             <div className="lg:w-1/4">
-                <img src={founder} alt="" className="   bg-no-repeat bg-cover " />
+                <img src={founderState.image} alt="" className="   bg-no-repeat bg-cover " />
 
             </div>
             <div className="lg:w-3/4 ">
-                <p className="text-2xl font-bold mb-7 lg:text-center px-5">Professor Rufus Oladipo Elemo</p>
+               
+                    <div>
+                   
+                    <p className="text-2xl font-bold mb-7 lg:text-center px-5">{founderState.name}</p>
 
-                <p className="mb-7 px-5">
-                    Professor Rufus Oladipo Elemo, aka “Cracker Joe” is a 1968 Division One graduate of Anglican Grammar School, Igbara-Oke. He attended Adeola Odutola College, Ijebu-Ode for Higher School Certificate. All these were made possible per the kindness of his senior sister, Chief (Mrs.) Janet Olufunmilayo Oluwasanmi. After teaching Mathematics and Physics at Ibadan City Academy for one year, he proceeded to the United States of America in December 1971 with the aid of Federal Government of Nigeria scholarship. While there, he earned Bachelors, Masters, and Doctorate degrees in Petroleum Engineering from University of Missouri – Rolla, Louisiana State University, and the University of Texas at Austin, respectively. He returned to Nigeria in January 1979 and took up an appointment as a Lecturer in the Department of Petroleum Engineering, University of Ibadan. By 1982, he was a Senior Lecturer and Associate Dean of The Faculty of Technology. He returned to the United States on sabbatical leave in July 1985, taught and conducted research in the School of Petroleum and Geological Engineering at The University of Oklahoma in Norman. He resigned his appointment at UI in 1989 with a promise to come back there. He was also on the faculty of a new Department Petroleum Engineering at North Dakota State University, Fargo, as an Associate Professor from August 1986 till June 1994. He resettled in Maryland in July 1994, taught and became a full Professor at Prince George’s Community College and at Bowie State University. It has long been the wish and goal of Professor Oladipo Elemo to give back a little to his Alma Mater, Anglican Grammar School, Igbara-Oke (AGSI), and to honor and immortalize his senior sister, Chief (Mrs.) Janet Olufunmilayo Oluwasanmi, who transitioned into eternal glory on Palm Sunday, March 28, 1999. This Computer Center at AGSI is a manifestation of that goal and wish. It was dedicated and commissioned for use on Friday, August 23, 2019. It is for the benefit of current and future generations of young adults/students. To God be all the Honor, Adoration, and Glory.
-                </p>
+                    <p className="mb-7 px-5">
+                    {founderState.description}
+                    </p>
+    
+                    <p className="text-lg font-semibold px-5 mb-5">
+                    {founderState.email}
+                    </p>
+                </div>
 
-                <p className="text-lg font-semibold px-5">
-                Email: roelemo@juno.com
-                </p>
+               
+                
 
             </div>
+
+
+
+     </div>
+     <div className="">
+     {user && user?.isAdmin ? (<button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-2/4 mx-auto' onClick={() => setSelectedFounder(founderState)}>Update Information</button>) : (<></>)}
                         
-        </div>
+
+     </div>
+
+        {loading ? (
+        <SpinnerComponent /> // Your spinner component
+      ) : (
+        <>
+        
+          {showForm && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="bg-white p-8 rounded-lg w-96 overflow-y-auto">
+                <h2 className="text-lg font-semibold mb-4">Update Founder </h2>
+                <form onSubmit={onSubmit}>
+                  <div className="mb-4">
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      value={formData.title}
+                      onChange={onChange}
+                      placeholder="Enter title"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={onChange}
+                      placeholder="Enter name"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                      Description
+                    </label>
+                    <input
+                      type="text"
+                      id="descriptioj"
+                      name="description"
+                      value={formData.description}
+                      onChange={onChange}
+                      placeholder="Enter description"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="Email" className="block text-sm font-medium text-gray-700">
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={onChange}
+                      placeholder="Enter  Email"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+
+                  <div className="mb-4">
+                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">
+                      Image (Upload)
+                    </label>
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      onChange={handleImageChange}
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
+                    >
+                      Submit
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowForm(false)}
+                      className="ml-2 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
+
+
+        {selectFounder && (
+                <div>
+                    {loading ? (<SpinnerComponent />) : (
+                    <>
+                   
+                    <h2 className='text-center text-2xl capitalize'>Update Founder Page </h2>
+                    <form onSubmit={(e) => { e.preventDefault(); updateFounder(selectFounder._id); }}>
+                    <div className="mb-4">
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      value={formData.title}
+                      onChange={onChange}
+                      placeholder="Enter Title"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={onChange}
+                      placeholder="Enter Name"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+
+                  <div className="mb-4">
+                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">
+                      Image (Upload)
+                    </label>
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      onChange={handleImageChange}
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                      Description
+                    </label>
+                    <input
+                      type="text"
+                      id="description"
+                      name="description"
+                      value={formData.description}
+                      onChange={onChange}
+                      placeholder="Enter description"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+
+                  <div className="mb-4">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={onChange}
+                      placeholder="Enter email"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
+                  </div>
+
+
+                        <button className='bg-blue-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  type="submit">Save</button>
+                        <button className='bg-red-500 text-white p-4 mt-1 mb-12 rounded-lg block text-center w-full'  onClick={() => setSelectedFounder(null)}>Cancel</button>
+                    </form>
+            
+                    </>
+                  
+                    )}
+                </div>
+            
+               
+            )}
+        </>
+      )}
+    
     </div>
   )
 }
