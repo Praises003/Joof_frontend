@@ -45,6 +45,11 @@ const AdminNavComponent = ({ shows, setShows}) => {
                 <p className="text-lg text-white font-semibold">Event List</p>
             </div>
 
+            <div onClick={() => navigate("/admin_contact")} className="flex px-5 items-center mb-2">
+                <IoCalendarNumberSharp className='text-white pr-3.5' size={40} />
+                <p className="text-lg text-white font-semibold">Customers Feedback</p>
+            </div>
+
             <div onClick={() => navigate("/add_event")} className="flex px-5 items-center mb-2">
                 <FaCalendarAlt className='text-white pr-3.5' size={40} />
                 <p className="text-lg text-white font-semibold">Add EventPackages</p>

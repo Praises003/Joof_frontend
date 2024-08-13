@@ -94,17 +94,17 @@ const AuditScreen = () => {
                 View Audited Financial Statements fo the period ended in june 2022
             </button> */}
 
-{user && user?.isAdmin ?  (<button
+            <button
             onClick={handleViewPdf}
             className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-full block text-center hover:bg-yellow-500 hover:text-white hover:font-semibold mb-10 mt-5 lg:w-2/4 lg:mx-auto"
         >
              View Our Audited Financial Statements 
-        </button>) : (<></>)}    
+        </button>)     
 
         </div>
 
 
-        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+        {user && user?.isAdmin ?  ( <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
     <h2 className="text-center text-2xl font-bold mb-6">Upload New PDF</h2>
     <form onSubmit={handleUpload} className="space-y-4">
         <div>
@@ -144,7 +144,7 @@ const AuditScreen = () => {
                 </div> */}
 
     </form>
-        </div>
+        </div>) : (<></>)}
     </div>
   )
 }

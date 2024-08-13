@@ -91,7 +91,7 @@ const ManagementScreen = () => {
       
           try {
             setLoading(true)
-            const response = await axios.post('"https://joof-backend.onrender.com/api/image', imageData);
+            const response = await axios.post('https://joof-backend.onrender.com/api/image', imageData);
             imageUrl = response.data.url; // Assuming your backend sends back the Cloudinary URL
             setLoading(false)
           } catch (error) {
@@ -111,7 +111,7 @@ const ManagementScreen = () => {
           // Update existing member
           try {
             setLoading(true)
-           const {data} = await axios.patch(`"https://joof-backend.onrender.com/api/management/${formData.id}`, updatedFormData);
+           const {data} = await axios.patch(`https://joof-backend.onrender.com/api/management/${formData.id}`, updatedFormData);
            await fetchManData();
            setLoading(false)
             // Handle success or navigate away
@@ -123,7 +123,7 @@ const ManagementScreen = () => {
           // Create new member
           try {
             
-           const {data} = await axios.post('"https://joof-backend.onrender.com/api/management', updatedFormData);
+           const {data} = await axios.post('https://joof-backend.onrender.com/api/management', updatedFormData);
            await fetchManData()
            console.log(data)
             // Handle success or navigate away

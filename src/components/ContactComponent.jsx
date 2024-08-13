@@ -1,24 +1,29 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import ProfileComponent from './ProfileComponent';
+import SpinnerComponent from '../components/SpinnerComponent'
+import {toast} from "react-toastify"
+import axios from 'axios';
 
 
 const ContactComponent = () => {
     const [formData, setFormData] = useState({
         name:"",
         address:"",
-        phone: "",
+        phoneNo: "",
         email:"",
-        text:""
+        messsage:""
 
     })
+
+    const [loading, setLoading] = useState(false)
 
     const initialFormData = {
         name: '',
         address: '',
-        phone: '',
+        phoneNo: '',
         email: '',
-        text: ''
+        message: ''
       };
 
     const onchangeFunc = (e) => {
@@ -27,13 +32,23 @@ const ContactComponent = () => {
         }))
     }
    
-    const submitFunc = (e) => {
+    const submitFunc = async (e) => {
         e.preventDefault()
-        console.log("submitted")
+        let contactData = {name, phoneNo, email, message}
+        try {
+            setLoading(true);
+            const { data } = await axios.post('https://joof-backend.onrender.com/api/contact', contactData);
+            setLoading(false)
+ 
+
+        } catch (error) {
+            toast.error("Error Sending Complaint")
+            console.error("Error Sending Complaint", error)
+        }
         setFormData(initialFormData)
     }
 
-    const {name, phone, email, text} = formData
+    const {name, phoneNo, email, message} = formData
   return (
     
     <div>
@@ -60,7 +75,7 @@ const ContactComponent = () => {
 
                     <div className='mb-8'>
                             <label className="block text-md font-medium" htmlFor="">Phone No</label>
-                            <input className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4' type={"number"} id='number' name='phone' value={phone}  placeholder='Phone Number' onChange={onchangeFunc} 
+                            <input className='bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:ring-sky-500 focus:bg-white focus:outline-blue-500 focus:border-sky-500 block w-full p-4' type={"number"} id='number' name='phoneNo' value={phoneNo}  placeholder='Phone Number' onChange={onchangeFunc} 
                             />
                         
                     </div>
@@ -74,7 +89,7 @@ const ContactComponent = () => {
 
                     <div className="">
                         <label htmlFor="message" className="block mb-2 font-medium text-gray-900 dark:text-white">Your message</label>
-                        <textarea id="text" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="How can we help you?" name='text' value={text} onChange={onchangeFunc}></textarea>
+                        <textarea id="text" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="How can we help you?" name='message' value={message} onChange={onchangeFunc}></textarea>
                     </div>
 
                     

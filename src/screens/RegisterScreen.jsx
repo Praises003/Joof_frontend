@@ -18,15 +18,14 @@ const [formData, setFormData] = useState({
 
 //const [pic, setPic] = useState("")
 //const [uploadPic, setUploadPic] = useState("")
-console.log(formData)
+
 const [show, setShow] = useState(false)
 const dispatch = useDispatch()
 const navigate = useNavigate()
 const {name, email, password,} = formData
 const {user, isLoading, isError, isSuccess, message} = useSelector(state => state.user)
 
-console.log(message)
-console.log(isError)
+
  useEffect(() => {
   
 

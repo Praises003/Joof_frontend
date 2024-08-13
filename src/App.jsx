@@ -57,11 +57,12 @@ import AdminEventPackageScreen from './screens/AdminEventPackageScreen'
 import AddEventPackageScreen from './screens/AddEventPackageScreen'
 import AdminReviewScreen from './screens/AdminReviewScreen'
 import ReviewScreen from './screens/ReviewScreen'
+import AdminContactScreen from './screens/AdminContactScreen'
 
 function App() {
   const location = useLocation();
   const showNav = ['/dashboard', '/dash_event', '/seat_list', '/seat', '/profile', "/cart", "/event_package", "/reminder", "/media", "/create_ticket", "/customer_review"].includes(location.pathname);
-  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket', "/transaction", "/admin_eventpackage", "/add_event", "/admin_review"  ].includes(location.pathname);
+  const showAdminNav = ['/admin', '/guests', '/users', '/events', '/ticket', "/transaction", "/admin_eventpackage", "/add_event", "/admin_review", "/admin_contact"  ].includes(location.pathname);
   const { eventPackage } = useSelector(state => state.eventPackage)
   //console.log(import.meta.env.VITE_SECRET)
   // const [count, setCount] = useState(0)
@@ -109,6 +110,9 @@ function App() {
             <Route path="/ticket" element={<TicketScreen /> } />
             <Route path="/transaction" element={<TransactionScreen /> } />
             <Route path="/admin_review" element={<AdminReviewScreen /> } />         
+
+            <Route path="/admin_contact" element={<AdminContactScreen /> } />         
+
 
 
 
